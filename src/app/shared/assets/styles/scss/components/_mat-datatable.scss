@@ -1,0 +1,50 @@
+.ngx-datatable {
+  &.material {
+    overflow: initial;
+    .datatable-header {
+      position: absolute;
+      top: 30px;
+      border-bottom: 1px solid #c7c7c7;
+      z-index: 100;
+      .datatable-header-cell {
+        font-size: 16px;
+        color: #000009;
+      }
+    }
+
+    .datatable-body {
+      padding-top: 80px;
+      .datatable-body-row {
+        > div {
+          border-bottom: 1px solid #c7c7c7;
+        }
+        .datatable-body-cell {
+          font-size: 18px;
+          color: $primary;
+        }
+      }
+    }
+
+    .datatable-footer {
+      position: absolute;
+      top: 0;
+      margin-top: -60px;
+      border-top: 0;
+      .page-count {
+        display: none;
+      }
+      .datatable-pager {
+        .pager .pages.active a {
+          background-color: transparent !important;
+          color: #000000 !important;
+          border: 1px solid $primary;
+          border-radius: 0;
+          font-size: 12px;
+        }
+        [class='datatable-icon-^'] {
+          color: #232731;
+        }
+      }
+    }
+  }
+}

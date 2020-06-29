@@ -1,0 +1,143 @@
+<div class="content-container">
+  <div class="page-title">
+    <h1>
+      {{'LOYALTY_PLAN' | translate}}
+    </h1>
+  </div>
+
+  <div class="form-wrapper page-body">
+    <div class="form-title">
+      {{'CREATE_LOYALTY_PLAN' | translate}}
+    </div>
+
+    <div class="alert alert-danger" *ngIf="!!errorsMessages">
+      {{ errorsMessages }}
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="form-body">
+        <div fxLayout="row wrap" fxLayout.lt-sm="column">
+
+          <div fxFlex="46" class="form-group">
+            <label>{{'LOYALTY_PLAN_NAME' | translate}} *</label>
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput
+                formControlName="name"
+                name="name"
+                placeholder="{{ 'LOYALTY_PLAN_NAME' | translate }}"
+                id="loyalty-plan-name-input"/>
+            </mat-form-field>
+          </div>
+
+          <div fxFlex="8"></div>
+
+          <div fxFlex="100" class="form-group">
+            <label>{{'DESCRIPTION' | translate}} *</label>
+            <mat-form-field class="full-width" appearance="outline">
+              <input matInput
+                formControlName="description"
+                name="description"
+                id="loyalty-plan-description-input"
+                placeholder="{{ 'DESCRIPTION' | translate }}"
+              />
+            </mat-form-field>
+          </div>
+
+          <div fxFlex="46" class="form-group">
+            <label>{{'WEBSITE_URL' | translate}} *</label>
+            <mat-form-field class="full-width" appearance="outline">
+              <input
+                matInput formControlName="website_url"
+                name="website_url"
+                id="loyalty-plan-website-url-input"
+                placeholder="{{ 'WEBSITE_URL' | translate }}" />
+            </mat-form-field>
+          </div>
+
+          <div fxFlex="8"></div>
+
+          <div fxFlex="46" class="form-group">
+            <label>{{'EXCHANGE_RULE' | translate}} *</label>
+            <div class="radio-buttons-container">
+              <mat-radio-group
+              name="exchange_rule"
+              formControlName="exchange_rule">
+                <mat-radio-button value="boxes">{{'BOXES' | translate}}</mat-radio-button>
+                <mat-radio-button value="points">{{'POINTS' | translate}}</mat-radio-button>
+              </mat-radio-group>
+            </div>
+          </div>
+
+          <div fxFlex="46" class="form-group">
+            <label>{{'LOGO_PLAN' | translate}}</label>
+            <app-upload-file
+              name="logo_url"
+              [control]="form.controls.logo_url"
+              [inputId]="'loyalty-plan-logo'"
+              [fileName]="loyaltyPlan.logo_filename"
+              validateDimensions200X200Enabled="true"
+              hint="{{'LOYALTY_PLAN_LOGO_HINT' | translate}}"
+              placeholder="{{ 'LOGO_PLAN' | translate}}"
+            >
+            </app-upload-file>
+          </div>
+
+          <div fxFlex="8"></div>
+
+          <div fxFlex="46" class="form-group">
+            <label>{{'REWARDS_EXPIRATION_DATE' | translate}} *</label>
+            <mat-form-field class="full-width datepicker-field">
+              <input matInput [matDatepicker]="rewards_expiration_date" formControlName="rewards_expiration_date">
+              <mat-datepicker-toggle matSuffix [for]="rewards_expiration_date"></mat-datepicker-toggle>
+              <mat-datepicker #rewards_expiration_date></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+
+          <div fxFlex="46" class="form-group">
+            <label>{{'TERMS_AND_CONDITIONS' | translate}} *</label>
+            <app-upload-file
+              name="terms_and_conditions_url"
+              [control]="form.controls.terms_and_conditions_url"
+              [inputId]="'loyalty-plan-terms-and-conditions'"
+              [fileName]="loyaltyPlan.terms_and_conditions_filename"
+              placeholder="{{ 'TERMS_AND_CONDITIONS' | translate}}"
+            >
+            </app-upload-file>
+          </div>
+
+          <div fxFlex="8"></div>
+
+          <div fxFlex="46" class="form-group">
+            <label>{{'REGULATION' | translate}} *</label>
+            <app-upload-file
+              name="regulation_url"
+              [control]="form.controls.regulation_url"
+              [inputId]="'loyalty-plan-regulation-url'"
+              [fileName]="loyaltyPlan.regulation_filename"
+              placeholder="{{ 'REGULATION' | translate}}"
+            >
+            </app-upload-file>
+          </div>
+
+          <!-- ############################## -->
+
+
+        </div>
+      </div>
+
+      <div class="text-center btn-actions">
+        <button mat-button type="button" class="btn-default btn-no-border-radius mr-1 btn-no-bg"
+        routerLink="/dashboard/loyalty-plans">
+          {{ 'CANCEL' | translate }}
+        </button>
+
+        <button mat-raised-button color="primary"
+        [disabled]="form.invalid" id="submit-btn"
+        class="btn-no-border-radius btn-primary">
+          {{ 'SAVE' | translate }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

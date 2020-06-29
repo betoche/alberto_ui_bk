@@ -1,0 +1,81 @@
+@import '../../assets/styles/tot/definitions';
+
+:host {
+
+  // Main Top Bar
+
+  .topbar-branding {
+    padding-top: 14px;
+    img {
+      max-height: 40px;
+    }
+  }
+
+  .topbar-button-right {
+    padding-right: 1rem;
+    margin: 0 0.5rem !important;
+    font-size: $topbar-font-size;
+    font-weight: $topbar-links-font-weight;
+    cursor: pointer;
+  }
+
+  .secondary-topnav {
+    font-size: $topbar-font-size;
+    background: $secondary-topbar-background-color;
+
+    .mat-menu-item {
+      font-size: $topbar-font-size !important;
+      font-weight: $topbar-links-font-weight;
+      color: $secondary-topbar-font-color;
+
+      &:last-child {
+        padding-right: 0px;
+      }
+
+      mat-icon {
+        color: $secondary-topbar-icons-color;
+      }
+    }
+
+    .topnav {
+      ul.menu > li {
+        &:not(:last-child) div {
+        }
+        a {
+          border-bottom: 0px;
+        }
+        div.open {
+          border-bottom: 6px solid #4b4f5a;
+          height: 42px;
+        }
+      }
+      a {
+        .mat-icon {
+          font-size: 24px;
+          margin-right: 8px;
+        }
+      }
+    }
+  }
+
+  // Secondary Top Bar
+
+  .secondary-topbar-button-right {
+    margin: 0 0.5rem !important;
+    font-size: $topbar-font-size;
+    cursor: pointer;
+    color: #4b4f5a;
+  }
+
+  .secondary-topbar-branding {
+    font-size: $topbar-font-size;
+    color: $secondary-topbar-font-color;
+  }
+
+  .secondary-topbar-icon-right {
+    padding-top: 10px;
+    cursor: pointer;
+    color: #4b4f5a;
+    vertical-align: sub;
+  }
+}

@@ -1,0 +1,23 @@
+.medications-breadcrumb {
+  ul {
+    padding: 0px;
+    margin: 0px;
+    color: #000000;
+    li {
+      list-style: none;
+      margin-right: 6px;
+      float: left;
+      font-size: 14px;
+      line-height: 18px;
+    }
+    li.decoration-line {
+      text-decoration-line: underline;
+    }
+  }
+}
+
+.btn-actions {
+  button {
+    margin-bottom: 15px;
+  }
+}

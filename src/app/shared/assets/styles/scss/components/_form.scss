@@ -1,0 +1,160 @@
+mat-label {
+  @include font-lato;
+  color: $primary;
+  font-size: $font-size-sm;
+}
+.white-form{
+  mat-label {
+    color: white;
+  }
+}
+
+// form field
+.mat-form-field-disabled {
+  .mat-form-field-outline {
+    background: #f0f0f0;
+  }
+  input {
+    color: #413535;
+  }
+}
+.mat-form-field {
+  &.mat-form-field-appearance-outline {
+    color: black;
+    .mat-form-field-outline {
+      border: 1px solid $primary-color;
+      background-color: #fff;
+      @include anim-03;
+      @include radius-form-field;
+      .mat-form-field-outline-end,
+      .mat-form-field-outline-start {
+        border: 0;
+        min-width: auto;
+      }
+      &.mat-form-field-outline-thick {
+        display: none;
+      }
+    }
+    // invalid
+    &.mat-form-field-invalid{
+      color: $danger-color;
+      .mat-form-field-outline{
+        border: 1px solid $danger-color;
+        @include opacity-1;
+        @include anim-03;
+      }
+    }
+    // hover
+    &:not(.mat-form-field-disabled){
+      .mat-form-field-flex:hover{
+        .mat-form-field-outline{
+          @include opacity-1;
+        }
+      }
+    }
+    // focused
+    &.mat-focused {
+      .mat-form-field-outline {
+        @include opacity-1;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      }
+    }
+    // search
+    &.mat-search {
+      &.mat-focused {
+        .mat-form-field-outline {
+          box-shadow: none;
+        }
+      }
+      .mat-form-field-infix {
+        padding: 0.75em 0 0.75em 0;
+        border-top: 0.5em solid transparent;
+      }
+    }
+  }
+}
+
+// message error
+.form-error-msg{
+  color: $danger-color;
+}
+
+// icons
+.mat-icon {
+  cursor: pointer;
+}
+
+// errors
+.mat-error {
+  margin-top: 19px;
+  margin-left: -10px;
+  font-size: 16px;
+  color: $danger-color;
+}
+
+// checkmark - valid password
+.valid-password-validator {
+  margin-bottom: 20px;
+  .mat-checkbox {
+    display: block;
+    margin-top: 5px;
+    .mat-checkbox-layout{
+      align-items: center;
+      .mat-checkbox-frame {
+        @include circle-radius;
+        border: 2px solid $primary-color;
+        width: 25px;
+        height: 25px;
+      }
+  
+      .mat-checkbox-inner-container {
+        width: 25px;
+        height: 25px;
+        margin-right: 10px;
+      }
+      .mat-checkbox-label {
+        @include font-lato;
+        font-size: $font-size-xs;
+      }
+    }
+  }
+}
+
+.mat-checkbox-checked,
+.mat-checkbox-indeterminate {
+  .mat-checkbox-frame {
+    background-color: $primary-color;
+    border: 2px solid $primary-color;
+    @include anim-03;
+    svg path{
+      stroke: $background-signin;
+    }
+  }
+}
+.form-input-wrap {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  .mat-checkbox{
+    @include font-lato;
+    font-size: $font-size-sm;
+  }
+}
+
+.mat-form-field-wrapper {
+  &:last-child {
+    padding-bottom: 0;
+  }
+}
+
+.header-form-section {
+  font-size: 20px;
+  line-height: 25px;
+
+  color: #4b4f5a;
+  .circle-number {
+    border: 2px solid #4b4f5a;
+    border-radius: 50%;
+    padding: 5px 10px;
+    margin-right: 10px;
+  }
+}

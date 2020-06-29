@@ -1,0 +1,49 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/tot_pharmaceutical_company_dashboard
+    docker:
+      - image: circleci/node:10.15-browsers-legacy
+
+    steps:
+      - checkout
+      - run: git submodule sync
+      - run: git submodule update --init
+
+      # Restore
+      - restore_cache:
+          key: tot_pharmaceutical_company_dashboard-{{ checksum "package.json" }}
+
+      - run:
+          name: Upgrade chrome latest version
+          command: |
+            wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
+            sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
+            sudo apt-get update
+            sudo apt-get install google-chrome-stable
+            sudo apt-get --only-upgrade install google-chrome-stable
+
+      - save_cache:
+          key: tot_pharmaceutical_company_dashboard-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+
+      - run:
+          name: NPM install
+          command: npm i
+
+      - run:
+          name: Chrome version
+          command: google-chrome --version
+
+      - run:
+          name: Node version
+          command: nodejs --version
+
+      - run:
+          name: Run test cases
+          command: npm run test
+          no_output_timeout: 2m
+
+      - store_artifacts:
+          path: ~/test/test-results.xml

@@ -1,0 +1,39 @@
+// Navigation
+
+.icon-menu.mb-1.ng-star-inserted{
+  text-align: center;
+}
+
+.app-admin-container.navigation-top .rightside-content-hold {
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.app-admin-container.sidebar-full.left-sidebar-enabled {
+  .sidebar-panel {
+    overflow: hidden;
+    background: none;
+    box-shadow: unset;
+    top: unset;
+
+    .navigation-hold {
+      position: relative;
+      width: 100%;
+      margin-top: 50px;
+      background: #4b4f5a !important;
+
+      .sidenav a {
+        padding: 0 16px;
+      }
+    }
+  }
+
+  .main-content-wrap {
+    width: calc(100% - 15rem);
+    float: right;
+
+    .rightside-content-hold {
+      margin: unset;
+    }
+  }
+}

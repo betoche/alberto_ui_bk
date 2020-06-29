@@ -1,0 +1,36 @@
+<div [formGroup]="form">
+  <ng-container formGroupName="company">
+    <div class="header-form-section mt-24 mb-24">
+      <span class="circle-number">{{position}}</span>{{ 'COMPANY_INFORMATION' | translate }}
+    </div>
+    <div fxLayout="row wrap" fxLayout.lt-sm="column">
+      <div fxFlex="50" class="pr-1">
+        <mat-label>{{'PHARMACEUTICAL_NAME' | translate}} *</mat-label>
+        <mat-form-field class="full-width mb-24" appearance="outline">
+          <input matInput formControlName="name" type="text"/>
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="50" class="pr-1">
+        <mat-label>{{'PHARMACEUTICAL_ID' | translate}} *</mat-label>
+        <mat-form-field class="full-width mb-24" appearance="outline">
+          <input
+              matInput
+              formControlName="company_code"
+              type="text"
+              [textMask]="{ mask: maskForCompanyCode }" />
+        </mat-form-field>
+      </div>
+
+      <address-fields [form]="form.get('company')"></address-fields>
+
+      <ng-container *ngIf="type != 'Drugstore'">
+        <hr class="width-80 mb-12 mt-12" />
+        <billing-information-fields
+            position="{{position + 1}}"
+            [form]="form.get('company')"></billing-information-fields>
+      </ng-container>
+
+    </div>
+  </ng-container>
+</div>

@@ -1,0 +1,81 @@
+<div class="height-100 mb-70">
+  <div class="pl-1">
+    <div class="alert alert-danger" *ngIf="!!errorsMessages">
+      {{ errorsMessages }}
+    </div>
+
+    <div class="header-profile mb-40" translate *ngIf="!currentUser.completed_profile">
+      COMPLETE_PROFILE
+    </div>
+
+    <div class="section-1 mb-24"><span class="circle-number">1</span>{{ 'PERSONAL_INFORMATION' | translate }}</div>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div fxLayout="row wrap" fxLayout.lt-sm="column">
+        <div fxFlex="50" class="pr-1 mb-24">
+          <mat-label disabled translate>NAME</mat-label>
+          <mat-form-field class="full-width" appearance="outline">
+            <input matInput formControlName="name" type="text" name="name" placeholder="{{ 'NAME' | translate }}" />
+            <mat-icon class="text-grey-B000" matSuffix>lock</mat-icon>
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="50" class="pr-1 mb-24">
+          <mat-label disabled translate>EMAIL</mat-label>
+          <mat-form-field class="full-width" appearance="outline">
+            <input matInput formControlName="email" type="email" name="email" placeholder="{{ 'EMAIL' | translate }}" />
+            <mat-icon class="text-grey-B000" matSuffix>lock</mat-icon>
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="50" class="pr-1 mb-24">
+          <mat-label class="w-100" translate>MOBILE_PHONE</mat-label>
+          <mat-form-field style="width: 15%; margin-right: 2%;" appearance="outline">
+            <input matInput formControlName="secondary_phone_country" type="text" numbersOnly />
+          </mat-form-field>
+          <mat-form-field style="width: 83%;" appearance="outline">
+            <input matInput formControlName="secondary_phone_number" name="secondary_phone_number" numbersOnly />
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="50" class="pr-1 mb-24">
+          <mat-label translate>PHONE_NUMBER</mat-label>
+          <mat-form-field style="width: 15%; margin-right: 2%;" appearance="outline">
+            <input matInput formControlName="phone_country" type="text" numbersOnly />
+          </mat-form-field>
+          <mat-form-field style="width: 83%;" appearance="outline">
+            <input matInput formControlName="phone_number" name="phone_number" numbersOnly />
+          </mat-form-field>
+        </div>
+      </div>
+      <hr class="width-80 mb-12 mt-12" />
+      <div class="section-1 mt-24 mb-24">
+        <span class="circle-number">2</span>{{ 'COMPANY_INFORMATION' | translate }}
+      </div>
+      <div fxLayout="row wrap" fxLayout.lt-sm="column">
+        <div fxFlex="50" class="pr-1 mb-24">
+          <mat-label disabled translate>COMPANY_NAME</mat-label>
+          <mat-form-field class="full-width" appearance="outline">
+            <input matInput formControlName="company" type="text" name="company" />
+            <mat-icon class="text-grey-B000" matSuffix>lock</mat-icon>
+          </mat-form-field>
+        </div>
+
+        <div fxFlex="50" class="pr-1 mb-24">
+          <mat-label translate>ROLE_IN_COMPANY</mat-label>
+          <mat-form-field class="full-width" appearance="outline">
+            <input matInput formControlName="role_in_company" type="text" name="role_in_company" />
+            <mat-icon class="text-grey-B000" matSuffix>lock</mat-icon>
+          </mat-form-field>
+        </div>
+
+        <!-- ############################## -->
+
+        <div fxFlex="100" class="mt-1 mr-1" style="text-align: center;">
+          <button mat-stroked-button color="primary" [disabled]="false" type="submit" id="submit-btn">
+            {{ 'SAVE' | translate }}
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

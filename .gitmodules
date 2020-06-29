@@ -1,0 +1,3 @@
+[submodule "src/app/shared"]
+	path = src/app/shared
+	url = git@github.com:gls-labs/tot_dashboards_shared.git

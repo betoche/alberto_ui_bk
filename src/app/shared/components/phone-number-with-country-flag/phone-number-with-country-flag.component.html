@@ -1,0 +1,32 @@
+<ng-container [formGroup]="form">
+  <mat-form-field
+      appearance="outline"
+      class="phone-code"
+      [ngClass]="{'input-error': !isValidPhoneNumber}">
+    <mat-select [formControl]="country" (selectionChange)="checkPhoneNumberIsValid()" class="country-flag-select">
+      <mat-select-trigger>
+         <span class="flag-icon flag-icon-{{ country.value | lowercase}}"> </span>
+       </mat-select-trigger>
+      <mat-option *ngFor="let countryCode of countryFlags" [value]="countryCode">
+        <span class="flag-icon flag-icon-{{countryCode | lowercase}}"></span>
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field
+      appearance="outline"
+      class="phone-number"
+      [ngClass]="{'input-error': !isValidPhoneNumber}">
+    <input
+        matInput
+        type="text"
+        placeholder="88888888"
+        (change)="checkPhoneNumberIsValid()"
+        [formControl]="number"
+        class="phone-number-input"
+        [textMask]="{mask: numberMask, guide: false}"/>
+  </mat-form-field>
+  <span class="input-error" *ngIf="!isValidPhoneNumber" translate>
+    ERRORS.PHONE_INVALID
+  </span>
+</ng-container>

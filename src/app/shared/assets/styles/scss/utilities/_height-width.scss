@@ -1,0 +1,47 @@
+$lenghts: (
+  0: 0px,
+  40: 40px,
+  80: 80px,
+  120: 120px,
+  160: 160px,
+  200: 200px,
+  240: 240px,
+  260: 260px,
+  300: 300px,
+  400: 400px,
+  500: 500px,
+);
+
+@each $name, $value in $lenghts {
+  .height-#{$name}px {
+    height: $value;
+  }
+  .width-#{$name}px {
+    width: $value;
+  }
+}
+
+.height-100 {
+  height: 100%;
+}
+.width-100 {
+  width: 100%;
+}
+
+.width-80 {
+  width: 80%;
+}
+
+// View height classes
+.height-100vh {
+  height: 100vh;
+}
+.height-100vh-70px {
+  height: calc(100vh - 70px);
+}
+.height-100vh-80px {
+  height: calc(100vh - 80px);
+}
+.height-100vh-280px {
+  height: calc(100vh - 280px);
+}

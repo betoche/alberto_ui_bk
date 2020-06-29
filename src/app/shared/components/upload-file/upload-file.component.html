@@ -1,0 +1,37 @@
+<div class="input-file-box">
+  <input
+    type="file" [uploader]="uploader" ng2FileSelect
+    accept="{{ acceptType }}"
+    id="{{inputId}}" class="input-file"
+  />
+
+  <label for="{{inputId}}">
+    <span class="file-box" *ngIf="!!placeholder && !fileName">
+      {{placeholder}}
+    </span>
+
+    <span class="file-box file-value" *ngIf="!!fileName">
+      {{fileName}}
+    </span>
+
+    <span class="file-button">
+      <img src="assets/images/upload_icon.png"/>
+    </span>
+  </label>
+
+  <div class="file-upload-hint" *ngIf="!!hint">
+    {{hint}}
+  </div>
+
+  <div class="file-upload-error" *ngIf="!!errorMessage">
+    {{errorMessage}}
+  </div>
+
+
+</div>
+
+<div *ngIf="control?.value">
+  <a class="file-review-link" href="{{ control?.value }}" target="_blank">
+    [ <span translate>VIEW_UPLOADED_FILE</span> ]
+  </a>
+</div>

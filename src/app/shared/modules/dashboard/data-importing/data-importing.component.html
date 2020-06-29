@@ -1,0 +1,34 @@
+<div class="pl-1">
+  <div fxLayout="row wrap" fxLayout.lt-sm="column">
+    <h1>{{ importType | uppercase | translate }}</h1>
+
+    <div fxFlex="100" class="pr-1">
+      <div class="full-width upload-file-wrapper" appearance="outline">
+        <input type="file" [uploader]="uploader" ng2FileSelect (model)="(file)" accept="text/csv" #uploadEl />
+      </div>
+    </div>
+
+    <!-- ############################## -->
+
+    <div fxFlex="100" class="mt-1 mr-1">
+      <div fxFlex="10" class="mt-1 mr-1">
+        <button
+          mat-raised-button
+          color="primary"
+          type="button"
+          id="validation-btn"
+          (click)="validation()"
+          [disabled]="!file"
+        >
+          {{ 'VALIDATION' | translate }}
+        </button>
+      </div>
+
+      <div fxFlex="10" class="mt-1 mr-1">
+        <button mat-raised-button color="warn" id="import-btn" (click)="importing()" [disabled]="!file">
+          {{ 'IMPORT' | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

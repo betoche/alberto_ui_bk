@@ -1,0 +1,137 @@
+:host {
+  ::ng-deep {
+    .mat-form-field-disabled {
+      .mat-form-field-outline {
+        background: #f0f0f0;
+      }
+      input {
+        color: #b0b0b0;
+      }
+    }
+    .mat-form-field-appearance-outline {
+      &.mat-focused {
+        .mat-form-field-outline {
+          box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        }
+      }
+      .mat-form-field-outline {
+        .mat-form-field-outline-end,
+        .mat-form-field-outline-start {
+          border: none;
+          background: #c7c7c7;
+          border-radius: 0 !important;
+        }
+      }
+    }
+
+    .valid-password-validator {
+      .mat-checkbox {
+        .mat-checkbox-frame {
+          border-radius: 20px;
+          border-color: rgba(0, 0, 0, 0.54);
+          width: 20px;
+          height: 20px;
+        }
+        .mat-checkbox-inner-container {
+          width: 20px;
+          height: 20px;
+        }
+        .mat-checkbox-label {
+          font-size: 16px;
+          line-height: 20px;
+
+          color: #b0b0b0;
+        }
+      }
+    }
+
+    .mat-checkbox-checked {
+      .mat-checkbox-frame {
+        background-color: rgba(0, 0, 0, 0.54);
+      }
+    }
+  }
+
+  :host {
+    font-size: 16px;
+  }
+
+  .signin-section {
+    padding: 50px;
+    .signin-form {
+      padding-left: 35px;
+    }
+  }
+
+  .header-section {
+    font-size: 40px;
+    line-height: 51px;
+  }
+
+  .page-description {
+    font-size: 20px;
+    line-height: 25px;
+    color: #4b4f5a;
+  }
+
+  mat-label {
+    line-height: 20px;
+    color: #4b4f5a;
+  }
+
+  .mat-dialog-content {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    color: #4b4f5a;
+  }
+
+  .mat-stroked-button {
+    &[disabled] {
+      background: #c7c7c7;
+    }
+
+    &.mat-secondary {
+      background: #e5e5e5;
+      color: #4b4f5a;
+    }
+
+    &.mat-primary {
+      background: #4b4f5a;
+      color: white;
+    }
+
+    &.mat-grey {
+      background: #b0b0b0 !important;
+      color: #ffffff;
+    }
+
+    border-radius: 2px;
+
+    padding: 4px 30px;
+  }
+
+  form a {
+    text-decoration: underline;
+  }
+  .form-input-wrap {
+    font-size: 16px;
+    line-height: 20px;
+
+    color: #4b4f5a;
+  }
+
+  .mat-form-field-wrapper {
+    &:last-child {
+      padding-bottom: 0;
+    }
+  }
+
+  .egret-navy .mat-button {
+    background: #e5e5e5;
+    border-radius: 0;
+  }
+  mat-form-field .mat-form-field-wrapper {
+    background-color: #c7c7c7;
+  }
+}

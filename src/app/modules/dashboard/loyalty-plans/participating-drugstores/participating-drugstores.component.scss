@@ -1,0 +1,62 @@
+.participating-drugstores-breadcrumb {
+  ul {
+    padding: 0px;
+    margin: 0px;
+    color: #000000;
+    li {
+      list-style: none;
+      margin-right: 6px;
+      float: left;
+      font-size: 14px;
+      line-height: 18px;
+      cursor: pointer;
+    }
+    li.decoration-line {
+      text-decoration-line: underline;
+    }
+  }
+}
+
+mat-card-content {
+  h2.table-title {
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 24px;
+    color: #4B4F5A;
+    margin-top: 40px
+  }
+}
+
+
+.no-items-container {
+  border: 2px dashed #C4C4C4;
+  padding: 30px;
+  border-radius: 4px;
+}
+
+.add-more-item-wrapper {
+  margin-top: 15px;
+}
+
+.icon-add-item {
+  vertical-align: bottom;
+  margin-right: 15px;
+}
+
+.text-add-item {
+  text-decoration: underline;
+}
+
+.btn-actions {
+  button {
+    margin-bottom: 15px;
+  }
+}
+
+.btn-add-first-item {
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  text-decoration-line: underline;
+  color: #4B4F5A
+}

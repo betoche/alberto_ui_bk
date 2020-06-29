@@ -1,0 +1,137 @@
+<div class="header-topnav mat-elevation-z2">
+  <div class="container">
+    <div class="topnav">
+
+      <!-- App Logo -->
+      <div class="topbar-branding" [routerLink]="['/']">
+        <img src="assets/images/logo.png" alt="" class="app-logo" />
+      </div>
+
+      <span fxFlex></span>
+      <!-- End Navigation -->
+
+      <div [style.overflow]="'visible'" class="topbar-button-right">
+        {{ 'NAVIGATION.DASHBOARD' | translate }}
+      </div>
+
+      <ng-container *ngIf="!layoutConf.isMobile">
+        <div *ngFor="let item of topbarLinks; let i = index"
+        routerLink="/{{item.state}}"
+        class="topbar-button-right mr-1 img-button">
+          {{ item.name | translate }}
+        </div>
+      </ng-container>
+
+      <div mat-icon-button
+           class="topbar-button-right mr-1 img-button"
+           [routerLink]="['/dashboard/terms-and-conditions']">
+        {{ 'NAVIGATION.CONTACT' | translate }}
+      </div>
+
+      <div mat-icon-button
+           class="topbar-button-right mr-1 img-button"
+           [routerLink]="['/dashboard/terms-and-conditions']">
+        {{ 'NAVIGATION.T&C' | translate }}
+      </div>
+
+      <!-- Mobile screen menu toggle -->
+      <button mat-icon-button class="mr-1" (click)="toggleSidenav()"
+             *ngIf="layoutConf.isMobile">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="secondary-topnav mat-elevation-z2">
+  <div class="container">
+    <div class="topnav" fxLayoutAlign="center center">
+
+      <!-- App Logo -->
+      <div class="secondary-topbar-branding">
+        {{ 'WELCOME_USER' | translate }} {{ currentUser?.name }}
+      </div>
+
+      <span fxFlex></span>
+      <!-- End Navigation -->
+
+      <!-- Top left user menu -->
+      <ul class="menu" *ngIf="!layoutConf.isMobile">
+        <li *ngFor="let item of menuItems; let i = index">
+          <div *ngIf="item.type !== 'separator'" routerLinkActive="open">
+
+            <a matRipple mat-menu-item
+               routerLink="/{{ item.state }}"
+               *ngIf="item.type === 'link'">
+              <mat-icon matSuffix>{{ item.icon }}</mat-icon>
+              {{ item.name | translate }}
+            </a>
+
+            <div *ngIf="item.type === 'dropDown'">
+              <label matRipple for="drop-{{ i }}" class="toggle">
+                <mat-icon>{{ item.icon }}</mat-icon>
+                {{ item.name | translate }}
+              </label>
+
+              <a matRipple>
+                <mat-icon>{{ item.icon }}</mat-icon>
+                {{ item.name | translate }}
+              </a>
+
+              <input type="checkbox" id="drop-{{ i }}" />
+              <ul>
+                <li *ngFor="let itemLvL2 of item.sub; let j = index"
+                    routerLinkActive="open">
+                  <a
+                    matRipple
+                    routerLink="{{ item.state ? '/' + item.state : '' }}/{{ itemLvL2.state }}"
+                    *ngIf="itemLvL2.type !== 'dropDown'" >
+                    <mat-icon *ngIf="itemLvL2.icon">{{ itemLvL2.icon }}</mat-icon>
+                    {{ itemLvL2.name | translate }}
+                  </a>
+
+                  <div *ngIf="itemLvL2.type === 'dropDown'">
+                    <label matRipple for="drop-{{ i }}{{ j }}" class="toggle">
+                      {{ itemLvL2.name | translate }}
+                    </label>
+
+                    <a matRipple>
+                      <mat-icon *ngIf="itemLvL2.icon">{{ itemLvL2.icon }}</mat-icon>
+                      {{ itemLvL2.name | translate }}
+                    </a>
+                    <input type="checkbox" id="drop-{{ i }}{{ j }}" />
+
+                    <!-- Level 3 -->
+                    <ul>
+                      <li *ngFor="let itemLvL3 of itemLvL2.sub" routerLinkActive="open">
+                        <a matRipple
+                          routerLink="{{ item.state ? '/' + item.state : '' }}{{
+                            itemLvL2.state ? '/' + itemLvL2.state : ''
+                          }}/{{ itemLvL3.state }}" >
+                          <mat-icon *ngIf="itemLvL3.icon">{{ itemLvL3.icon }}</mat-icon>
+                          {{ itemLvL3.name | translate }}
+                        </a>
+                      </li>
+                    </ul>
+
+                  </div>
+                </li>
+              </ul>
+
+            </div>
+          </div>
+        </li>
+
+        <li>
+          <div>
+            <a mat-menu-item (click)="signOut()">
+              <mat-icon matSuffix>exit_to_app</mat-icon>
+              {{ 'SIGN_OUT' | translate }}
+            </a>
+          </div>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</div>

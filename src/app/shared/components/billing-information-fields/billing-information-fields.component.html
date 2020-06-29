@@ -1,0 +1,69 @@
+<ng-container [formGroup]="form">
+  <div class="header-form-section mt-24 mb-24">
+    <div><span class="circle-number">{{position}}</span>{{ 'BILLING_INFORMATION' | translate }}</div>
+  </div>
+
+  <div formGroupName="billing_information_attributes" fxLayout="row wrap" fxLayout.lt-sm="column">
+    <div fxFlex="50" class="pr-1 mb-24">
+      <mat-label>{{'BUSINESS_NAME' | translate}} *</mat-label>
+      <mat-form-field class="full-width" appearance="outline">
+        <input matInput formControlName="company_name" type="text" name="company_name" />
+      </mat-form-field>
+    </div>
+    <div fxFlex="50" class="pr-1 mb-24"></div>
+
+    <div fxFlex="50" class="pr-1">
+      <mat-label>{{'GOVERNMENT_ID_TYPE' | translate}} *</mat-label>
+      <government-id-types
+          [form]="form.get('billing_information_attributes')"></government-id-types>
+    </div>
+
+    <div fxFlex="50" class="pr-1">
+      <mat-label translate>LEGAL_NOTE</mat-label>
+      <mat-form-field appearance="outline" class="full-width mb-24">
+        <input matInput formControlName="legal_note" type="text" name="legal_note" />
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50" class="pr-1 mb-24">
+      <mat-label class="d-block">{{'TELEPHONE_1' | translate}} *</mat-label>
+      <phone-number-with-country-flag
+            [form]="form.get('billing_information_attributes')"
+            [country]="form.get('billing_information_attributes').get('phone_country')"
+            [number]="form.get('billing_information_attributes').get('phone_number')"
+            require="true"></phone-number-with-country-flag>
+    </div>
+
+    <div fxFlex="50" class="pr-1">
+      <mat-label>{{'EMAIL' | translate}} *</mat-label>
+      <mat-form-field appearance="outline" class="full-width mb-24">
+        <input matInput formControlName="email" type="text" name="email" email=true />
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="25" class="pr-1">
+      <mat-label>{{'COUNTRY' | translate}} *</mat-label>
+      <country-list
+          [form]="form.get('billing_information_attributes')"></country-list>
+    </div>
+
+    <div fxFlex="25" class="pr-1">
+      <mat-label>{{'PROVINCE' | translate}} *</mat-label>
+      <province-list
+          [form]="form.get('billing_information_attributes')"></province-list>
+    </div>
+
+    <div fxFlex="25" class="pr-1">
+      <mat-label>{{'CANTON' | translate}} *</mat-label>
+      <canton-list
+          [form]="form.get('billing_information_attributes')"></canton-list>
+    </div>
+
+    <div fxFlex="25" class="pr-1">
+      <mat-label>{{'DISTRICT' | translate}} *</mat-label>
+      <district-list
+          [form]="form.get('billing_information_attributes')"></district-list>
+    </div>
+  </div>
+
+</ng-container>

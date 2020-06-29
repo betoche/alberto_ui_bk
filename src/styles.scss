@@ -1,0 +1,280 @@
+/* You can add global styles to this file, and also import other style files */
+
+.alert {
+  position: relative;
+  padding: .75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+}
+
+.alert-danger {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+
+.alert-primary {
+  color: #004085;
+  background-color: #cce5ff;
+  border-color: #b8daff;
+}
+
+.alert-secondary {
+  color: #383d41;
+  background-color: #e2e3e5;
+  border-color: #d6d8db;
+}
+
+.alert-success {
+  color: #155724;
+  background-color: #d4edda;
+  border-color: #c3e6cb;
+}
+
+.alert-warning {
+  color: #856404;
+  background-color: #fff3cd;
+  border-color: #ffeeba;
+}
+
+.alert-info {
+  color: #0c5460;
+  background-color: #d1ecf1;
+  border-color: #bee5eb;
+}
+
+.alert-light {
+  color: #818182;
+  background-color: #fefefe;
+  border-color: #fdfdfe;
+}
+
+.alert-dark {
+  color: #1b1e21;
+  background-color: #d6d8d9;
+  border-color: #c6c8ca;
+}
+
+.mat-drawer-transition .mat-drawer-content {
+  background: #FFFFFF;
+}
+
+.app-admin-container.navigation-top .rightside-content-hold {
+  padding-left: 8%;
+  padding-right: 8%;
+}
+
+.content-container {
+  background: #FFFFFF;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
+  border-radius: 2px;
+  border-bottom: 4px solid #00CD00;
+  padding: 40px;
+  margin-bottom: 80px;
+
+  .page-title {
+    border-bottom: 1px solid rgba(0, 205, 0, 0.5);
+
+    h1 {
+      font-weight: bold;
+      font-size: 40px;
+    }
+
+    p {
+      font-weight: normal;
+      font-size: 18px;
+    }
+  }
+
+  .page-body {
+    padding-top: 40px
+  }
+
+  .form-wrapper {
+    .mat-form-field-infix {
+      border-top: 0;
+    }
+
+    .form-body {
+      padding: 20px 80px;
+      .form-group {
+        margin-bottom: 15px;
+      }
+    }
+
+    .radio-buttons-container {
+      margin-top: 10px;
+
+      .mat-radio-button {
+        margin-right: 40px;
+      }
+    }
+
+    .checkbox-style {
+      .mat-radio-outer-circle {
+        border-radius: 2px;
+      }
+
+      .mat-radio-button.mat-accent.mat-radio-checked {
+        .mat-radio-outer-circle {
+          background-color: #666666;
+          border-color: #666666;
+        }
+
+        .mat-radio-inner-circle {
+          border-radius: unset;
+          background-color: unset;
+          -ms-transform: rotate(45deg); /* IE 9 */
+          -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
+          transform: rotate(45deg);
+        }
+
+        .mat-radio-inner-circle:before {
+          content: '';
+          position: absolute;
+          width: 3px;
+          height: 12px;
+          background-color: #fff;
+          left: 11px;
+          top: 3px;
+        }
+
+        .mat-radio-inner-circle:after {
+          content: '';
+          position: absolute;
+          width: 6px;
+          height: 3px;
+          background-color: #fff;
+          left: 6px;
+          top: 12px;
+        }
+      }
+    }
+  }
+}
+
+.btn-primary {
+  background: #00CD00;
+  background-image: -webkit-linear-gradient(to right, #7AF003, #00CD00);
+  background-image: -moz-linear-gradient(to right, #7AF003, #00CD00);
+  background-image: -ms-linear-gradient(to right, #7AF003, #00CD00);
+  background-image: -o-linear-gradient(to right, #7AF003, #00CD00);
+  background-image: linear-gradient(to right, #7AF003, #00CD00);
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+  color: #000000 !important;
+  text-decoration: none;
+  display: inline-block;
+  cursor: pointer;
+  text-align: center;
+}
+
+.mat-raised-button, .btn-default {
+  padding: 0 35px !important;
+}
+
+.input-file-box .file-box {
+  border: 1px dashed #00CD00 !important;
+}
+
+.egret-navy {
+  .mat-radio-outer-circle {
+    border-color: #00CD00;
+  }
+
+  .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle, {
+    border-color: #00CD00;
+  }
+
+  .mat-radio-button.mat-accent .mat-radio-inner-circle,
+  .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple),
+  .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple,
+  .mat-radio-button.mat-accent:active .mat-radio-persistent-ripple {
+    background-color: #00CD00;
+  }
+}
+
+.btn-no-bg {
+  background-color: unset !important;
+  color: #000 !important;
+  border: 1px solid #4B4F5A !important;
+}
+
+.ngx-datatable.material .empty-row {
+  height: 20px !important;
+}
+
+.ngx-datatable.material {
+  .mat-form-field-appearance-outline {
+    .mat-form-field-infix {
+      padding: 0.8em 0;
+      border-top: none;
+    }
+  }
+
+  .datatable-header{
+    border-bottom: 4px solid #00CD00;
+    .datatable-header-cell {
+      font-weight: bold;
+      font-size: 16px;
+      color: #232731;
+    }
+  }
+
+}
+
+.actions-align-right {
+  text-align: right !important;
+  .datatable-header-cell-template-wrap {
+    padding: 0 1.2rem !important;
+  }
+}
+
+.medications-and-countries, .medications-included-by-country {
+  .ngx-datatable.material {
+    .datatable-body {
+      .datatable-body-row {
+        .datatable-body-cell, .datatable-body-cell a {
+          padding: .5rem 1.2rem;
+          color: #4B4F5A;
+          font-size: 14px;
+          font-weight: normal;
+          align-self: center;
+        }
+
+        label {
+
+          color: #232731;
+        }
+      }
+    }
+  }
+}
+
+.active-status {
+  background: rgba(0, 205, 0, 0.15);
+  border-radius: 4px;
+  width: 100px;
+  font-size: 14px;
+  padding: 6px 0px;
+  text-align: center;
+}
+
+.inactive-status {
+  background: rgba(226, 46, 46, 0.15);
+  border-radius: 4px;
+  padding: 6px 0px;
+  width: 100px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.with-table-title {
+  padding-top: 40px;
+
+  .table-title {
+    margin-bottom: 20px;
+  }
+}

@@ -1,0 +1,9 @@
+<ng-container [formGroup]="form">
+  <mat-form-field appearance="outline" class="full-width mb-24">
+    <mat-select formControlName="government_id_type" type="text" name="government_id_type">
+      <mat-option *ngFor="let type of governmentIdTypes" value="{{type | lowercase}}">
+        {{ type | translate }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</ng-container>

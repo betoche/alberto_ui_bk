@@ -1,0 +1,39 @@
+<div [formGroup]="form">
+  <ng-container formGroupName="user">
+    <div class="header-form-section mt-32 mb-24">
+      <span class="circle-number">1</span>{{ 'USER_INFORMATION' | translate }}
+    </div>
+
+    <div fxLayout="row wrap" fxLayout.lt-sm="column">
+      <div fxFlex="50" class="pr-1 mb-24">
+        <mat-label>{{'NAME' | translate}} *</mat-label>
+        <mat-form-field class="full-width" appearance="outline">
+          <input matInput formControlName="name" type="text" name="name" placeholder="{{ 'NAME' | translate }}" />
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="50" class="pr-1 mb-24">
+        <mat-label>{{'EMAIL' | translate}} *</mat-label>
+        <mat-form-field class="full-width" appearance="outline">
+          <input matInput email="true" formControlName="email" type="email" name="email" placeholder="{{ 'EMAIL' | translate }}" />
+        </mat-form-field>
+      </div>
+
+      <div fxFlex="50" class="pr-1 mb-24">
+        <mat-label class="d-block">{{ 'TELEPHONE_1' | translate }} *</mat-label>
+        <phone-number-with-country-flag
+            [form]="form.get('user')"
+            [country]="form.get('user').get('phone_country')"
+            [number]="form.get('user').get('phone_number')"></phone-number-with-country-flag>
+      </div>
+
+      <div fxFlex="50" class="pr-1 mb-24">
+        <mat-label class="d-block">{{'TELEPHONE_2' | translate}}</mat-label>
+        <phone-number-with-country-flag
+            [form]="form.get('user')"
+            [country]="form.get('user').get('secondary_phone_country')"
+            [number]="form.get('user').get('secondary_phone_number')"></phone-number-with-country-flag>
+      </div>
+    </div>
+  </ng-container>
+</div>

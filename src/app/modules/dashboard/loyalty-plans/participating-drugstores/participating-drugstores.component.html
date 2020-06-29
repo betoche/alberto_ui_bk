@@ -1,0 +1,176 @@
+<div class="margin-horizontal-05rem">
+  <div class="page-title">
+    <h1>
+      {{'LIVE_MORE' | translate}} {{loyaltyPlanCountry.country_name}}
+    </h1>
+  </div>
+
+  <div class="participating-drugstores-breadcrumb">
+    <ul>
+      <li class="decoration-line">
+        {{'LOYALTY_PLANS' | translate}}
+      </li>
+
+      <li>
+        >
+      </li>
+
+      <li class="decoration-line" routerLink="/dashboard/loyalty-plans/{{loyaltyPlanId}}">
+        {{loyaltyPlanCountry.country_name}}
+      </li>
+
+      <li>
+        >
+      </li>
+
+      <li class="decoration-line" (click)="backToList()">
+        {{'PARTICIPATING_DRUGSTORES' | translate}}
+      </li>
+
+    </ul>
+  </div>
+</div>
+
+
+<mat-card [@animate]="{ value: '*', params: { y: '50px', delay: '300ms' } }"
+class="participating-drugstores-wrapper margin-bottom-100">
+
+  <mat-card-content>
+    <ngx-datatable
+      class="material ml-0 mr-0"
+      [rows]="isAddingParticipatingDrugstore ? [] : selectedParticipatingDrugstores"
+      [columnMode]="'force'"
+      [headerHeight]="50"
+      [footerHeight]="40"
+      [scrollbarH]="true"
+      [limit]="10"
+      [rowHeight]="'auto'"
+      [messages]="datatableMessages"
+    >
+
+      <ngx-datatable-column name="{{ 'NAME' | translate }}" [flexGrow]="1" [sortable]="false">
+        <ng-template let-row="row" ngx-datatable-cell-template let-rowIndex="rowIndex">
+          {{row.drugstore_name}} {{ row.full_address }}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="{{ 'STATUS' | translate }}" [flexGrow]="1" width="130" [sortable]="false">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <div [ngClass]="row.status=='active' ? 'active-status' : 'inactive-status'">
+            {{ (row.status | uppercase | translate) }}
+          </div>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="{{'ACTIONS' | translate}}" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template let-rowIndex="rowIndex">
+          <a *ngIf="row.status == 'active'"
+          (click)="updateStatus(row.id, 'inactive', rowIndex)"
+          class="btn-save-data">
+            {{ 'DEACTIVATE' | translate }}
+          </a>
+
+          <a *ngIf="row.status != 'active'"
+          (click)="updateStatus(row.id, 'active', rowIndex)"
+          class="btn-save-data">
+            {{ 'REACTIVATE' | translate }}
+          </a>
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+
+    <div class="add-more-item-wrapper"
+    *ngIf="selectedParticipatingDrugstores.length > 0 && !isAddingParticipatingDrugstore">
+      <a (click)="addParticipatingDrugstore()">
+        <img src="assets/images/loyalty-plans/add.png" class="icon-add-item"/>
+        <span class="text-add-item">
+          {{ 'INCLUDE_PHARMACIES' | translate }}
+        </span>
+      </a>
+    </div>
+
+    <div class="add-participating-drugstore" *ngIf="isAddingParticipatingDrugstore">
+      <div fxLayout="row wrap" fxLayout.lt-sm="column">
+        <div fxFlex="50" class="form-group">
+          <label>{{ 'CHAIN' | translate }}</label>
+          <mat-form-field appearance="outline" class="full-width mat-select-tot-style">
+            <mat-select (selectionChange)="onChangeDrugstore($event)">
+              <mat-option *ngFor="let drugstore of drugstores" [value]="drugstore">
+                {{ drugstore.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div fxFlex="50"></div>
+      </div>
+
+      <div class="form-group mt-1">
+        <label (click)="selectAllParticipatingDrugstores()" *ngIf="participatingDrugstores.length > 0">
+          <img src="assets/images/loyalty-plans/unchecked_checkbox.png" class="icon-add-item"/>
+          {{ 'SELECT_ALL' | translate }}
+        </label>
+      </div>
+
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" *ngIf="participatingDrugstores.length > 0">
+        <div fxFlex="50" class="form-group">
+          <hr/>
+        </div>
+      </div>
+
+      <div *ngFor="let participatingDrugstore of participatingDrugstores">
+        <div class="form-group">
+          <label (click)="addToParticipatingDrugstores(participatingDrugstore)">
+            <img src="assets/images/loyalty-plans/unchecked_checkbox.png" class="icon-add-item"/>
+            {{participatingDrugstore.drugstore_name}} {{ participatingDrugstore.full_address }}
+          </label>
+        </div>
+      </div>
+
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" *ngIf="selectedParticipatingDrugstores.length > 0">
+        <div fxFlex="50" class="form-group">
+          <hr/>
+        </div>
+      </div>
+
+      <div *ngFor="let selectedParticipatingDrugstore of selectedParticipatingDrugstores">
+        <div fxFlex="100" class="form-group">
+          <label (click)="removeToParticipatingDrugstores(selectedParticipatingDrugstore)">
+            <img src="assets/images/loyalty-plans/checked_checkbox.png" class="icon-add-item"/>
+            {{selectedParticipatingDrugstore.drugstore_name}} {{ selectedParticipatingDrugstore.full_address }}
+          </label>
+        </div>
+      </div>
+
+      <div class="text-center btn-actions mt-1">
+        <button mat-button type="button" class="btn-default btn-no-border-radius mr-1 btn-no-bg"
+        (click)="backToList()">
+          {{ 'BACK' | translate }}
+        </button>
+
+        <button mat-raised-button color="primary" id="submit-btn" (click)="saveListOfParticipatingDrugstores()"
+        class="btn-no-border-radius btn-primary">
+          {{ 'SAVE' | translate }}
+        </button>
+      </div>
+    </div>
+
+    <div class="no-items-container text-center"
+    *ngIf="selectedParticipatingDrugstores.length == 0 && !isAddingParticipatingDrugstore">
+      <p class="no-item mb-0">
+        {{ 'NO_PARTICIPATING_DRUGSTORES_MESSAGE' | translate }} {{ loyaltyPlanCountry.country_name }}
+      </p>
+      <p class="mb-0">
+        <a class="btn-add-first-item" (click)="addParticipatingDrugstore()">
+          {{ 'INCLUDE_PHARMACIES' | translate }}
+        </a>
+      </p>
+    </div>
+
+    <div class="text-center btn-actions mt-1" *ngIf="!isAddingParticipatingDrugstore">
+      <button mat-button type="button" class="btn-default btn-no-border-radius mr-1 btn-no-bg"
+      routerLink="/dashboard/loyalty-plans/{{loyaltyPlanId}}">
+        {{ 'BACK' | translate }}
+      </button>
+    </div>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,44 @@
+.terms-and-conditions-container {
+  color: #232731;
+  margin-bottom: 80px;
+
+  .tc-header {
+    background: #FFFFFF;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.25);
+    border-radius: 0px 2px 0px 0px;
+    border-bottom: 4px solid #00CD00;
+    padding: 35px;
+
+    .tc-title {
+      font-weight: bold;
+      font-size: 30px;
+      line-height: 36px;
+    }
+
+    .tc-subtitle {
+      font-style: normal;
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 22px;
+    }
+  }
+
+  .tc-body {
+    background: #FFFFFF;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.25);
+    border-radius: 0px 0px 2px 2px;
+    padding: 35px;
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 30%;
+    background-image: url('/shared/assets/images/backgrounds/terms-and-conditions-bg.png');
+
+    p {
+      font-style: normal;
+      font-weight: normal;
+      font-size: 14px;
+      line-height: 17px;
+      width: 70%;
+    }
+  }
+}

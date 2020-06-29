@@ -1,0 +1,17 @@
+.egret-navy {
+  .mat-tab-group {
+    .mat-tab-header {
+      border-bottom: 0;
+      margin-bottom: 36px;
+    }
+    .mat-tab-label {
+      font-family: $font-family-base;
+      font-size: 20px;
+      color: $primary;
+      &.mat-tab-label-active {
+        color: #000009;
+        opacity: 1;
+      }
+    }
+  }
+}

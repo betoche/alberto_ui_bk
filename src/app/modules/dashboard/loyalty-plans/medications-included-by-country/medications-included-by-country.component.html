@@ -1,0 +1,189 @@
+<div class="margin-horizontal-05rem">
+  <div class="page-title">
+    <h1>
+      {{'LIVE_MORE' | translate}} {{loyaltyPlanCountry.country_name}}
+    </h1>
+  </div>
+
+  <div class="medications-breadcrumb">
+    <ul>
+      <li class="decoration-line">
+        {{'LOYALTY_PLANS' | translate}}
+      </li>
+
+      <li>
+        >
+      </li>
+
+      <li class="decoration-line" routerLink="/dashboard/loyalty-plans/{{loyaltyPlanId}}">
+        {{loyaltyPlanCountry.country_name}}
+      </li>
+
+      <li>
+        >
+      </li>
+
+      <li class="decoration-line">
+        {{'MEDICATIONS' | translate}}
+      </li>
+
+    </ul>
+  </div>
+</div>
+
+<mat-card [@animate]="{ value: '*', params: { y: '50px', delay: '300ms' } }"
+class="medications-included-by-country p-0">
+  <mat-card-content class="p-0">
+    <ngx-datatable
+      class="material ml-0 mr-0"
+      [rows]="medicationsIncludedByCountry"
+      [columnMode]="'force'"
+      [headerHeight]="50"
+      [footerHeight]="40"
+      [scrollbarH]="true"
+      [limit]="10"
+      [rowHeight]="'auto'"
+      [messages]="datatableMessages"
+    >
+
+      <ngx-datatable-column name="{{ 'NAME' | translate }}" [flexGrow]="1" [sortable]="false" width="100">
+        <ng-template let-row="row" ngx-datatable-cell-template let-rowIndex="rowIndex">
+          {{ row.medication_name }}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="{{ 'CODE' | translate }}" [flexGrow]="1" [sortable]="false" width="100">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row.medication_code }}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="{{ 'STATUS' | translate }}" [flexGrow]="1" width="120" [sortable]="false">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <div [ngClass]="row.status=='active' ? 'active-status' : 'inactive-status'">
+            {{ (row.status | uppercase | translate) }}
+          </div>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column width="130"
+      name="{{ 'MEDICATION_POINTS' | translate }}" [flexGrow]="1" [sortable]="false"
+      *ngIf="loyaltyPlan.exchange_rule == 'points'">
+        <ng-template let-row="row" ngx-datatable-cell-template let-rowIndex="rowIndex">
+          <input name="medication_points" type="number"
+          class="cell-input width-120"
+          *ngIf="row.isChanged"
+          [value]="!!row.medication_points ? row.medication_points : ''"
+          (input)="onInputChange($event.target.value, 'medication_points', rowIndex)"/>
+
+          <div *ngIf="!row.isChanged" (click)="setChangeToMedicationIncluded(rowIndex)">
+            {{ row.medication_points }}
+          </div>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column width="130"
+      name="{{ 'POINTS_REQUIRED' | translate }}" [flexGrow]="1" [sortable]="false"
+      *ngIf="loyaltyPlan.exchange_rule == 'points'">
+        <ng-template let-row="row" ngx-datatable-cell-template let-rowIndex="rowIndex">
+          <input name="amount_of_points_required" *ngIf="row.isChanged" type="number"
+          class="cell-input width-120"
+          [value]="!!row.amount_of_points_required ? row.amount_of_points_required : ''"
+          (input)="onInputChange($event.target.value, 'amount_of_points_required', rowIndex)"/>
+
+          <div *ngIf="!row.isChanged" (click)="setChangeToMedicationIncluded(rowIndex)">
+            {{ row.amount_of_points_required }}
+          </div>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column width="130"
+      name="{{ 'AMOUNT_OF_BOXES_REQUIRED' | translate }}" [flexGrow]="1" [sortable]="false"
+      *ngIf="loyaltyPlan.exchange_rule == 'boxes'">
+        <ng-template let-row="row" ngx-datatable-cell-template let-rowIndex="rowIndex">
+          <input name="amount_of_boxes_required" *ngIf="row.isChanged" type="number"
+          class="cell-input width-120"
+          [value]="!!row.amount_of_boxes_required ? row.amount_of_boxes_required : ''"
+          (input)="onInputChange($event.target.value, 'amount_of_boxes_required', rowIndex)"/>
+
+          <div *ngIf="!row.isChanged" (click)="setChangeToMedicationIncluded(rowIndex)">
+            {{ row.amount_of_boxes_required }}
+          </div>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="{{ 'REWARD' | translate }}" [flexGrow]="1" [sortable]="false" width="180">
+        <ng-template let-row="row" ngx-datatable-cell-template let-rowIndex="rowIndex">
+          <input name="reward" *ngIf="row.isChanged" type="number"
+          [value]="!!row.reward ? row.reward : ''"
+          class="cell-input"
+          (input)="onInputChange($event.target.value, 'reward', rowIndex)"/>
+
+          <div *ngIf="!row.isChanged" (click)="setChangeToMedicationIncluded(rowIndex)" class="d-inline">
+            {{ row.reward }}
+          </div>
+
+          <select (change)="onInputChange($event.target.value, 'medication_presentation_id', rowIndex)"
+          class="cell-input inline-select"
+          *ngIf="row.isChanged">
+            <option></option>
+            <option *ngFor="let medicationPresentation of row.medication_presentations"
+            [value]="medicationPresentation.id"
+            [selected]="medicationPresentation.id == row?.medication_presentation_id">
+
+              {{ medicationPresentation.attributes.presentation_content }}
+            </option>
+          </select>
+
+          <div *ngIf="!row.isChanged" (click)="setChangeToMedicationIncluded(rowIndex)" class="d-inline">
+            {{ row.medication_presentation_content }}
+          </div>
+
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column
+      name="{{ 'EXCHANGE_LIMIT_BY_YEAR' | translate }}" [flexGrow]="1" width="130" [sortable]="false"
+      *ngIf="loyaltyPlan.exchange_rule == 'boxes'">
+        <ng-template let-row="row" ngx-datatable-cell-template let-rowIndex="rowIndex">
+          <input name="exchange_limit_by_year" *ngIf="row.isChanged" type="number"
+          class="cell-input width-120"
+          (input)="onInputChange($event.target.value, 'exchange_limit_by_year', rowIndex)"
+          [value]="!!row.exchange_limit_by_year ? row.exchange_limit_by_year : ''" />
+
+          <div *ngIf="!row.isChanged" (click)="setChangeToMedicationIncluded(rowIndex)">
+            {{ row.exchange_limit_by_year }}
+          </div>
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="{{'ACTIONS' | translate}}" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template let-rowIndex="rowIndex">
+          <a class="btn-save-data"
+          (click)="saveMedicationIncluded(row, rowIndex)"
+          *ngIf="row.isChanged">
+            {{ 'SAVE' | translate }}
+          </a>
+          <a *ngIf="!row.isChanged && row.is_active"
+          (click)="deactivateMedicationIncluded(row, rowIndex)"
+          class="btn-save-data">
+            {{ 'DEACTIVATE' | translate }}
+          </a>
+
+          <a *ngIf="!row.isChanged && !row.is_active"
+          (click)="activateMedicationIncluded(row, rowIndex)"
+          class="btn-save-data">
+            {{ 'REACTIVATE' | translate }}
+          </a>
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+
+    <div class="text-center btn-actions mt-1">
+      <button mat-button type="button" class="btn-default btn-no-border-radius mr-1 btn-no-bg"
+      routerLink="/dashboard/loyalty-plans/{{loyaltyPlanId}}">
+        {{ 'BACK' | translate }}
+      </button>
+    </div>
+  </mat-card-content>
+</mat-card>

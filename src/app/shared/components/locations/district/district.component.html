@@ -1,0 +1,13 @@
+<ng-container [formGroup]="form">
+  <mat-form-field appearance="outline" class="full-width mb-24">
+    <mat-select formControlName="district_code">
+      <ng-container *ngFor="let item of districtList">
+        <mat-option
+          [value]="item.value"
+          *ngIf="item.country_code == countryControl.value && item.province_code == provinceControl.value && item.canton_code == cantonControl.value">
+          {{ item.label }}
+        </mat-option>
+      </ng-container>
+    </mat-select>
+  </mat-form-field>
+</ng-container>

@@ -1,0 +1,100 @@
+// Utils
+
+hr.division{
+  height: 0px;
+  border: 1px solid #e4e4e4;
+}
+
+mat-card.mat-card {
+  border-radius: unset !important;
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+  padding-top: unset !important;
+  padding-top: unset !important;
+}
+
+// Text
+
+.text-right-important{
+  text-align: right !important;
+}
+
+.text-center{
+  text-align: center !important;
+}
+
+// Grid
+
+.xs-column{
+  width: 45px !important;
+}
+
+// Spacing
+
+.ml-8 {
+  margin-left: 8px;
+}
+
+.mr-b50 {
+  margin-bottom: 50px !important;
+}
+
+.margin-bottom-100 {
+  margin-bottom: 100px !important;
+}
+
+.margin-bottom-15{
+  margin-bottom: 15px;
+}
+
+.margin-horizontal-05rem {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+// Visibility
+
+.display-none{
+  display: none !important;
+}
+
+.d-inline {
+  display: inline;
+}
+
+// Sizing
+
+.half-width {
+  width: 50% !important;
+}
+
+.width-120 {
+  width: 120px !important;
+}
+
+// Layout
+
+.egret-navy .mat-drawer-container {
+  background-color: #ffffff
+}
+
+// Flash messages
+
+app-flash-messsage{
+  mat-card.mat-card{
+    margin-top: 20px;
+    margin-bottom: 25px;
+  }
+}
+
+// States
+
+.reactivate{
+  color: #00CD00;
+}
+
+// Borders
+
+.green-border {
+  border-color: #00CD00 !important;
+}

@@ -1,0 +1,94 @@
+.input-error.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: red;
+}
+
+span.input-error{
+  color: red !important;
+  font-size: 12px;
+  display: flex;
+  margin-top: -8px;
+  margin-bottom: 14px;
+  padding-left: 1px;
+}
+
+
+mat-form-field.phone-code{
+  width: 15%;
+  margin-right: 2%;
+}
+
+mat-form-field.phone-number{
+  width: 82%;
+}
+
+.mat-form-field.mat-form-field-appearance-outline {
+  .mat-form-field-outline {
+    .mat-form-field-outline-end, .mat-form-field-outline-start {
+      background-color: unset;
+    }
+
+    .mat-form-field-outline-start {
+      border-left: 1px solid #00CD00 !important;
+      border-top: 1px solid #00CD00 !important;
+      border-bottom: 1px solid #00CD00 !important;
+      border-right: unset !important;
+    }
+
+    .mat-form-field-outline-end {
+      border-right: 1px solid #00CD00 !important;
+      border-top: 1px solid #00CD00 !important;
+      border-bottom: 1px solid #00CD00 !important;
+      border-left: unset !important;
+    }
+  }
+}
+
+.input-error.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: red;
+}
+
+span.input-error{
+  color: red !important;
+  font-size: 12px;
+  display: flex;
+  margin-top: -8px;
+  margin-bottom: 16px;
+  padding-left: 1px;
+}
+
+.top-message-form{
+  margin-bottom: 15px;
+}
+
+.form-info-msg{
+  color: #1100ff;
+}
+
+.mat-checkbox-inner-container{
+  margin: 3px 7px auto auto !important;
+}
+
+.mat-form-field-subscript-wrapper {
+  position: relative !important;
+
+  mat-error {
+    margin-top: 5px !important
+  }
+}
+
+.valid-password-validator{
+  .mat-checkbox{
+    .mat-checkbox-inner-container{
+      margin: -1px 5px auto auto !important;
+    }
+  }
+}
+
+mat-form-field.phone-code{
+  width: 15%;
+  margin-right: 2%;
+}
+
+mat-form-field.phone-number{
+  width: 82%;
+}

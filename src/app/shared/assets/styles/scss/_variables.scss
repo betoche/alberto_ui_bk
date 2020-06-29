@@ -1,0 +1,42 @@
+// General
+$transitionDuration: 300ms !default;
+$gutter: 1rem !default;
+$transitionTiming: cubic-bezier(0.35, 0, 0.25, 1);
+$sidebarTrnTime: 0.3s;
+
+// Widths
+$sidebar-width: 15rem !default;
+$compact-sidebar-width: 64px !default;
+$compact-big-sidebar-width: 150px !default;
+
+$sidebar-navigation-icon-size: 18px;
+
+// Typography
+$font-family-base: sans-serif !default;
+$font-family: 'sans-serif';
+$font-size-base: 1rem !default;
+$font-weight-base: 400 !default;
+$font-weight-medium: 500 !default;
+$font-weight-bold: 600 !default;
+
+$font-size-h1: 24px !default;
+$font-size-h2: 20px !default;
+$font-size-h3: 16px !default;
+$font-size-h4: 15px !default;
+$font-size-h5: 13px !default;
+$font-size-h6: 12px !default;
+
+
+$headings-margin-bottom: (1rem / 2) !default;
+$headings-font-family: inherit !default;
+$headings-font-weight: 400 !default;
+$headings-line-height: 1.1 !default;
+$headings-color: inherit !default;
+
+// default font
+$default-font-size: 16px;
+$font-size-xs: 12px;
+$font-size-sm: 14px;
+$font-size-md: 18px;
+$font-size-lg: 20px;
+$font-size-xl: 40px;

@@ -1,0 +1,160 @@
+.loyalty-plan-detail-container {
+  color: #232731;
+  margin-bottom: unset;
+
+  .page-title {
+    h1 {
+      font-weight: bold;
+      font-size: 40px;
+    }
+
+    p {
+      font-weight: normal;
+      font-size: 18px;
+      margin: 0px;
+    }
+  }
+
+  .logo-content {
+    width: 215px !important;
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+
+  .information-content, .right-side-content {
+    flex-grow: 1;
+  }
+
+  .right-side-content {
+    text-align: right;
+  }
+
+  .loyalty-plan-name {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 15px;
+    display: inline-block;
+    margin-right: 15px
+  }
+
+  .link-edit {
+    a {
+      text-decoration: underline;
+    }
+  }
+
+  .plan-description {
+    font-weight: normal;
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+
+  .more-information-label, .exchange-rule-label {
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+
+  .website-url, .exchange-rule {
+    font-size: 14px;
+    a {
+      color: #232731;
+      text-decoration: none;
+    }
+  }
+
+  .right-side-content {
+    text-align: right;
+  }
+
+  .regulation-url, .terms-and-conditions-url, .regulation-url {
+    margin-bottom: 10px;
+
+    a {
+      text-decoration: underline;
+      font-weight: normal;
+      font-size: 16px;
+      color: #232731;
+    }
+  }
+}
+
+.medications-and-countries {
+  border-bottom: none;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.15);
+  border-radius: 2px;
+  padding: 40px;
+
+  .medications-container {
+    border-bottom: 1px solid #ddd;
+  }
+
+  h2 {
+    font-weight: bold;
+    font-size: 20px;
+    color: #4B4F5A;
+  }
+
+  .table-container {
+    padding: 0px 45px 45px;
+  }
+
+  .no-items-container {
+    border: 2px dashed #C4C4C4;
+    padding: 30px;
+    border-radius: 4px;
+  }
+
+  p.no-item {
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    color: #4B4F5A
+  }
+
+  .btn-add-first-item {
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    text-decoration-line: underline;
+    color: #4B4F5A
+  }
+
+  .btn-save-data {
+    font-size: 16px;
+    text-decoration-line: underline;
+    color: #232731;
+  }
+
+  .add-more-item-wrapper {
+    margin-top: 15px;
+  }
+
+  .icon-add-item {
+    vertical-align: bottom;
+    margin-right: 15px;
+  }
+
+  .text-add-item {
+    text-decoration: underline;
+  }
+
+}
+
+.country-container {
+  margin-top: 45px;
+  .table-container {
+    position: relative;
+  }
+
+  .ngx-datatable.material .datatable-footer {
+    margin-top: 0px;
+  }
+}
+
+@media (min-width: 768px) {
+  .information-content {
+    max-width: 70%
+  }
+}

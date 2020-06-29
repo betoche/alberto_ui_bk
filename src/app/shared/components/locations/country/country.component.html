@@ -1,0 +1,9 @@
+<ng-container [formGroup]="form">
+  <mat-form-field appearance="outline" class="full-width mb-24">
+    <mat-select formControlName="country_code">
+      <mat-option *ngFor="let type of countryList" [value]="type.value">
+        {{ type.label }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</ng-container>

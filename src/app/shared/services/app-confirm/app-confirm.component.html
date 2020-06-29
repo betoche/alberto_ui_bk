@@ -1,0 +1,14 @@
+<div fxLayout="row wrap" fxLayoutAlign="end flex-end" class="mt-12">
+  <a class="mat-color-primary text-underline pl-5" (click)="dialogRef.close(false)">{{ 'CLOSE' | translate }}</a>
+</div>
+<h1 matDialogTitle class="header-section mb-15">{{ data.title }}</h1>
+<div mat-dialog-content [innerHTML]="data.message" class="mb-1"></div>
+<div mat-dialog-actions fxLayoutAlign="center center" class="mb-1">
+  <button type="button" color="grey" class="mr-1" mat-stroked-button (click)="dialogRef.close(false)">
+    {{ 'CANCEL' | translate }}
+  </button>
+  &nbsp;
+  <button type="button" mat-stroked-button color="primary" (click)="dialogRef.close(true)">
+    {{ 'OK' | translate }}
+  </button>
+</div>

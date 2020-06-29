@@ -1,0 +1,47 @@
+<ng-container [formGroup]="form">
+  <div fxLayout="row wrap" fxLayout.lt-sm="column" formGroupName="address_attributes">
+    <div fxFlex="50" class="pr-1">
+      <mat-label>{{'COUNTRY' | translate}} *</mat-label>
+      <country-list [form]="form.get('address_attributes')"></country-list>
+    </div>
+
+    <div fxFlex="50" class="pr-1">
+      <mat-label>{{'PROVINCE' | translate}} *</mat-label>
+      <province-list [form]="form.get('address_attributes')"></province-list>
+    </div>
+
+    <div fxFlex="32" class="pr-1">
+      <mat-label>{{'CANTON' | translate}} *</mat-label>
+      <canton-list [form]="form.get('address_attributes')"></canton-list>
+    </div>
+
+    <div fxLayout="column" fxLayoutAlign="center center" fxFlex="2"></div>
+
+    <div fxFlex="32" class="pr-1">
+      <mat-label>{{'DISTRICT' | translate}} *</mat-label>
+      <district-list [form]="form.get('address_attributes')"></district-list>
+    </div>
+
+    <div fxLayout="column" fxLayoutAlign="center center" fxFlex="2"></div>
+    <div fxFlex="32" class="pr-1">
+      <mat-label>{{'QUARTER' | translate}} *</mat-label>
+      <suburb-list [form]="form.get('address_attributes')"></suburb-list>
+    </div>
+
+    <div fxFlex="50" class="pr-1">
+      <mat-label>{{'ADDRESS' | translate}} *</mat-label>
+      <mat-form-field class="full-width mb-24" appearance="outline">
+        <input matInput formControlName="line_1" type="text" name="line_1"
+               placeholder="{{ 'LINE_1' | translate }}" />
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="50" class="pr-1" fxLayoutAlign="center end">
+      <mat-form-field class="full-width mb-24" appearance="outline">
+        <input matInput formControlName="line_2" type="text" name="line_2"
+               placeholder="{{ 'LINE_2' | translate }}" />
+      </mat-form-field>
+    </div>
+  </div>
+</ng-container>
+

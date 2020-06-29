@@ -1,0 +1,59 @@
+.ngx-datatable.material {
+  .datatable-header {
+    position: relative;
+    top: unset;
+  }
+  .datatable-body {
+    padding-top: unset;
+  }
+
+  .cell-input {
+    display: inline-block;
+    width: 50px;
+    padding: 5px 2px;
+    border-radius: unset;
+    border: 1px solid #000000;
+  }
+  .cell-input.inline-select {
+    margin-left: 2px;
+    width: 80px;
+    padding: 4px;
+  }
+}
+
+.ngx-datatable.material .datatable-body {
+  padding: unset;
+}
+
+.ngx-datatable.material .datatable-header {
+  border-bottom: 4px solid #00CD00;
+  position: relative;
+  top: unset;
+
+  .datatable-header-cell {
+    font-size: 16px;
+    line-height: 18px;
+    color: #000009;
+    padding: 0.9rem 0.7rem;
+  }
+}
+
+.ngx-datatable.material .datatable-scroll {
+  .datatable-body-row {
+    .datatable-body-cell {
+      font-size: 16px;
+      line-height: 18px;
+      color: #4B4F5A;
+      padding: 0.9rem 0.7rem;
+      align-self: center;
+    }
+  }
+
+  .datatable-row-wrapper:last-child {
+    .datatable-body-row {
+      > div {
+        border-bottom: none;
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+.filter-group {
+  font-size: 20px;
+  .filter-item {
+    line-height: 25px;
+
+    color: $primary;
+    margin-right: 40px;
+    cursor: pointer;
+
+    &.active {
+      border-bottom: 3px solid #c4c4c4;
+    }
+  }
+}

@@ -1,0 +1,116 @@
+@import 'gradients';
+@import 'clearfix';
+
+
+// breakpoints
+$screen-sm: 576px;
+$screen-md: 768px;
+$screen-lg: 992px;
+$screen-xl: 1200px;
+
+@mixin sm {
+  @media (min-width: #{$screen-sm}) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media (min-width: #{$screen-md}) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media (min-width: #{$screen-lg}) {
+    @content;
+  }
+}
+
+@mixin xl {
+  @media (min-width: #{$screen-xl}) {
+    @content;
+  }
+}
+
+
+// lato-font
+@mixin font-lato{
+    font-family: 'Lato', sans-serif;
+    font-size: $default-font-size;
+}
+
+
+// opacity
+@mixin opacity-0{
+    -moz-opacity: 0;
+    opacity: 0;
+}
+@mixin opacity-05{
+    -moz-opacity: 0.5;
+    opacity: 0.5;
+}
+@mixin opacity-1{
+    -moz-opacity: 1;
+    opacity: 1;
+}
+
+// background-size
+@mixin bck-cover{
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+@mixin bck-auto-100{
+    -webkit-background-size: auto 100%;
+    -moz-background-size: auto 100%;
+    -o-background-size: auto 100%;
+    background-size: auto 100%;
+}
+
+// flexbox
+@mixin flex-content {
+    display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+	align-items: stretch;
+	align-content: stretch;
+}
+@mixin flex-content-middle {
+    display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: stretch;
+	align-content: stretch;
+}
+
+// animations
+@mixin anim-03 {
+    -moz-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+// border radius
+@mixin circle-radius{
+    -webkit-border-radius: 100%;
+    -moz-border-radius: 100%;
+    border-radius: 100%;
+}
+@mixin radius-form-field{
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+}
+
+// degrade
+@mixin degrade-primary {
+    background: #7af003;
+    background: -moz-linear-gradient(left,  #7af003 0%, #00cd00 100%);
+    background: -webkit-linear-gradient(left,  #7af003 0%,#00cd00 100%);
+    background: linear-gradient(to right,  #7af003 0%,#00cd00 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7af003', endColorstr='#00cd00',GradientType=1 );
+}

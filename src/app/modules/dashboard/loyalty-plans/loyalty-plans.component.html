@@ -1,0 +1,129 @@
+<div *ngIf="rows.length == 0">
+  <div class="content-container">
+    <div class="page-title">
+      <h1>
+        {{'LOYALTY_PLAN' | translate}}
+      </h1>
+
+      <p>
+        Aquí puede visualizar y gestionar sus planes
+      </p>
+    </div>
+
+    <div class="text-center page-body">
+      <p class="no-loyalty-plan">
+        {{ 'NO_LOYALTY_PLAN_MESSAGE' | translate }}
+      </p>
+
+      <p>
+        <img src="assets/images/loyalty-plans/bg.png">
+      </p>
+
+      <button mat-raised-button color="primary"
+      class="btn-no-border-radius btn-primary"
+      routerLink="new" id="add-new">
+        {{ 'CREATE' | translate }} {{'LOYALTY_PLAN' | translate}}
+      </button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="rows.length > 0">
+  <div fxLayout="row wrap" fxLayout.lt-sm="column">
+    <div fxFlex="50">
+      <div class="page-title">
+        <h1>
+          {{'LOYALTY_PLAN' | translate}}
+        </h1>
+      </div>
+    </div>
+
+    <div fxFlex="50">
+      <button mat-raised-button class="float-right ml-1 btn-no-border-radius btn-primary"
+      color="primary" routerLink="new" id="add-new">
+        {{ 'ADD' | translate }} {{ 'LOYALTY_PLAN' | translate }}
+      </button>
+    </div>
+  </div>
+
+  <mat-card class="p-0" [@animate]="{ value: '*', params: { y: '50px', delay: '300ms' } }">
+    <mat-card-content class="p-0">
+      <ngx-datatable
+        class="material ml-0 mr-0"
+        [rows]="rows"
+        [columnMode]="'force'"
+        [headerHeight]="'auto'"
+        [footerHeight]="40"
+        [scrollbarH]="true"
+        [limit]="10"
+        [rowHeight]="50"
+        [messages]="datatableMessages"
+      >
+
+        <ngx-datatable-column name="{{ 'LOYALTY_PLAN_NAME' | translate }}" [flexGrow]="1">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row?.name }}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="{{ 'LOGO_PLAN' | translate }}" [flexGrow]="1">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row?.logo_filename }}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="{{ 'DESCRIPTION' | translate }}" [flexGrow]="1">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row?.description }}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="{{ 'WEBSITE_URL' | translate }}" [flexGrow]="1">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row?.website_url }}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="{{ 'EXCHANGE_RULE' | translate }}" [flexGrow]="1">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row?.exchange_rule | uppercase | translate  }}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="{{ 'REWARDS_EXPIRATION_DATE' | translate }}" [flexGrow]="1">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row?.rewards_expiration_date | uppercase | translate  }}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="{{ 'REGULATION' | translate }}" [flexGrow]="1">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row?.regulation_filename }}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column name="{{ 'TERMS_AND_CONDITIONS' | translate }}" [flexGrow]="1">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            {{ row?.terms_and_conditions_filename }}
+          </ng-template>
+        </ngx-datatable-column>
+
+        <ngx-datatable-column [flexGrow]="1" cellClass="text-right-important" headerClass="text-right-important">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            <button mat-icon-button mat-sm-button color="primary" class="mr-1 edit-btn" routerLink="{{ row.id }}">
+              <mat-icon>info</mat-icon>
+            </button>
+
+            <button mat-icon-button mat-sm-button color="primary" class="mr-1 edit-btn" routerLink="{{ row.id }}/edit">
+              <mat-icon>edit</mat-icon>
+            </button>
+
+            <button mat-icon-button mat-sm-button color="warn" class="delete-btn" (click)="deleteItem(row)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </ng-template>
+        </ngx-datatable-column>
+      </ngx-datatable>
+    </mat-card-content>
+  </mat-card>
+</div>
