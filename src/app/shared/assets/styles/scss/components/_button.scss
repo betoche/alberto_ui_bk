@@ -54,12 +54,22 @@
 
 .mat-raised-button {
   &.add-new {
-    font-size: 16px;
+    font-size: $font-size-sm;
     text-align: center;
     color: white;
     background: $primary;
     padding: 3px 22px;
     border-radius: 0px;
+  }
+}
+
+.btn-no-bg.mat-button,
+.mat-raised-button{
+  @include font-lato;
+  font-size: $font-size-md;
+  .mat-button-wrapper{
+    display: block;
+    padding: 12px 10px;
   }
 }
 

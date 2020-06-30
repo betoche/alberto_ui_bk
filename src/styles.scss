@@ -1,5 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
+@import 'app/shared/assets/styles/scss/mixins/mixins';
+@import 'app/shared/assets/styles/scss/variables';
+@import 'app/shared/assets/styles/scss/colors';
+
 .alert {
   position: relative;
   padding: .75rem 1.25rem;
@@ -57,7 +61,7 @@
 }
 
 .mat-drawer-transition .mat-drawer-content {
-  background: #FFFFFF;
+  background: white;
 }
 
 .app-admin-container.navigation-top .rightside-content-hold {
@@ -71,10 +75,11 @@
   border-radius: 2px;
   border-bottom: 4px solid #00CD00;
   padding: 40px;
-  margin-bottom: 80px;
+  padding-bottom: 80px;
 
   .page-title {
     border-bottom: 1px solid rgba(0, 205, 0, 0.5);
+    padding-bottom: 22px;
 
     h1 {
       font-weight: bold;
@@ -97,7 +102,10 @@
     }
 
     .form-body {
-      padding: 20px 80px;
+      padding: 20px 0 0;
+      @include lg{
+        padding: 20px 80px;
+      }
       .form-group {
         margin-bottom: 15px;
       }

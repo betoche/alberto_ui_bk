@@ -157,3 +157,11 @@ mat-label {
     margin-right: 10px;
   }
 }
+
+form{
+  .form-group{
+    label{
+      font-size: $font-size-sm;
+    }
+  }
+}

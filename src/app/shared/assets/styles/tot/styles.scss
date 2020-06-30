@@ -1,8 +1,13 @@
 // Utils
+@import './definitions';
+@import '../scss/mixins/mixins';
+@import '../scss/variables';
+@import '../scss/colors';
+
 
 hr.division{
   height: 0px;
-  border: 1px solid #e4e4e4;
+  border: 1px solid $division-border-color-gray;
 }
 
 mat-card.mat-card {
@@ -75,7 +80,7 @@ mat-card.mat-card {
 // Layout
 
 .egret-navy .mat-drawer-container {
-  background-color: #ffffff
+  background-color: white
 }
 
 // Flash messages
@@ -90,11 +95,11 @@ app-flash-messsage{
 // States
 
 .reactivate{
-  color: #00CD00;
+  color: $primary-color;
 }
 
 // Borders
 
 .green-border {
-  border-color: #00CD00 !important;
+  border-color: $primary-color !important;
 }

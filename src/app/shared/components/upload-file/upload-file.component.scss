@@ -1,3 +1,4 @@
+
 .input-file-box {
   position: relative;
   cursor: pointer;
@@ -17,10 +18,11 @@
     display: inline-block;
     width: 100%;
     border: 1px dashed #00CD00;
+    // border: 1px dashed $primary-color;
     box-sizing: border-box;
-    height: 46px;
+    height: 58px;
     margin-top: 4px;
-    padding: 10px 45px 10px 10px;
+    padding: 16px 45px 16px 10px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -34,16 +36,21 @@
   }
 
   .placeholder {
-    color: #8B8B8B
+    // color: $placeholder-color;
+    color: #8B8B8B;
+
   }
 
   .file-upload-hint {
     font-size: 16px;
     color: #8B8B8B;
+    // font-size: $default-font-size;
+    // color: $placeholder-color;
   }
 
   .file-upload-error {
     font-size: 16px;
     color: red;
+    // font-size: $default-font-size;
   }
 }
