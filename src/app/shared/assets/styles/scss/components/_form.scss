@@ -12,10 +12,10 @@ mat-label {
 // form field
 .mat-form-field-disabled {
   .mat-form-field-outline {
-    background: #f0f0f0;
+    background: $disabled-input-background;
   }
   input {
-    color: #413535;
+    color: $body-text-color;
   }
 }
 .mat-form-field {
@@ -56,7 +56,7 @@ mat-label {
     &.mat-focused {
       .mat-form-field-outline {
         @include opacity-1;
-        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        @include box-shadow-input;
       }
     }
     // search
@@ -106,7 +106,6 @@ mat-label {
         width: 25px;
         height: 25px;
       }
-  
       .mat-checkbox-inner-container {
         width: 25px;
         height: 25px;

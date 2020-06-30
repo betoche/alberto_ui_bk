@@ -36,11 +36,11 @@
     border-radius: 2px;
     padding: 15px 26px;
     @include degrade-primary;
-    
+
     &[disabled] {
-      color: $disabled-button-text;
+      color: $disabled-button-color;
       background-image: none;
-      background-color: $disabled-background-button;
+      background-color: $disabled-button-background;
     }
   }
 

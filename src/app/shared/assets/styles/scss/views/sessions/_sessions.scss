@@ -12,7 +12,7 @@
 // background
 .login-background{
   min-height: 100%;
-  background-image: url(/assets/images/backgrounds/bck-login.jpg);
+  background-image: url(/assets/images/backgrounds/sessions-background.jpg);
   @include bck-cover;
   background-position: center center;
   position: relative;
@@ -46,7 +46,7 @@
   padding: 40px;
   width: 100%;
   background-color: $background-signin;
-  background-image: url(/assets/images/backgrounds/pattern-tot.png);
+  background-image: url(/assets/images/backgrounds/sessions-background-pattern.png);
   background-repeat: repeat-x;
   @include bck-auto-100;
   color: white;
