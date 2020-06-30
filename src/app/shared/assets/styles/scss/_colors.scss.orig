@@ -10,11 +10,16 @@ $primary-color: #00CD00;
 $body-text-color: #232731;
 $background-signin: #232731;
 $background-dark: #232731;
+<<<<<<< HEAD
 // button
 $disabled-button-color: #4B4F5A;
 $disabled-button-background: rgba(205, 205, 205, 0.75);
 // inputs
 $disabled-input-background:#cfc0c0;
+=======
+$disabled-color-button-text: #4B4F5A;
+$disabled-background-button: rgba(205, 205, 205, 0.75);
+>>>>>>> [WIP] Testing site navigation
 
 
 

@@ -38,7 +38,11 @@
     @include degrade-primary;
 
     &[disabled] {
+<<<<<<< HEAD
       color: $disabled-button-color;
+=======
+      color: $disabled-color-button-text;
+>>>>>>> [WIP] - Missing var added
       background-image: none;
       background-color: $disabled-button-background;
     }
