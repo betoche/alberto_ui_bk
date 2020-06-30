@@ -1,0 +1,242 @@
+.egret-navy .mat-drawer-container {
+  background-color: #ffffff
+}
+
+.d-inline {
+  display: inline;
+}
+
+.app-admin-container.navigation-top .rightside-content-hold {
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.app-admin-container.sidebar-full.left-sidebar-enabled {
+  .sidebar-panel {
+    overflow: hidden;
+    background: none;
+    box-shadow: unset;
+    top: unset;
+
+    .navigation-hold {
+      position: relative;
+      width: 100%;
+      margin-top: 50px;
+      background: #4b4f5a !important;
+
+      .sidenav a {
+        padding: 0 16px;
+      }
+    }
+  }
+
+  .main-content-wrap {
+    width: calc(100% - 15rem);
+    float: right;
+
+    .rightside-content-hold {
+      margin: unset;
+    }
+  }
+}
+
+.btn-no-border-radius {
+  border-radius: unset !important;
+}
+
+.margin-horizontal-05rem {
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.ngx-datatable.material .datatable-body {
+  padding: unset;
+}
+
+.ngx-datatable.material .datatable-header {
+  border-bottom: 4px solid #00CD00;
+  position: relative;
+  top: unset;
+
+  .datatable-header-cell {
+    font-size: 16px;
+    line-height: 18px;
+    color: #000009;
+    padding: 0.9rem 0.7rem;
+  }
+}
+
+.ngx-datatable.material .datatable-scroll {
+  .datatable-body-row {
+    .datatable-body-cell {
+      font-size: 16px;
+      line-height: 18px;
+      color: #4B4F5A;
+      padding: 0.9rem 0.7rem;
+      align-self: center;
+    }
+  }
+
+  .datatable-row-wrapper:last-child {
+    .datatable-body-row {
+      > div {
+        border-bottom: none;
+      }
+    }
+  }
+}
+
+.btn-default {
+  background-color: #C7C7C7 !important;
+  color: #ffffff !important;
+}
+
+.btn-primary {
+  background-color: #4e515b !important;
+  color: #ffffff !important;
+}
+
+.btn-gray {
+  font-style: normal;
+  font-size: 18px !important;
+  line-height: 22px !important;
+  text-align: center !important;
+  color: #232731 !important;
+  border-radius: 2px !important;
+  font-weight: normal !important;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25) !important;
+  min-width: 170px !important;
+  padding: 18px 35px !important;
+  background: rgba(205, 205, 205, 0.75) !important;
+}
+
+hr.division{
+  height: 0px;
+  border: 1px solid #e4e4e4;
+}
+
+app-flash-messsage{
+  mat-card.mat-card{
+    margin-top: 20px;
+    margin-bottom: 25px;
+  }
+}
+
+.mat-checkbox-inner-container{
+  margin: 3px 7px auto auto !important;
+}
+
+.mat-form-field-subscript-wrapper {
+  position: relative !important;
+
+  mat-error {
+    margin-top: 5px !important
+  }
+}
+
+mat-form-field.phone-code{
+  width: 15%;
+  margin-right: 2%;
+}
+
+mat-form-field.phone-number{
+  width: 82%;
+}
+
+.reactivate{
+  color: #00CD00;
+}
+
+.input-error.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: red;
+}
+
+span.input-error{
+  color: red !important;
+  font-size: 12px;
+  display: flex;
+  margin-top: -8px;
+  margin-bottom: 16px;
+  padding-left: 1px;
+}
+
+.ngx-datatable.material {
+  .datatable-header {
+    position: relative;
+    top: unset;
+  }
+  .datatable-body {
+    padding-top: unset;
+  }
+
+  .cell-input {
+    display: inline-block;
+    width: 50px;
+    padding: 5px 2px;
+    border-radius: unset;
+    border: 1px solid #000000;
+  }
+  .cell-input.inline-select {
+    margin-left: 2px;
+    width: 80px;
+    padding: 4px;
+  }
+}
+
+.width-120 {
+  width: 120px !important;
+}
+
+mat-card.mat-card {
+  border-radius: unset !important;
+  padding-left: 15px !important;
+  padding-right: 15px !important;
+  padding-top: unset !important;
+  padding-top: unset !important;
+}
+
+.mr-b50 {
+  margin-bottom: 50px !important;
+}
+
+.margin-bottom-100 {
+  margin-bottom: 100px !important;
+}
+
+.green-border {
+  border-color: #00CD00 !important;
+}
+
+mat-form-field.phone-code{
+  width: 15%;
+  margin-right: 2%;
+}
+
+mat-form-field.phone-number{
+  width: 82%;
+}
+
+.reactivate{
+  color: #00CD00;
+}
+
+.input-error.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: red;
+}
+
+span.input-error{
+  color: red !important;
+  font-size: 12px;
+  display: flex;
+  margin-top: -8px;
+  margin-bottom: 14px;
+  padding-left: 1px;
+}
+
+// underline
+.text-underline {
+  text-decoration: underline;
+  &:hover {
+    text-decoration: underline;
+  }
+}
