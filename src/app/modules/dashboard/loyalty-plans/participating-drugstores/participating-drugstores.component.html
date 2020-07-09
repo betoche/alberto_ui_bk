@@ -15,7 +15,7 @@
         >
       </li>
 
-      <li class="decoration-line" routerLink="/dashboard/loyalty-plans/{{loyaltyPlanId}}">
+      <li class="decoration-line" routerLink="/dashboard/loyalty-plan">
         {{loyaltyPlanCountry.country_name}}
       </li>
 
@@ -168,7 +168,7 @@ class="participating-drugstores-wrapper margin-bottom-100">
 
     <div class="text-center btn-actions mt-1" *ngIf="!isAddingParticipatingDrugstore">
       <button mat-button type="button" class="btn-default btn-no-border-radius mr-1 btn-no-bg"
-      routerLink="/dashboard/loyalty-plans/{{loyaltyPlanId}}">
+      routerLink="/dashboard/loyalty-plan">
         {{ 'BACK' | translate }}
       </button>
     </div>

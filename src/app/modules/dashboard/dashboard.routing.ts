@@ -4,7 +4,6 @@ import { DashboardIndexComponent } from './app-index/app-index.component';
 import { EditProfileComponent } from './../../shared/modules/dashboard/edit-profile/edit-profile.component';
 
 import { DataImportingComponent } from 'app/shared/modules/dashboard/data-importing/data-importing.component';
-import { LoyaltyPlansComponent } from './loyalty-plans/loyalty-plans.component';
 import { LoyaltyPlanFormComponent } from './loyalty-plans/form/loyalty-plan-form.component';
 import { LoyaltyPlanDetailComponent } from './loyalty-plans/detail/loyalty-plan-detail.component';
 import { MedicationsIncludedByCountryComponent } from './loyalty-plans/medications-included-by-country/medications-included-by-country.component';
@@ -31,15 +30,16 @@ export const DashboardRoutes: Routes = [
       },
 
       {
-        path: 'loyalty-plans',
+        path: 'loyalty-plan',
         data: {
-          title: 'LOYALTY_PLANS',
-          breadcrumb: 'LOYALTY_PLANS'
+          title: 'LOYALTY_PLAN',
+          breadcrumb: 'LOYALTY_PLAN'
         },
         children: [
           {
             path: '',
-            component: LoyaltyPlansComponent
+            component: LoyaltyPlanDetailComponent,
+            data: { title: 'DETAIL', breadcrumb: 'DETAIL' }
           },
           {
             path: 'new',
@@ -47,26 +47,22 @@ export const DashboardRoutes: Routes = [
             component: LoyaltyPlanFormComponent
           },
           {
-            path: ':id/edit',
+            path: 'edit',
             data: { title: 'MODIFY', breadcrumb: 'MODIFY' },
             component: LoyaltyPlanFormComponent
-          },
-          {
-            path: ':id',
-            data: { title: 'DETAIL', breadcrumb: 'DETAIL' },
-            component: LoyaltyPlanDetailComponent
-          },
-          {
-            path: ':loyalty_plan_id/loyalty-plan-country/:loyalty_plan_country_id/medications-included-by-country',
-            data: { title: 'MEDICATIONS_INCLUDED_BY_COUNTRY', breadcrumb: 'MEDICATIONS_INCLUDED_BY_COUNTRY' },
-            component: MedicationsIncludedByCountryComponent
-          },
-          {
-            path: ':loyalty_plan_id/loyalty-plan-country/:loyalty_plan_country_id/participating-drugstores',
-            data: { title: 'PARTICIPATING_DRUGSTORES', breadcrumb: 'PARTICIPATING_DRUGSTORES' },
-            component: ParticipatingDrugstoresComponent
           }
         ]
+      },
+
+      {
+        path: 'loyalty-plan-country/:loyalty_plan_country_id/medications-included-by-country',
+        data: { title: 'MEDICATIONS_INCLUDED_BY_COUNTRY', breadcrumb: 'MEDICATIONS_INCLUDED_BY_COUNTRY' },
+        component: MedicationsIncludedByCountryComponent
+      },
+      {
+        path: 'loyalty-plan-country/:loyalty_plan_country_id/participating-drugstores',
+        data: { title: 'PARTICIPATING_DRUGSTORES', breadcrumb: 'PARTICIPATING_DRUGSTORES' },
+        component: ParticipatingDrugstoresComponent
       }
 
     ]

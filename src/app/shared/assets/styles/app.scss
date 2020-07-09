@@ -61,6 +61,12 @@
 // Open _main.scss and keep files which are required for your current layout.
 @import 'scss/main/main';
 
+@import "~@syncfusion/ej2-base/styles/material.css";
+@import "~@syncfusion/ej2-angular-navigations/styles/material.css";
+@import "~@syncfusion/ej2-inputs/styles/material.css";
+@import "~@syncfusion/ej2-buttons/styles/material.css";
+
+
 // Open _views.scss and remove unnecessary view related files
 @import 'scss/views/views';
 

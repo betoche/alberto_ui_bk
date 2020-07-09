@@ -3,6 +3,7 @@ import * as _ from 'lodash';
 export class DatatableBaseComponent{
   public datatableMessages: any;
   public rows: any = [];
+  public pageLimit: number = 25;
 
   constructor(){
     this.loadDatatableMessages();
@@ -30,5 +31,9 @@ export class DatatableBaseComponent{
   public removeRow(row){
     _.remove(this.rows, { id: row.id });
     this.rows = [...this.rows];
+  }
+
+  public getRowClass(row){
+    return `row-${row.id}`;
   }
 }

@@ -16,7 +16,6 @@ export class MedicationsIncludedByCountryModel extends BaseModel {
   public medication_presentation_content: string;
   public medication_presentation_id: string;
   public isChanged: number;
-  public medication_presentations: any=[];
 
   constructor(params) {
     super();
@@ -46,7 +45,6 @@ export class MedicationsIncludedByCountryModel extends BaseModel {
       'loyalty_plan_id',
       'loyalty_plan_medication_id',
       'isChanged',
-      'medication_presentations',
       'medication_presentation_content',
       'medication_presentation_id',
     ]);

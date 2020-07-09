@@ -1,14 +1,18 @@
 .filter-group {
   font-size: 20px;
+  border-bottom: 1px solid $primary-color;
   .filter-item {
     line-height: 25px;
-
-    color: $primary;
+    font-size: $font-size-lg;
+    color: $body-text-color;
     margin-right: 40px;
     cursor: pointer;
-
+    display: inline-block;
+    padding-bottom: 5px;
+    font-weight: 300;
     &.active {
-      border-bottom: 3px solid #c4c4c4;
+      border-bottom: 3px solid $primary-color;
+      font-weight: 400;
     }
   }
 }

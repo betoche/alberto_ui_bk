@@ -34,6 +34,7 @@ import { BottomSheetShareComponent } from './bottom-sheet-share/bottom-sheet-sha
 import { UploadFileComponent } from './upload-file/upload-file.component';
 import { QrCodeScannerForBrowserComponent } from './qr-code-scanner-for-browser/qr-code-scanner-for-browser';
 import { FlashMesssageComponent } from './flash-messsage/flash-messsage.component';
+import { FlashMesssageAutoHideComponent } from './flash-messsage-auto-hide/flash-messsage-auto-hide.component';
 import { PasswordInputComponent } from './password-input/password-input.component';
 import { PhoneNumberWithCountryFlagComponent } from './phone-number-with-country-flag/phone-number-with-country-flag.component';
 import { InputDisabledWithIconComponent } from './input-disabled-with-icon/input-disabled-with-icon.component';
@@ -49,6 +50,9 @@ import { UserInfoFieldsComponent } from './user-info-fields/user-info-fields.com
 import { CompanyFieldsComponent } from './company-fields/company-fields.component';
 import { BillingInformationFieldsComponent } from './billing-information-fields/billing-information-fields.component';
 import { GovernmentIdTypesComponent } from './government-id-types/government-id-types.component';
+import { DatatablePageLimitComponent } from './datatable-page-limit/datatable-page-limit.component';
+import { DataImportingComponent } from 'app/shared/modules/dashboard/data-importing/data-importing.component';
+import { ProfileComponent } from 'app/shared/modules/dashboard/profile/profile.component';
 
 import { TextMaskModule } from 'angular2-text-mask';
 
@@ -73,6 +77,7 @@ const components = [
   UploadFileComponent,
   QrCodeScannerForBrowserComponent,
   FlashMesssageComponent,
+  FlashMesssageAutoHideComponent,
   PasswordInputComponent,
   PhoneNumberWithCountryFlagComponent,
   InputDisabledWithIconComponent,
@@ -83,11 +88,14 @@ const components = [
   SuburbComponent,
   DistrictComponent,
   GovernmentIdTypesComponent,
+  DatatablePageLimitComponent,
   SecurePasswordInputComponent,
   DrugstoreFormComponent,
   UserInfoFieldsComponent,
   CompanyFieldsComponent,
-  BillingInformationFieldsComponent
+  BillingInformationFieldsComponent,
+  DataImportingComponent,
+  ProfileComponent
 ];
 
 @NgModule({

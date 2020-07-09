@@ -9,7 +9,7 @@ export class LoyaltyPlanMedicationModel extends BaseModel {
   public loyalty_plan_name: string;
   public status: string;
   public is_active: boolean;
-  public medication_presentations: any=[];
+  public first_medication_presentation: any=[];
 
   constructor(params) {
     super();
@@ -34,7 +34,7 @@ export class LoyaltyPlanMedicationModel extends BaseModel {
       'loyalty_plan_name',
       'status',
       'is_active',
-      'medication_presentations'
+      'first_medication_presentation'
     ]);
   }
 }

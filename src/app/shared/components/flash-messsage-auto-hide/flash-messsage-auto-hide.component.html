@@ -1,0 +1,6 @@
+<mat-card class="mat-card flash-{{ _options['type'] }}" *ngIf="isShown && _options['type']">
+  <div class="flash-icon">
+    <mat-icon matSuffix>{{ iconMap[_options['type']] }}</mat-icon>
+  </div>
+  <span class="msg-content" [innerHTML]="_options['message'] | translate:translateOptions"></span>
+</mat-card>

@@ -34,11 +34,12 @@ export class DialogService {
       }
 
       if (data['isNew']) {
-        this.snack.open(this.translateService.instant('DATA_ADDED'), 'OK', { duration: 5000 });
-        object['addRow'](rowData);
+        // do action after added new row
       } else {
+        if(options['modelClass']){
+          rowData = new options['modelClass'](rowData);
+        }
         object['updateRow'](rowData);
-        this.snack.open(this.translateService.instant('DATA_UPDATED'), 'OK', { duration: 5000 });
       }
     });
   }
@@ -62,7 +63,26 @@ export class DialogService {
         options['okButton']();
         object['removeRow'](row);
         this.loader.close();
-        this.snack.open(this.translateService.instant('DATA_DELETED'), 'OK', { duration: 5000 });
+      });
+  }
+
+  public suspensionConfirm(options = {}) {
+    this.confirmService
+      .confirm(
+        {
+          title: this.translateService.instant(options['title'] || 'SUSPEND_CONFIRM'),
+          message: options['message'],
+          okText: "YES_SUSPEND"
+        },
+        options
+      )
+      .subscribe(response => {
+        // cancel button
+        if (!response) return false;
+
+        this.loader.open();
+        options['okButton']();
+        this.loader.close();
       });
   }
 }

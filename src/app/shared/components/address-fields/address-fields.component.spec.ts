@@ -25,7 +25,7 @@ describe('AddressFieldsComponent', () => {
     expect(fixture.debugElement.nativeElement.textContent).toContain('PROVINCE');
     expect(fixture.debugElement.nativeElement.textContent).toContain('CANTON');
     expect(fixture.debugElement.nativeElement.textContent).toContain('DISTRICT');
-    expect(fixture.debugElement.nativeElement.textContent).toContain('QUARTER');
+    expect(fixture.debugElement.nativeElement.textContent).toContain('SUBURB');
     expect(fixture.debugElement.nativeElement.textContent).toContain('ADDRESS');
   });
 
@@ -42,8 +42,7 @@ describe('AddressFieldsComponent', () => {
     component.form = fb.group({
       address_attributes: new FormGroup({
         id: new FormControl('', []),
-        line_1: new FormControl('', [Validators.required]),
-        line_2: new FormControl(''),
+        note: new FormControl('', []),
         country_code: new FormControl('', [Validators.required]),
         province_code: new FormControl('', [Validators.required]),
         canton_code: new FormControl('', [Validators.required]),

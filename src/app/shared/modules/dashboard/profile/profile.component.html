@@ -1,90 +1,97 @@
-<div class="height-100 mb-70">
-  <div class="pl-1">
-    <h1 class="header-profile-show mb-40" translate>MY_ACCOUNT</h1>
-    <a class="pl-12 text-underline" routerLink="/dashboard/edit_profile">{{ 'EDIT' | translate }}</a>
-    <div class="section-header mb-12">{{ 'PERSONAL_INFORMATION' | translate }}</div>
-    <mat-card class="profile-section m-0">
-      <div fxLayout="row wrap" fxLayout.lt-sm="column" class="mb-40">
-        <div fxFlex="{{ currentUser?.role == 'administrator' ? '50' : '33' }}" class="ml-8" class="pr-1 mb-24">
-          <span class="profile-field mb-12" translate>NAME</span>
-          <div class="profile-info">{{ currentUser?.name }}</div>
-        </div>
+<div class="base-container">
+  <div class="header-container">
+    <div class="header-nav">
+      <h1 class="headline" translate>MY_ACCOUNT</h1>
+    </div>
+    <a class="text-underline" routerLink="/dashboard/edit_profile">{{ 'EDIT' | translate }}</a>
+  </div>
+  <mat-card class="profile-section box-detail">
+    <div class="section-header">{{ 'PERSONAL_INFORMATION' | translate }}</div>
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" class="row-detail">
+      <div fxFlex="{{ currentUser?.role == 'administrator' ? '50' : '33' }}" class="ml-8" class="pr-1 mb-24">
+        <span class="profile-field mb-12" translate>NAME</span>
+        <div class="profile-info">{{ currentUser?.name }}</div>
+      </div>
 
-        <div fxFlex="{{ currentUser?.role == 'administrator' ? '50' : '33' }}" class="pr-1 mb-24">
-          <span class="profile-field mb-12" translate>EMAIL</span>
-          <div class="profile-info">{{ currentUser?.email }}</div>
-        </div>
+      <div fxFlex="{{ currentUser?.role == 'administrator' ? '50' : '33' }}" class="pr-1 mb-24">
+        <span class="profile-field mb-12" translate>EMAIL</span>
+        <div class="profile-info">{{ currentUser?.email }}</div>
+      </div>
 
-        <div
-          fxFlex="{{ currentUser?.role == 'administrator' ? '50' : '33' }}"
-          *ngIf="currentUser?.role != 'administrator' &&
-          !currentUser?.company"
-          class="pr-1 mb-24"
-        >
-          <span class="profile-field mb-12" translate>ROLE</span>
-          <div class="profile-info">{{ currentUser?.role | uppercase | translate }}</div>
+      <div
+        fxFlex="{{ currentUser?.role == 'administrator' ? '50' : '33' }}"
+        *ngIf="currentUser?.role != 'administrator' &&
+        !currentUser?.company"
+        class="pr-1 mb-24"
+      >
+        <span class="profile-field mb-12" translate>ROLE</span>
+        <div class="profile-info">{{ currentUser?.role | uppercase | translate }}</div>
+      </div>
+    </div>
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" class="row-detail">
+      <div fxFlex="50" class="pr-1 mb-24">
+        <span class="profile-field mb-12" translate>MOBILE_PHONE</span>
+        <div class="profile-info">
+          <span class="mr-5">{{ currentUser?.secondary_phone_country }}</span>
+          <span>{{ currentUser?.secondary_phone_number }}</span>
         </div>
       </div>
-      <div fxLayout="row wrap" fxLayout.lt-sm="column">
+
+      <div fxFlex="50" class="pr-1 mb-24">
+        <span class="profile-field mb-12" translate>PHONE_NUMBER</span>
+        <div class="profile-info">
+          <span class="mr-5">{{ currentUser?.phone_country }}</span>
+          <span>{{ currentUser?.phone_number }}</span>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+  <ng-container *ngIf="currentUser?.company">
+    <mat-card class="profile-section box-detail">
+      <div class="section-header">{{ 'COMPANY_INFORMATION' | translate }}</div>
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" class="row-detail">
         <div fxFlex="50" class="pr-1 mb-24">
-          <span class="profile-field mb-12" translate>MOBILE_PHONE</span>
-          <div class="profile-info">
-            <span>{{ currentUser?.secondary_phone_country }}</span>
-            <span class="ml-8">{{ currentUser?.secondary_phone_number }}</span>
-          </div>
+          <span class="profile-field mb-12" translate>COMPANY_NAME</span>
+          <div class="profile-info">{{ currentUser?.company.name }}</div>
         </div>
 
         <div fxFlex="50" class="pr-1 mb-24">
-          <span class="profile-field mb-12" translate>PHONE_NUMBER</span>
-          <div class="profile-info">
-            <span>{{ currentUser?.phone_country }}</span>
-            <span class="ml-8">{{ currentUser?.phone_number }}</span>
-          </div>
+          <span class="profile-field mb-12" translate>DRUGSTORE_ID</span>
+          <div class="profile-info">{{ currentUser?.company.drugstore_id | uppercase | translate }}</div>
+        </div>
+        <div fxFlex="50" class="pr-1 mb-24">
+          <span class="profile-field mb-12" translate>COUNTRY_NAME</span>
+          <div class="profile-info">{{ currentUser?.company.address_attributes.country_name | uppercase | translate }}</div>
+        </div>
+          <div fxFlex="50" class="pr-1 mb-24">
+          <span class="profile-field mb-12" translate>province_name</span>
+          <div class="profile-info">{{ currentUser?.company.address_attributes.province_name | uppercase | translate }}</div>
+        </div>
+        <div fxFlex="33" class="pr-1 mb-24">
+          <span class="profile-field mb-12" translate>canton_name</span>
+          <div class="profile-info">{{ currentUser?.company.address_attributes.canton_name | uppercase | translate }}</div>
+        </div>
+        <div fxFlex="33" class="pr-1 mb-24">
+          <span class="profile-field mb-12" translate>district_name</span>
+          <div class="profile-info">{{ currentUser?.company.address_attributes.district_name | uppercase | translate }}</div>
+        </div>
+        <div fxFlex="33" class="pr-1 mb-24">
+          <span class="profile-field mb-12" translate>suburb_name</span>
+          <div class="profile-info">{{ currentUser?.company.address_attributes.suburb_name | uppercase | translate }}</div>
+        </div>
+        <div fxFlex="50" class="pr-1 mb-24">
+          <span class="profile-field mb-12" translate>detailed_address</span>
+          <div class="profile-info">{{ currentUser?.company.address_attributes.line_1 | uppercase | translate }}</div>
+        </div>
+        <div fxFlex="50" class="pr-1 mb-24">
+          <div class="profile-info">{{ currentUser?.company.address_attributes.line_2 | uppercase | translate }}</div>
         </div>
       </div>
     </mat-card>
-    <ng-container *ngIf="currentUser?.company">
-      <div class="section-header mt-70 mb-12">{{ 'COMPANY_INFORMATION' | translate }}</div>
-      <mat-card class="profile-section m-0">
-        <div fxLayout="row wrap" fxLayout.lt-sm="column">
-          <div fxFlex="50" class="pr-1 mb-24">
-            <span class="profile-field mb-12" translate>COMPANY_NAME</span>
-            <div class="profile-info">{{ currentUser?.company.name }}</div>
-          </div>
-
-          <div fxFlex="50" class="pr-1 mb-24">
-            <span class="profile-field mb-12" translate>DRUGSTORE_ID</span>
-            <div class="profile-info">{{ currentUser?.company.drugstore_id | uppercase | translate }}</div>
-          </div>
-          <div fxFlex="50" class="pr-1 mb-24">
-            <span class="profile-field mb-12" translate>COUNTRY_NAME</span>
-            <div class="profile-info">{{ currentUser?.company.address_attributes.country_name | uppercase | translate }}</div>
-          </div>
-           <div fxFlex="50" class="pr-1 mb-24">
-            <span class="profile-field mb-12" translate>province_name</span>
-            <div class="profile-info">{{ currentUser?.company.address_attributes.province_name | uppercase | translate }}</div>
-          </div>
-          <div fxFlex="33" class="pr-1 mb-24">
-            <span class="profile-field mb-12" translate>canton_name</span>
-            <div class="profile-info">{{ currentUser?.company.address_attributes.canton_name | uppercase | translate }}</div>
-          </div>
-          <div fxFlex="33" class="pr-1 mb-24">
-            <span class="profile-field mb-12" translate>district_name</span>
-            <div class="profile-info">{{ currentUser?.company.address_attributes.district_name | uppercase | translate }}</div>
-          </div>
-          <div fxFlex="33" class="pr-1 mb-24">
-            <span class="profile-field mb-12" translate>suburb_name</span>
-            <div class="profile-info">{{ currentUser?.company.address_attributes.suburb_name | uppercase | translate }}</div>
-          </div>
-          <div fxFlex="50" class="pr-1 mb-24">
-            <span class="profile-field mb-12" translate>detailed_address</span>
-            <div class="profile-info">{{ currentUser?.company.address_attributes.line_1 | uppercase | translate }}</div>
-          </div>
-          <div fxFlex="50" class="pr-1 mb-24">
-            <div class="profile-info">{{ currentUser?.company.address_attributes.line_2 | uppercase | translate }}</div>
-          </div>
-        </div>
-      </mat-card>
-    </ng-container>
+  </ng-container>
+  <div class="text-center button-profile-container">
+    <button mat-raised-button class="green-button">
+    < Volver
+    </button>
   </div>
 </div>

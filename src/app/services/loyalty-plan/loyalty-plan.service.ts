@@ -9,16 +9,12 @@ import { environment } from 'environments/environment';
 export class LoyaltyPlansService {
   constructor(private http: HttpClient) {}
 
-  public fetchList() {
-    return this.http.get(environment.apiURL + '/pharmaceutical_companies/loyalty_plans', {});
+  public fetch() {
+    return this.http.get(environment.apiURL + `/pharmaceutical_companies/loyalty_plans`, {});
   }
 
-  public fetch(id) {
-    return this.http.get(environment.apiURL + `/pharmaceutical_companies/loyalty_plans/${id}`, {});
-  }
-
-  public update(id, params) {
-    return this.http.put(environment.apiURL + '/pharmaceutical_companies/loyalty_plans/' + id, {
+  public update(params) {
+    return this.http.put(environment.apiURL + '/pharmaceutical_companies/loyalty_plans', {
       loyalty_plan: params
     });
   }
@@ -29,7 +25,7 @@ export class LoyaltyPlansService {
     });
   }
 
-  public delete(id) {
-    return this.http.delete(environment.apiURL + '/pharmaceutical_companies/loyalty_plans/' + id);
+  public delete() {
+    return this.http.delete(environment.apiURL + '/pharmaceutical_companies/loyalty_plans');
   }
 }

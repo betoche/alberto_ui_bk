@@ -15,7 +15,7 @@
         >
       </li>
 
-      <li class="decoration-line" routerLink="/dashboard/loyalty-plans/{{loyaltyPlanId}}">
+      <li class="decoration-line" routerLink="/dashboard/loyalty-plan">
         {{loyaltyPlanCountry.country_name}}
       </li>
 
@@ -66,7 +66,7 @@ class="medications-included-by-country p-0">
         </ng-template>
       </ngx-datatable-column>
 
-      <ngx-datatable-column width="130"
+      <ngx-datatable-column width="120"
       name="{{ 'MEDICATION_POINTS' | translate }}" [flexGrow]="1" [sortable]="false"
       *ngIf="loyaltyPlan.exchange_rule == 'points'">
         <ng-template let-row="row" ngx-datatable-cell-template let-rowIndex="rowIndex">
@@ -82,7 +82,7 @@ class="medications-included-by-country p-0">
         </ng-template>
       </ngx-datatable-column>
 
-      <ngx-datatable-column width="130"
+      <ngx-datatable-column width="120"
       name="{{ 'POINTS_REQUIRED' | translate }}" [flexGrow]="1" [sortable]="false"
       *ngIf="loyaltyPlan.exchange_rule == 'points'">
         <ng-template let-row="row" ngx-datatable-cell-template let-rowIndex="rowIndex">
@@ -97,7 +97,7 @@ class="medications-included-by-country p-0">
         </ng-template>
       </ngx-datatable-column>
 
-      <ngx-datatable-column width="130"
+      <ngx-datatable-column width="120"
       name="{{ 'AMOUNT_OF_BOXES_REQUIRED' | translate }}" [flexGrow]="1" [sortable]="false"
       *ngIf="loyaltyPlan.exchange_rule == 'boxes'">
         <ng-template let-row="row" ngx-datatable-cell-template let-rowIndex="rowIndex">
@@ -112,7 +112,7 @@ class="medications-included-by-country p-0">
         </ng-template>
       </ngx-datatable-column>
 
-      <ngx-datatable-column name="{{ 'REWARD' | translate }}" [flexGrow]="1" [sortable]="false" width="180">
+      <ngx-datatable-column name="{{ 'REWARD' | translate }}" [flexGrow]="1" [sortable]="false" width="210">
         <ng-template let-row="row" ngx-datatable-cell-template let-rowIndex="rowIndex">
           <input name="reward" *ngIf="row.isChanged" type="number"
           [value]="!!row.reward ? row.reward : ''"
@@ -123,19 +123,7 @@ class="medications-included-by-country p-0">
             {{ row.reward }}
           </div>
 
-          <select (change)="onInputChange($event.target.value, 'medication_presentation_id', rowIndex)"
-          class="cell-input inline-select"
-          *ngIf="row.isChanged">
-            <option></option>
-            <option *ngFor="let medicationPresentation of row.medication_presentations"
-            [value]="medicationPresentation.id"
-            [selected]="medicationPresentation.id == row?.medication_presentation_id">
-
-              {{ medicationPresentation.attributes.presentation_content }}
-            </option>
-          </select>
-
-          <div *ngIf="!row.isChanged" (click)="setChangeToMedicationIncluded(rowIndex)" class="d-inline">
+          <div class="d-inline">
             {{ row.medication_presentation_content }}
           </div>
 
@@ -181,7 +169,7 @@ class="medications-included-by-country p-0">
 
     <div class="text-center btn-actions mt-1">
       <button mat-button type="button" class="btn-default btn-no-border-radius mr-1 btn-no-bg"
-      routerLink="/dashboard/loyalty-plans/{{loyaltyPlanId}}">
+      routerLink="/dashboard/loyalty-plan">
         {{ 'BACK' | translate }}
       </button>
     </div>

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormGroupDirective, ControlContainer, FormControl, Validators } from '@angular/forms';
 import * as _ from 'lodash';
-import { COUNTRIES } from 'app/shared/master_data/countries.master_data';
+import { COUNTRIES } from 'app/shared/master-data/countries.master-data';
 import { parsePhoneNumberFromString } from 'libphonenumber-js'
 
 @Component({
@@ -26,10 +26,17 @@ export class PhoneNumberWithCountryFlagComponent implements OnInit{
 
   public checkPhoneNumberIsValid(){
     if(!this.number.value || !this.country.value){
+      this.isValidPhoneNumber = true;
       return false;
     }
 
     let phoneNumber = parsePhoneNumberFromString(this.number.value, this.country.value);
-    this.isValidPhoneNumber = phoneNumber.isValid();
+    this.isValidPhoneNumber = phoneNumber && phoneNumber.isValid();
+
+    if(this.isValidPhoneNumber){
+      this.number.setErrors(null);
+    }else{
+      this.number.setErrors({ invalidPhoneNumber: true });
+    }
   }
 }

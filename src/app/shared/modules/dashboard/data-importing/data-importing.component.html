@@ -1,34 +1,69 @@
-<div class="pl-1">
-  <div fxLayout="row wrap" fxLayout.lt-sm="column">
-    <h1>{{ importType | uppercase | translate }}</h1>
+<flash-messsage-auto-hide [options]="messageOptions" preventHide="true"></flash-messsage-auto-hide>
 
-    <div fxFlex="100" class="pr-1">
-      <div class="full-width upload-file-wrapper" appearance="outline">
-        <input type="file" [uploader]="uploader" ng2FileSelect (model)="(file)" accept="text/csv" #uploadEl />
-      </div>
+<div fxLayout="row wrap" fxLayoutAlign="start center">
+  <div fxFlex="100">
+    <ng-content></ng-content>
+  </div>
+</div>
+
+<div fxLayout="row wrap" fxLayout.lt-sm="column">
+  <h1>{{ 'Cargar desde base de datos' | translate }}</h1>
+
+  <div fxFlex="100" class="pr-1">
+    <div class="full-width upload-file-wrapper" appearance="outline">
+      <input
+          type="file"
+          [uploader]="uploader"
+          ng2FileSelect
+          (model)="(file)"
+          accept="text/csv"
+          #uploadEl
+          class="input-file"
+          id="import-{{importType}}"/>
+
+      <label for="import-{{importType}}" class="label-select-file">
+        <span class="file-box" *ngIf="!fileName">
+          Seleccione un archivo
+        </span>
+
+        <span class="file-box file-value" *ngIf="fileName">
+          {{ fileName }}
+        </span>
+
+        <span class="file-button">
+          <img src="assets/images/upload_icon.png"/>
+        </span>
+      </label>
+
+    </div>
+  </div>
+
+  <!-- ############################## -->
+
+  <div fxFlex="100" class="mt-1 mr-1">
+    <div fxFlex="10" class="mt-1 mr-1">
+      <button
+        mat-raised-button
+        color="primary"
+        type="button"
+        id="validation-btn"
+        (click)="validation()"
+        *ngIf="!(file && isValidFileData === true)"
+        [disabled]="!file || (file && isValidFileData === false)">
+        {{ 'VALIDATE' | translate }}
+      </button>
     </div>
 
-    <!-- ############################## -->
-
-    <div fxFlex="100" class="mt-1 mr-1">
-      <div fxFlex="10" class="mt-1 mr-1">
-        <button
+    <div fxFlex="10" class="mt-1 mr-1">
+      <button
           mat-raised-button
-          color="primary"
-          type="button"
-          id="validation-btn"
-          (click)="validation()"
-          [disabled]="!file"
-        >
-          {{ 'VALIDATION' | translate }}
-        </button>
-      </div>
-
-      <div fxFlex="10" class="mt-1 mr-1">
-        <button mat-raised-button color="warn" id="import-btn" (click)="importing()" [disabled]="!file">
-          {{ 'IMPORT' | translate }}
-        </button>
-      </div>
+          color="warn"
+          id="import-btn"
+          *ngIf="isValidFileData === true"
+          (click)="importing()"
+          [disabled]="!file">
+        {{ 'IMPORT' | translate }}
+      </button>
     </div>
   </div>
 </div>

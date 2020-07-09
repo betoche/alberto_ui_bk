@@ -10,11 +10,11 @@ export class ButtonLoadingComponent implements OnInit {
   @Input('loading') loading: boolean;
   @Input('btnClass') btnClass: string;
   @Input('raised') raised: boolean = true;
-  @Input('loadingText') loadingText = 'Please wait';
+  @Input('loadingText') loadingText = 'LOADING';
   @Input('type') type: 'button' | 'submit' = 'submit';
   @Input('color') color: 'primary' | 'accent' | 'warn';
 
-  constructor() { 
+  constructor() {
   }
 
   ngOnInit() {

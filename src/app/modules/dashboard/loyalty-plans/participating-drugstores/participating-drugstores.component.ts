@@ -31,7 +31,6 @@ export class ParticipatingDrugstoresComponent extends Many(
   public loyaltyPlan: any={};
   public loyaltyPlanCountry: any={};
   public loyaltyPlanCountryId: string;
-  public loyaltyPlanId: string;
   public isAddingParticipatingDrugstore: boolean=false;
   public participatingDrugstores: any=[];
   public drugstores: any=[];
@@ -52,7 +51,6 @@ export class ParticipatingDrugstoresComponent extends Many(
   }
 
   ngOnInit() {
-    this.loyaltyPlanId = this.route.snapshot.params.loyalty_plan_id;
     this.loyaltyPlanCountryId = this.route.snapshot.params.loyalty_plan_country_id;
 
     this.getLoyaltyPlanCountry();
@@ -140,13 +138,13 @@ export class ParticipatingDrugstoresComponent extends Many(
   }
 
   private getLoyaltyPlanCountry() {
-    this.loyaltyPlanCountryService.fetch(this.loyaltyPlanId, this.loyaltyPlanCountryId).subscribe((response) => {
+    this.loyaltyPlanCountryService.fetch(this.loyaltyPlanCountryId).subscribe((response) => {
       this.loyaltyPlanCountry = new LoyaltyPlanCountryModel(response['data']['attributes']);
     })
   }
 
   private getLoyaltyPlan() {
-    this.loyaltyPlansService.fetch(this.loyaltyPlanId).subscribe( response => {
+    this.loyaltyPlansService.fetch().subscribe( response => {
       this.loyaltyPlan = new LoyaltyPlanModel(response['data']['attributes'])
     });
   }

@@ -5,14 +5,24 @@
     </div>
     <div fxLayout="row wrap" fxLayout.lt-sm="column">
       <div fxFlex="50" class="pr-1">
-        <mat-label>{{'PHARMACEUTICAL_NAME' | translate}} *</mat-label>
+        <mat-label>
+          {{'PAGES.COMPANIES.NAME_OF' | translate}}
+          {{('COMPANY_TYPE_TRANSLATIONS.' + type)  | translate}} *</mat-label>
         <mat-form-field class="full-width mb-24" appearance="outline">
-          <input matInput formControlName="name" type="text"/>
+          <input
+            matInput
+            formControlName="name"
+            type="text"
+            placeholder="{{'PAGES.COMPANIES.NAME_OF' | translate}} {{('COMPANY_TYPE_TRANSLATIONS.' + type)  | translate}}"/>
         </mat-form-field>
       </div>
 
       <div fxFlex="50" class="pr-1">
-        <mat-label>{{'PHARMACEUTICAL_ID' | translate}} *</mat-label>
+        <mat-label>
+          {{'PAGES.COMPANIES.COMPANY_CODE' | translate}}
+          {{('COMPANY_TYPE_TRANSLATIONS.' + type)  | translate}} *
+        </mat-label>
+
         <mat-form-field class="full-width mb-24" appearance="outline">
           <input
               matInput
@@ -20,6 +30,20 @@
               type="text"
               [textMask]="{ mask: maskForCompanyCode }" />
         </mat-form-field>
+      </div>
+
+      <div fxLayout="row wrap" fxLayout.lt-sm="column">
+        <div fxFlex="100" class="pr-1">
+          <mat-label>{{'LOGO_COMPANY' | translate}} *</mat-label>
+          <app-upload-file
+              name="logo_url"
+              [control]="form.get('company.logo_url')"
+              [inputId]="'logo-url-input'"
+              [fileName]="''"
+              validateDimensions100X100Enabled="true"
+              hint="{{'IMAGE_100x100_HINT' | translate}}"
+              placeholder="{{'SELECT_FILE' | translate}}"></app-upload-file>
+        </div>
       </div>
 
       <address-fields [form]="form.get('company')"></address-fields>

@@ -5,12 +5,14 @@ import { RelativeTimePipe } from './relative-time.pipe';
 import { ExcerptPipe } from "./excerpt.pipe";
 import { GetValueByKeyPipe } from './get-value-by-key.pipe';
 import { MongoIdPipe } from './mongo-id.pipe';
+import { FilterConditionsPipe } from './filter-conditions.pipe';
 
 const pipes = [
   RelativeTimePipe,
   ExcerptPipe,
   GetValueByKeyPipe,
-  MongoIdPipe
+  MongoIdPipe,
+  FilterConditionsPipe
 ]
 
 @NgModule({

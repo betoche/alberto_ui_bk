@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { FormGroupBase } from '../../form-group-base';
 import * as _ from 'lodash';
-import { COUNTRIES } from 'app/shared/master_data/countries.master_data';
+import { COUNTRIES } from 'app/shared/master-data/countries.master-data';
 
 @Component({
   selector: 'district-list',

@@ -49,15 +49,6 @@ export class EditProfileComponent extends Many(ApplicationBaseComponent, FormBas
       disabled: true,
     });
 
-    const phoneCountry = new FormControl(this.currentUser.phone_country);
-    const phoneNumber = new FormControl(this.currentUser.phone_number);
-
-    const SecondaryPhoneCountry = new FormControl(
-      this.currentUser.secondary_phone_country,
-      Validators.required
-    );
-    const AlternativePhoneNumber = new FormControl(this.currentUser.secondary_phone_number, Validators.required);
-
     this.form = new FormGroup(
       {
         email: email,
@@ -66,10 +57,10 @@ export class EditProfileComponent extends Many(ApplicationBaseComponent, FormBas
         name: name,
         company: companyNameDisabledField,
         role_in_company: companyRoleDisabledField,
-        phone_country: phoneCountry,
-        phone_number: phoneNumber,
-        secondary_phone_country: SecondaryPhoneCountry,
-        secondary_phone_number: AlternativePhoneNumber,
+        phone_number: new FormControl(this.currentUser.phone_number, [Validators.required]),
+        phone_country: new FormControl(this.currentUser.phone_country || 'CR', [Validators.required]),
+        secondary_phone_number: new FormControl(this.currentUser.secondary_phone_number),
+        secondary_phone_country: new FormControl(this.currentUser.secondary_phone_country || 'CR')
       },
       [PasswordConfirmationValidation]
     );
@@ -85,10 +76,10 @@ export class EditProfileComponent extends Many(ApplicationBaseComponent, FormBas
       this.profileService.updateProfile({ profile: this.form.value }).subscribe(
         (response) => {
           UserSession.setCurrentUser(response['data']['attributes']);
-          this.showUpdateMessageSuccessful();
+          this.showFlashSuccessful('UPDATED_PROFILE_MESSAGE');
         },
         (response) => {
-          this.errorsMessages = response['error']['errors'];
+          this.showFlashFailed(response['error']['errors']);
         }
       );
     }

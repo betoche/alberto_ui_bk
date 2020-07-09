@@ -8,6 +8,9 @@
       COMPLETE_PROFILE
     </div>
 
+    <flash-messsage-auto-hide
+        [options]="messageOptions" class="margin-b-50"></flash-messsage-auto-hide>
+
     <div class="section-1 mb-24"><span class="circle-number">1</span>{{ 'PERSONAL_INFORMATION' | translate }}</div>
     <form [formGroup]="form" (ngSubmit)="submit()">
       <div fxLayout="row wrap" fxLayout.lt-sm="column">
@@ -28,25 +31,24 @@
         </div>
 
         <div fxFlex="50" class="pr-1 mb-24">
-          <mat-label class="w-100" translate>MOBILE_PHONE</mat-label>
-          <mat-form-field style="width: 15%; margin-right: 2%;" appearance="outline">
-            <input matInput formControlName="secondary_phone_country" type="text" numbersOnly />
-          </mat-form-field>
-          <mat-form-field style="width: 83%;" appearance="outline">
-            <input matInput formControlName="secondary_phone_number" name="secondary_phone_number" numbersOnly />
-          </mat-form-field>
+          <mat-label class="d-block">{{ 'TELEPHONE_1' | translate }} *</mat-label>
+          <phone-number-with-country-flag
+              [form]="form"
+              [country]="form.get('phone_country')"
+              [number]="form.get('phone_number')">
+          </phone-number-with-country-flag>
         </div>
 
         <div fxFlex="50" class="pr-1 mb-24">
-          <mat-label translate>PHONE_NUMBER</mat-label>
-          <mat-form-field style="width: 15%; margin-right: 2%;" appearance="outline">
-            <input matInput formControlName="phone_country" type="text" numbersOnly />
-          </mat-form-field>
-          <mat-form-field style="width: 83%;" appearance="outline">
-            <input matInput formControlName="phone_number" name="phone_number" numbersOnly />
-          </mat-form-field>
+          <mat-label class="d-block">{{'TELEPHONE_2' | translate}}</mat-label>
+          <phone-number-with-country-flag
+              [form]="form"
+              [country]="form.get('secondary_phone_country')"
+              [number]="form.get('secondary_phone_number')"></phone-number-with-country-flag>
         </div>
+
       </div>
+
       <hr class="width-80 mb-12 mt-12" />
       <div class="section-1 mt-24 mb-24">
         <span class="circle-number">2</span>{{ 'COMPANY_INFORMATION' | translate }}
@@ -71,7 +73,7 @@
         <!-- ############################## -->
 
         <div fxFlex="100" class="mt-1 mr-1" style="text-align: center;">
-          <button mat-stroked-button color="primary" [disabled]="false" type="submit" id="submit-btn">
+          <button mat-stroked-button color="primary" [disabled]="form.invalid" type="submit" id="submit-btn">
             {{ 'SAVE' | translate }}
           </button>
         </div>

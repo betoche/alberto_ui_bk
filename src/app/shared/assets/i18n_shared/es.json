@@ -15,9 +15,15 @@
   "CLOSE": "Cerrar",
   "ALL": "Todos",
   "VALIDATE": "Validar",
+  "IMPORT": "Importar",
   "BACK": "< Volver",
+  "YES_SUSPEND": "Sí, suspender",
+  "VIEW_UPLOADED_FILE": "Ver el archivo cargado",
+  "PER_PAGE": "Resultados por página",
+  "LOADING": "Por favor espere",
 
   "DELETE_CONFIRM": "¿Confirma que desea eliminar?",
+  "SUSPEND_CONFIRM": "¿Confirma que desea suspender?",
   "DATA_UPDATED": "La información ha sido actualizada",
   "DATA_ADDED": "Se ha agregado nueva información",
   "DATA_DELETED": "La información ha sido eliminada",
@@ -43,10 +49,12 @@
 
   "COMPANY_NAME": "Nombre de empresa",
   "PHONE": "Teléfono",
+  "TELEPHONE_1": "Teléfono principal",
+  "TELEPHONE_2": "Teléfono (opcional)",
   "ACTIVE": "Activo",
   "GOVERNMENT_ID": "Número de cédula",
   "GOVERNMENT_ID_TYPE": "Tipo de Identificación",
-  "ADDRESS": "Habla a",
+  "ADDRESS": "Dirección",
   "DISTRICT_CODE": "Distrito",
   "CANTON_CODE": "Cantón",
   "PROVINCE_CODE": "Provincia",
@@ -124,7 +132,7 @@
   "MEDICATION_DISTRIBUTORS": "Distribuidores de medicamentos",
   "MEDICATION_DISTRIBUTOR": "Distribuidor de medicamentos",
   "PHARMACEUTICAL_COMPANIES": "Compañías farmacéuticas",
-  "PHARMACEUTICAL_COMPANY": "Compañia farmaceutica",
+  "PHARMACEUTICAL_COMPANY": "Compañía farmaceutica",
   "PHARMACEUTICAL_COMPANY_NAME": "Nombre de empresa farmacéutica",
   "BENEFITS_PROVIDERS": "Proveedores de Beneficios",
   "BENEFITS_PROVIDER": "Proveedor de Beneficios",
@@ -160,7 +168,29 @@
   "province_name": "Provincia",
   "suburb_name": "Barrio",
   "detailed_address": "Dirección exacta",
+  "LOCATION_NAME": "Nombre de la sucursal",
+  "LOCATION_ID": "Id de la sucursal",
+  "PHARMACEUTICAL_NAME": "Nombre de la farmacéutica",
+  "PHARMACEUTICAL_ID": "Id de farmacéutica",
+  "COUNTRY": "País",
+  "PROVINCE": "Provincia",
+  "CANTON": "Cantón",
+  "DISTRICT": "Distrito",
+  "QUARTER": "Barrio",
   "ERRORS":{
     "PHONE_INVALID": "Formato incorrecto de número telefónico"
-  }
+  },
+  "DELETED_COMPANIES": "El aliado ha sido eliminado satisfactoriamente.",
+  "SUSPEND_COMPANIES": "El aliado ha sido suspendido satisfactoriamente.",
+
+  "VALIDATION_FAILED": "Se detectaron errores durante la validación del archivo. Por favor verifique que tenga el formato correcto.",
+  "NO_ERROR_FOUND": "No se ha encontrado ningún error",
+  "T_AND_C": "T&C",
+
+  "NAVIGATION": {
+    "T&C": "T&C",
+    "DASHBOARD": "Panel de control"
+  },
+
+  "UPDATED_PROFILE_MESSAGE": "La información del perfil se ha actualizado correctamente."
 }

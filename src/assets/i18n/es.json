@@ -147,7 +147,7 @@
   "LOYALTY_PLANS": "Planes Paciente",
   "LOYALTY_PLAN_NAME": "Nombre",
   "LOGO_PLAN": "Logo del plan",
-  "LOYALTY_PLAN_LOGO_HINT": "Utilice una imagen cuadrada 200 x 200 píxeles",
+  "LOYALTY_PLAN_LOGO_HINT": "Utilice una imagen cuadrada 100 x 100 píxeles",
   "DESCRIPTION": "Descripción",
   "WEBSITE_URL": "Más información",
   "REGULATION": "Reglamento",
@@ -183,6 +183,6 @@
   "INCLUDE_PHARMACIES": "Incluir farmacias",
   "NO_PARTICIPATING_DRUGSTORES_MESSAGE": "No ha incluido farmacias participantes en",
   "SELECT_ALL": "Seleccionar todas",
-  "T_ANC_C": "T&C",
+  "T_AND_C": "T&C",
   "REWARDS_EXPIRATION_DATE": "Vigencia de canjes"
 }

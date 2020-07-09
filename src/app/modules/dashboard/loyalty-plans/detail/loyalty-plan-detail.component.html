@@ -1,249 +1,281 @@
-<div class="content-container loyalty-plan-detail-container">
-  <div class="page-title">
-    <h1>
-      {{'LOYALTY_PLAN' | translate}}
-    </h1>
-  </div>
-
-  <div class="page-body detail-wrapper" fxLayout="row wrap" fxLayout.lt-sm="column">
-    <div class="logo-content">
-      <img src="{{loyaltyPlan.logo_url}}">
-    </div>
-
-    <div class="information-content">
-
-      <h1 class="loyalty-plan-name">
-        {{loyaltyPlan.name}}
+<div *ngIf="!loyaltyPlan.id">
+  <div class="content-container">
+    <div class="page-title">
+      <h1>
+        {{'LOYALTY_PLAN' | translate}}
       </h1>
 
-      <span class="link-edit">
-        <a routerLink="edit">{{'EDIT' | translate}}</a>
-      </span>
-
-      <p class="plan-description">
-        {{loyaltyPlan.description}}
-      </p>
-
-      <label class="more-information-label">{{'MORE_INFORMATION' | translate}}</label>
-      <p class="website-url">
-        <a href="{{loyaltyPlan.website_url}}" target="_blank">{{loyaltyPlan.website_url}}</a>
-      </p>
-
-      <label class="exchange-rule-label">{{'EXCHANGE_RULE' | translate}}</label>
-      <p class="exchange-rule">
-        {{loyaltyPlan.exchange_rule | uppercase | translate}}
+      <p>
+        Aquí puede visualizar y gestionar sus planes
       </p>
     </div>
 
-    <div class="right-side-content">
-      <p class="regulation-url">
-        <a href="" target="_blank">{{ 'CREATE_REGISTRATION_FORM' | translate}}</a>
+    <div class="text-center page-body">
+      <p class="no-loyalty-plan">
+        {{ 'NO_LOYALTY_PLAN_MESSAGE' | translate }}
       </p>
 
-      <p class="terms-and-conditions-url">
-        <a href="{{loyaltyPlan.regulation_url}}" target="_blank">{{ 'TERMS_AND_CONDITIONS' | translate}}</a>
+      <p>
+        <img src="assets/images/loyalty-plans/bg.png">
       </p>
 
-      <p class="regulation-url">
-        <a href="{{loyaltyPlan.terms_and_conditions_url}}" target="_blank">{{ 'REGULATION' | translate }}</a>
-      </p>
+      <button mat-raised-button color="primary"
+      class="btn-no-border-radius btn-primary"
+      routerLink="new" id="add-new">
+        {{ 'CREATE' | translate }} {{'LOYALTY_PLAN' | translate}}
+      </button>
     </div>
-
   </div>
 </div>
 
-<div class="medications-and-countries">
-  <div class="medications-container">
-    <h2>
-      {{'MEDICATIONS' | translate}}
-    </h2>
+<div *ngIf="!!loyaltyPlan.id">
+  <div class="content-container loyalty-plan-detail-container">
+    <div class="page-title">
+      <h1>
+        {{'LOYALTY_PLAN' | translate}}
+      </h1>
+    </div>
 
-    <div class="table-container">
-      <ngx-datatable
-        class="material ml-0 mr-0"
-        [rows]="loyaltyPlanMedications"
-        [columnMode]="'force'"
-        [headerHeight]="40"
-        [footerHeight]="40"
-        [scrollbarH]="true"
-        [limit]="1000"
-        [rowHeight]="'auto'"
-        [messages]="datatableMessages"
-      >
-
-        <ngx-datatable-column name="{{ 'NAME' | translate }}" [flexGrow]="1">
-          <ng-template let-row="row" ngx-datatable-cell-template let-rowIndex="rowIndex">
-            <label *ngIf="row.isChanged">{{ 'SELECT_MEDICATION' | translate }}</label>
-            <mat-form-field appearance="outline" class="full-width mat-select-tot-style" *ngIf="row.isChanged">
-              <mat-select (selectionChange)="onChangeMedication($event, rowIndex)" [(value)]="row.medication_id">
-                <mat-option *ngFor="let medication of medications" [value]="medication.id">
-                  {{ medication.name }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-
-            <div *ngIf="!row.isChanged" (click)="setChangeToLoyaltyPlanMedication(rowIndex)">
-              {{ row.medication_name }}
-            </div>
-
-          </ng-template>
-        </ngx-datatable-column>
-
-        <ngx-datatable-column name="{{ 'CODE' | translate }}" [flexGrow]="1">
-          <ng-template let-row="row" ngx-datatable-cell-template>
-            {{ !!row.id ? row.medication_code : ''}}
-          </ng-template>
-        </ngx-datatable-column>
-
-        <ngx-datatable-column name="{{ 'STATUS' | translate }}" [flexGrow]="1">
-          <ng-template let-row="row" ngx-datatable-cell-template>
-            <div *ngIf="!!row.id">
-              <div [ngClass]="row.is_active ? 'active-status' : 'inactive-status'">
-                {{ (row.status | uppercase | translate) }}
-              </div>
-            </div>
-          </ng-template>
-        </ngx-datatable-column>
-
-        <ngx-datatable-column name="{{ 'ACTIONS' | translate }}" [flexGrow]="1"
-        [cellClass]="'actions-align-right'"
-        [headerClass]="'actions-align-right'">
-          <ng-template let-row="row" ngx-datatable-cell-template let-rowIndex="rowIndex" class="text-right">
-            <a class="btn-save-data"
-            (click)="saveLoyaltyPlanMedication(row, rowIndex)"
-            *ngIf="row.isChanged">
-              {{ 'SAVE' | translate }}
-            </a>
-
-            <a *ngIf="!row.isChanged && row.is_active"
-            (click)="deactivateLoyaltyPlanMedication(row, rowIndex)"
-            class="btn-save-data">
-              {{ 'DEACTIVATE' | translate }}
-            </a>
-
-            <a *ngIf="!row.isChanged && !row.is_active"
-            (click)="activateLoyaltyPlanMedication(row, rowIndex)"
-            class="btn-save-data">
-              {{ 'REACTIVATE' | translate }}
-            </a>
-          </ng-template>
-        </ngx-datatable-column>
-
-      </ngx-datatable>
-
-      <div class="add-more-item-wrapper" *ngIf="loyaltyPlanMedications.length > 0">
-        <a (click)="addLoyaltyPlanMedication()">
-          <img src="assets/images/loyalty-plans/add.png" class="icon-add-item"/>
-          <span class="text-add-item">
-            {{ 'ADD_PRODUCT' | translate }}
-          </span>
-        </a>
+    <div class="page-body detail-wrapper" fxLayout="row wrap" fxLayout.lt-sm="column">
+      <div class="logo-content">
+        <img src="{{loyaltyPlan.logo_url}}">
       </div>
 
-      <div class="no-items-container text-center" *ngIf="loyaltyPlanMedications.length == 0">
-        <p class="no-item mb-0">{{ 'NO_LOYALTY_PLAN_MEDICATIONS_MESSAGE' | translate }}</p>
-        <p class="mb-0"><a class="btn-add-first-item" (click)="addLoyaltyPlanMedication()">{{ 'ADD' | translate }}</a></p>
+      <div class="information-content">
+
+        <h1 class="loyalty-plan-name">
+          {{loyaltyPlan.name}}
+        </h1>
+
+        <span class="link-edit">
+          <a routerLink="edit">{{'EDIT' | translate}}</a>
+        </span>
+
+        <p class="plan-description">
+          {{loyaltyPlan.description}}
+        </p>
+
+        <label class="more-information-label">{{'MORE_INFORMATION' | translate}}</label>
+        <p class="website-url">
+          <a href="{{loyaltyPlan.website_url}}" target="_blank">{{loyaltyPlan.website_url}}</a>
+        </p>
+
+        <label class="exchange-rule-label">{{'EXCHANGE_RULE' | translate}}</label>
+        <p class="exchange-rule">
+          {{loyaltyPlan.exchange_rule | uppercase | translate}}
+        </p>
       </div>
+
+      <div class="right-side-content">
+        <p class="regulation-url">
+          <a href="" target="_blank">{{ 'CREATE_REGISTRATION_FORM' | translate}}</a>
+        </p>
+
+        <p class="terms-and-conditions-url">
+          <a href="{{loyaltyPlan.regulation_url}}" target="_blank">{{ 'TERMS_AND_CONDITIONS' | translate}}</a>
+        </p>
+
+        <p class="regulation-url">
+          <a href="{{loyaltyPlan.terms_and_conditions_url}}" target="_blank">{{ 'REGULATION' | translate }}</a>
+        </p>
+      </div>
+
     </div>
   </div>
 
-  <div class="country-container">
-    <h2>
-      {{ 'COUNTRIES' | translate }}
-    </h2>
-    <div class="table-container">
-      <ngx-datatable
-        class="material ml-0 mr-0"
-        [rows]="loyaltyPlanCountries"
-        [columnMode]="'force'"
-        [headerHeight]="40"
-        [footerHeight]="40"
-        [scrollbarH]="true"
-        [limit]="1000"
-        [rowHeight]="'auto'"
-        [messages]="datatableMessages"
-      >
+  <div class="medications-and-countries">
+    <div class="medications-container">
+      <h2>
+        {{'MEDICATIONS' | translate}}
+      </h2>
 
-        <ngx-datatable-column name="{{ 'NAME' | translate }}" [flexGrow]="1">
-          <ng-template let-row="row" ngx-datatable-cell-template let-rowIndex="rowIndex">
+      <div class="table-container">
+        <ngx-datatable
+          class="material ml-0 mr-0"
+          [rows]="loyaltyPlanMedications"
+          [columnMode]="'force'"
+          [headerHeight]="40"
+          [footerHeight]="40"
+          [scrollbarH]="true"
+          [limit]="1000"
+          [rowHeight]="'auto'"
+          [messages]="datatableMessages"
+        >
 
-            <label *ngIf="row.isChanged">{{ 'SELECT_COUNTRY' | translate }}</label>
-            <mat-form-field appearance="outline" class="full-width mat-select-tot-style" *ngIf="row.isChanged">
-              <mat-select (selectionChange)="onChangeCountry($event, rowIndex)" [(value)]="row.country_code">
-                <mat-option *ngFor="let country of countries" [value]="country.code">
-                  {{ country.name }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
+          <ngx-datatable-column name="{{ 'NAME' | translate }}" [flexGrow]="1"  width="420">
+            <ng-template let-row="row" ngx-datatable-cell-template let-rowIndex="rowIndex">
+              <label *ngIf="row.isChanged">{{ 'SELECT_MEDICATION' | translate }}</label>
+              <mat-form-field appearance="outline" class="full-width mat-select-tot-style" *ngIf="row.isChanged">
+                <mat-select (selectionChange)="onChangeMedication($event, rowIndex)" [(value)]="row.medication_id">
+                  <mat-option *ngFor="let medication of medications" [value]="medication.id" [disabled]="isMedicationSelected(medication)">
+                    {{ medication.name }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
 
-            <div *ngIf="!row.isChanged" (click)="setChangeToLoyaltyPlanCountry(rowIndex)">
-              {{ row.country_name }}
-            </div>
-
-          </ng-template>
-        </ngx-datatable-column>
-
-        <ngx-datatable-column name="{{ 'STATUS' | translate }}" [flexGrow]="1">
-          <ng-template let-row="row" ngx-datatable-cell-template>
-            <div *ngIf="!!row.id">
-              <div [ngClass]="row.is_active ? 'active-status' : 'inactive-status'">
-                {{ (row.status | uppercase | translate) }}
+              <div *ngIf="!row.isChanged" (click)="setChangeToLoyaltyPlanMedication(rowIndex)">
+                {{ row.medication_name }}
               </div>
-            </div>
-          </ng-template>
-        </ngx-datatable-column>
 
+            </ng-template>
+          </ngx-datatable-column>
 
-        <ngx-datatable-column name="{{ 'ACTIONS' | translate }}"
-        [flexGrow]="1"
-        width="500"
-        [headerClass]="'actions-align-right'"
-        [cellClass]="'actions-align-right'">
-          <ng-template let-row="row" ngx-datatable-cell-template let-rowIndex="rowIndex">
-            <a class="btn-save-data"
-            (click)="saveLoyaltyPlanCountry(row, rowIndex)"
-            *ngIf="row.isChanged">
-              {{ 'SAVE' | translate }}
-            </a>
+          <ngx-datatable-column name="{{ 'CODE' | translate }}" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              {{ !!row.id ? row.medication_code : ''}}
+            </ng-template>
+          </ngx-datatable-column>
 
-            <a *ngIf="!row.isChanged" class="btn-save-data"
-            routerLink="/dashboard/loyalty-plans/{{loyaltyPlanId}}/loyalty-plan-country/{{row?.id}}/medications-included-by-country">
-              {{ 'MEDICATIONS_INCLUDED' | translate }}
-            </a>
+          <ngx-datatable-column name="{{ 'STATUS' | translate }}" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              <div *ngIf="!!row.id">
+                <div [ngClass]="row.is_active ? 'active-status' : 'inactive-status'">
+                  {{ (row.status | uppercase | translate) }}
+                </div>
+              </div>
+            </ng-template>
+          </ngx-datatable-column>
 
-            <a *ngIf="!row.isChanged"
-            routerLink="/dashboard/loyalty-plans/{{loyaltyPlanId}}/loyalty-plan-country/{{row?.id}}/participating-drugstores"
-            class="btn-save-data">
-              {{ 'PARTICIPATING_PHARMACIES' | translate }}
-            </a>
+          <ngx-datatable-column name="{{ 'ACTIONS' | translate }}" [flexGrow]="1"
+          [cellClass]="'actions-align-right'"
+          [headerClass]="'actions-align-right'">
+            <ng-template let-row="row" ngx-datatable-cell-template let-rowIndex="rowIndex" class="text-right">
+              <a class="btn-save-data"
+              (click)="saveLoyaltyPlanMedication(row, rowIndex)"
+              *ngIf="row.isChanged">
+                {{ 'SAVE' | translate }}
+              </a>
 
-            <a *ngIf="!row.isChanged && row.is_active"
-            (click)="deactivateLoyaltyPlanCountry(row, rowIndex)"
-            class="btn-save-data">
-              {{ 'DEACTIVATE' | translate }}
-            </a>
+              <a *ngIf="!row.isChanged && row.is_active"
+              (click)="deactivateLoyaltyPlanMedication(row, rowIndex)"
+              class="btn-save-data">
+                {{ 'DEACTIVATE' | translate }}
+              </a>
 
-            <a *ngIf="!row.isChanged && !row.is_active"
-            (click)="activateLoyaltyPlanCountry(row, rowIndex)"
-            class="btn-save-data">
-              {{ 'REACTIVATE' | translate }}
-            </a>
-          </ng-template>
-        </ngx-datatable-column>
-      </ngx-datatable>
+              <a *ngIf="!row.isChanged && !row.is_active"
+              (click)="activateLoyaltyPlanMedication(row, rowIndex)"
+              class="btn-save-data">
+                {{ 'REACTIVATE' | translate }}
+              </a>
+            </ng-template>
+          </ngx-datatable-column>
 
-      <div class="add-more-item-wrapper" *ngIf="loyaltyPlanCountries.length > 0">
-        <a (click)="addLoyaltyPlanCountry()">
-          <img src="assets/images/loyalty-plans/add.png" class="icon-add-item"/>
-          <span class="text-add-item">
-            {{ 'ADD_COUNTRY' | translate }}
-          </span>
-        </a>
+        </ngx-datatable>
+
+        <div class="add-more-item-wrapper" *ngIf="loyaltyPlanMedications.length > 0">
+          <a (click)="addLoyaltyPlanMedication()">
+            <img src="assets/images/loyalty-plans/add.png" class="icon-add-item"/>
+            <span class="text-add-item">
+              {{ 'ADD_PRODUCT' | translate }}
+            </span>
+          </a>
+        </div>
+
+        <div class="no-items-container text-center" *ngIf="loyaltyPlanMedications.length == 0">
+          <p class="no-item mb-0">{{ 'NO_LOYALTY_PLAN_MEDICATIONS_MESSAGE' | translate }}</p>
+          <p class="mb-0"><a class="btn-add-first-item" (click)="addLoyaltyPlanMedication()">{{ 'ADD' | translate }}</a></p>
+        </div>
       </div>
+    </div>
 
-      <div class="no-items-container text-center" *ngIf="loyaltyPlanCountries.length == 0">
-        <p class="no-item mb-0">{{ 'NO_LOYALTY_PLAN_COUNTRIES_MESSAGE' | translate }}</p>
-        <p class="mb-0"><a class="btn-add-first-item" (click)="addLoyaltyPlanCountry()">{{ 'ADD' | translate }}</a></p>
+    <div class="country-container">
+      <h2>
+        {{ 'COUNTRIES' | translate }}
+      </h2>
+      <div class="table-container">
+        <ngx-datatable
+          class="material ml-0 mr-0"
+          [rows]="loyaltyPlanCountries"
+          [columnMode]="'force'"
+          [headerHeight]="40"
+          [footerHeight]="40"
+          [scrollbarH]="true"
+          [limit]="1000"
+          [rowHeight]="'auto'"
+          [messages]="datatableMessages"
+        >
+
+          <ngx-datatable-column name="{{ 'NAME' | translate }}" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template let-rowIndex="rowIndex">
+
+              <label *ngIf="row.isChanged">{{ 'SELECT_COUNTRY' | translate }}</label>
+              <mat-form-field appearance="outline" class="full-width mat-select-tot-style" *ngIf="row.isChanged">
+                <mat-select (selectionChange)="onChangeCountry($event, rowIndex)" [(value)]="row.country_code">
+                  <mat-option *ngFor="let country of countries" [value]="country.code" [disabled]="isCountrySelected(country)">
+                    {{ country.name }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <div *ngIf="!row.isChanged" (click)="setChangeToLoyaltyPlanCountry(rowIndex)">
+                {{ row.country_name }}
+              </div>
+
+            </ng-template>
+          </ngx-datatable-column>
+
+          <ngx-datatable-column name="{{ 'STATUS' | translate }}" [flexGrow]="1">
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              <div *ngIf="!!row.id">
+                <div [ngClass]="row.is_active ? 'active-status' : 'inactive-status'">
+                  {{ (row.status | uppercase | translate) }}
+                </div>
+              </div>
+            </ng-template>
+          </ngx-datatable-column>
+
+
+          <ngx-datatable-column name="{{ 'ACTIONS' | translate }}"
+          [flexGrow]="1"
+          width="500"
+          [headerClass]="'actions-align-right'"
+          [cellClass]="'actions-align-right'">
+            <ng-template let-row="row" ngx-datatable-cell-template let-rowIndex="rowIndex">
+              <a class="btn-save-data"
+              (click)="saveLoyaltyPlanCountry(row, rowIndex)"
+              *ngIf="row.isChanged">
+                {{ 'SAVE' | translate }}
+              </a>
+
+              <a *ngIf="!row.isChanged" class="btn-save-data"
+              routerLink="/dashboard/loyalty-plan-country/{{row?.id}}/medications-included-by-country">
+                {{ 'MEDICATIONS_INCLUDED' | translate }}
+              </a>
+
+              <a *ngIf="!row.isChanged"
+              routerLink="/dashboard/loyalty-plan-country/{{row?.id}}/participating-drugstores"
+              class="btn-save-data">
+                {{ 'PARTICIPATING_PHARMACIES' | translate }}
+              </a>
+
+              <a *ngIf="!row.isChanged && row.is_active"
+              (click)="deactivateLoyaltyPlanCountry(row, rowIndex)"
+              class="btn-save-data">
+                {{ 'DEACTIVATE' | translate }}
+              </a>
+
+              <a *ngIf="!row.isChanged && !row.is_active"
+              (click)="activateLoyaltyPlanCountry(row, rowIndex)"
+              class="btn-save-data">
+                {{ 'REACTIVATE' | translate }}
+              </a>
+            </ng-template>
+          </ngx-datatable-column>
+        </ngx-datatable>
+
+        <div class="add-more-item-wrapper" *ngIf="loyaltyPlanCountries.length > 0">
+          <a (click)="addLoyaltyPlanCountry()">
+            <img src="assets/images/loyalty-plans/add.png" class="icon-add-item"/>
+            <span class="text-add-item">
+              {{ 'ADD_COUNTRY' | translate }}
+            </span>
+          </a>
+        </div>
+
+        <div class="no-items-container text-center" *ngIf="loyaltyPlanCountries.length == 0">
+          <p class="no-item mb-0">{{ 'NO_LOYALTY_PLAN_COUNTRIES_MESSAGE' | translate }}</p>
+          <p class="mb-0"><a class="btn-add-first-item" (click)="addLoyaltyPlanCountry()">{{ 'ADD' | translate }}</a></p>
+        </div>
       </div>
     </div>
   </div>

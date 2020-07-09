@@ -1,4 +1,4 @@
-<button mat-button [color]="color" class="button-loading {{btnClass}}" [type]="type" [disabled]="loading" 
+<button mat-button [color]="color" class="button-loading {{btnClass}}" [type]="type" [disabled]="loading"
 [ngClass]="{
     loading: loading,
     'mat-button': !raised,
@@ -8,5 +8,5 @@
     <span *ngIf="!loading">
         <ng-content></ng-content>
     </span>
-    <span *ngIf="loading">{{loadingText}}</span>
+    <span *ngIf="loading" translate>{{loadingText}}</span>
 </button>

@@ -15,5 +15,6 @@ export class ProfileComponent extends ApplicationBaseComponent implements OnInit
     super();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 }

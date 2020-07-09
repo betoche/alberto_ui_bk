@@ -9,37 +9,37 @@ import { environment } from 'environments/environment';
 export class LoyaltyPlanCountryService {
   constructor(private http: HttpClient) {}
 
-  public fetchList(planId) {
+  public fetchList() {
     return this.http.get(
-      environment.apiURL + `/pharmaceutical_companies/loyalty_plans/${planId}/loyalty_plan_countries`, {}
+      environment.apiURL + `/pharmaceutical_companies/loyalty_plan_countries`, {}
     );
   }
 
-  public fetch(planId, id) {
+  public fetch(id) {
     return this.http.get(
-      environment.apiURL + `/pharmaceutical_companies/loyalty_plans/${planId}/loyalty_plan_countries/${id}`, {}
+      environment.apiURL + `/pharmaceutical_companies/loyalty_plan_countries/${id}`, {}
     );
   }
 
-  public update(planId, id, params) {
+  public update(id, params) {
     return this.http.put(
-      environment.apiURL + `/pharmaceutical_companies/loyalty_plans/${planId}/loyalty_plan_countries/` + id, {
+      environment.apiURL + `/pharmaceutical_companies/loyalty_plan_countries/` + id, {
         loyalty_plan_country: params
       }
     );
   }
 
-  public create(planId, params) {
+  public create(params) {
     return this.http.post(
-      environment.apiURL + `/pharmaceutical_companies/loyalty_plans/${planId}/loyalty_plan_countries`, {
+      environment.apiURL + `/pharmaceutical_companies/loyalty_plan_countries`, {
         loyalty_plan_country: params
       }
     );
   }
 
-  public delete(planId, id) {
+  public delete(id) {
     return this.http.delete(
-      environment.apiURL + `/pharmaceutical_companies/loyalty_plans/${planId}/loyalty_plan_countries/` + id
+      environment.apiURL + `/pharmaceutical_companies/loyalty_plan_countries/` + id
     );
   }
 }

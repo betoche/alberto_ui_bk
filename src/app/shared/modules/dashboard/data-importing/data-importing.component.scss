@@ -1,0 +1,36 @@
+.upload-file-wrapper {
+  position: relative;
+  cursor: pointer;
+
+  .input-file {
+    display: none;
+  }
+
+  .label-select-file{
+    cursor: pointer;
+  }
+
+  .file-box {
+    display: inline-block;
+    width: 100%;
+    border: 1px dashed #00CD00;
+    box-sizing: border-box;
+    height: 46px;
+    margin-top: 4px;
+    padding: 10px 45px 10px 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    border-radius: 2px;
+  }
+
+  .file-button {
+    position: absolute;
+    top: 15px;
+    right: 10px;
+  }
+
+  .placeholder {
+    color: #8B8B8B
+  }
+}

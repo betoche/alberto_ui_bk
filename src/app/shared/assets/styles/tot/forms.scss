@@ -23,23 +23,50 @@ mat-form-field.phone-number{
 
 .mat-form-field.mat-form-field-appearance-outline {
   .mat-form-field-outline {
+    top: 0;
     .mat-form-field-outline-end, .mat-form-field-outline-start {
       background-color: unset;
     }
 
     .mat-form-field-outline-start {
-      border-left: 1px solid #00CD00 !important;
-      border-top: 1px solid #00CD00 !important;
-      border-bottom: 1px solid #00CD00 !important;
-      border-right: unset !important;
+      border: 0;
     }
 
     .mat-form-field-outline-end {
-      border-right: 1px solid #00CD00 !important;
-      border-top: 1px solid #00CD00 !important;
-      border-bottom: 1px solid #00CD00 !important;
-      border-left: unset !important;
+      border: 0;
     }
+  }
+  &.mat-search {
+    .mat-form-field-outline {
+        .mat-form-field-outline-start {
+          border: 0;
+        }
+        .mat-form-field-outline-end {
+          border: 0;
+        }
+      }
+      .mat-form-field-flex .mat-form-field-infix {
+        padding:  20px 0;
+        border-top: 0;
+        padding-left: 35px;
+      }
+      // icon
+      .mat-form-field-suffix{
+        top: 0;
+        bottom: 0;
+        margin: auto;
+        left: 0.75em;
+        position: absolute;
+        height: 24px;
+      }
+  }
+  .mat-form-field-flex .mat-form-field-infix{
+    border: 0;
+    padding: 20px 0;
+  }
+  input{
+    @include font-lato;
+    font-size: $font-size-sm;
   }
 }
 

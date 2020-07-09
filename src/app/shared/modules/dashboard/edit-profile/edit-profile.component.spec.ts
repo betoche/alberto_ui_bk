@@ -30,7 +30,7 @@ describe('EditProfileComponent', () => {
   describe('UPDATE profile', () => {
     it('fills form fields and clicks on submit button', fakeAsync(() => {
       let service = stubRequestUpdate();
-      spyOn(component, 'showUpdateMessageSuccessful');
+      spyOn(component, 'showFlashSuccessful');
 
       component.form.get('name').setValue('my name');
       component.form.get('password').setValue('1234678');
@@ -43,7 +43,7 @@ describe('EditProfileComponent', () => {
       expect(service.updateProfile).toHaveBeenCalled();
       tick();
       fixture.detectChanges();
-      expect(component.showUpdateMessageSuccessful).toHaveBeenCalled();
+      expect(component.showFlashSuccessful).toHaveBeenCalled();
     }));
   });
 

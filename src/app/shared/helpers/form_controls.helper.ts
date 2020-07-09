@@ -1,23 +1,23 @@
 import { Validators } from '@angular/forms';
 
 export let FormControlsHelper = {
-  phoneNumber: function(value = '') {
+  phoneNumber: function(value: any = '') {
     return [value, [Validators.required, Validators.minLength(8), Validators.maxLength(8)]];
   },
 
-  requireFieldOnly: function(value = '') {
+  requireFieldOnly: function(value: any = '') {
     return [value, Validators.required];
   },
 
-  requireAndDisableField: function(value = '') {
+  requireAndDisableField: function(value: any = '') {
     return [{ value: value, disabled: true }, Validators.required];
   },
 
-  booleanField: function(value = false) {
+  booleanField: function(value: any = false) {
     return [value];
   },
 
-  emailField: function(value = '') {
+  emailField: function(value: any = '') {
     return [
       value,
       [
@@ -30,11 +30,11 @@ export let FormControlsHelper = {
     ];
   },
 
-  disableField: function(value = '') {
+  disableField: function(value: any = '') {
     return [{ value: value, disabled: true }];
   },
 
-  passwordField: function(required = true) {
+  passwordField: function(required: boolean = true) {
     if (required) {
       return ['', Validators.required];
     } else {

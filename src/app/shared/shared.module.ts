@@ -14,6 +14,7 @@ import { SharedComponentsModule } from './components/shared-components.module';
 import { SharedPipesModule } from './pipes/shared-pipes.module';
 import { SharedDirectivesModule } from './directives/shared-directives.module';
 import { SharedFeaturesModule } from './features/shared-features.module';
+import { TreeViewModule } from '@syncfusion/ej2-angular-navigations';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { SharedFeaturesModule } from './features/shared-features.module';
     SharedComponentsModule,
     SharedPipesModule,
     SharedDirectivesModule,
-    SharedFeaturesModule
+    SharedFeaturesModule,
+    TreeViewModule
   ],
   providers: [
     ThemeService,
@@ -36,7 +38,8 @@ import { SharedFeaturesModule } from './features/shared-features.module';
     SharedComponentsModule,
     SharedPipesModule,
     SharedDirectivesModule,
-    SharedFeaturesModule
+    SharedFeaturesModule,
+    TreeViewModule
   ]
 })
 export class SharedModule { }

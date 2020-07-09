@@ -1,7 +1,11 @@
 import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { TestBedHelper } from 'spec/test-bed/test-bed-helper';
 import { DataImportingComponent } from './data-importing.component';
-import { AppConfirmService } from 'app/shared/services/app-confirm/app-confirm.service';
+import * as $ from 'jquery';
+
+class FileItem {
+  public upload(){}
+}
 
 describe('DataImportingComponent', () => {
   let component: DataImportingComponent;
@@ -19,59 +23,38 @@ describe('DataImportingComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('enables buttons when file was selected', () => {
-    expect(fixture.debugElement.nativeElement.querySelector('#import-btn').disabled).toBeTruthy();
-    expect(fixture.debugElement.nativeElement.querySelector('#validation-btn').disabled).toBeTruthy();
+  it('validates the file data', () => {
+    expect($('#import-btn').length).toEqual(0);
+    expect($('#validation-btn').attr('disabled')).toBeTruthy();
 
-    component.file = 'Selected File';
+    component.file = new FileItem();
     fixture.detectChanges();
 
-    expect(fixture.debugElement.nativeElement.querySelector('#import-btn').disabled).toBeFalsy();
-    expect(fixture.debugElement.nativeElement.querySelector('#validation-btn').disabled).toBeFalsy();
-  });
-
-  it('clicks on validation button', () => {
-    component.file = 'Selected File';
-    fixture.detectChanges();
+    expect($('#import-btn').length).toEqual(0);
+    expect($('#validation-btn').attr('disabled')).toBeFalsy();
 
     spyOn(component.uploader, 'uploadAll').and.callFake(() => {});
-    fixture.debugElement.nativeElement.querySelector('#validation-btn').click();
+    $('#validation-btn').click();
 
     expect(component.uploader.uploadAll).toHaveBeenCalled();
   });
 
-  describe('clicks on import button', () => {
-    it('does nothing when i click on cancel confirmation', () => {
-      initializeComponent({ confirmation: false });
-      createComponent();
+  it('imports the file data', () => {
+    expect($('#import-btn').length).toEqual(0);
+    expect($('#validation-btn').attr('disabled')).toBeTruthy();
 
-      component.file = 'Selected File';
-      fixture.detectChanges();
+    component.file = new FileItem();
+    component.isValidFileData = true;
+    fixture.detectChanges();
 
-      let confirmService = TestBed.get(AppConfirmService);
+    expect($('#import-btn').length).toEqual(1);
+    expect($('#import-btn').attr('disabled')).toBeFalsy();
+    expect($('#validation-btn').length).toEqual(0);
 
-      spyOn(component.uploader, 'uploadAll').and.callFake(() => {});
+    spyOn(component.file, 'upload').and.callFake(() => {});
+    $('#import-btn').click();
 
-      fixture.debugElement.nativeElement.querySelector('#import-btn').click();
-
-      expect(component.uploader.uploadAll).not.toHaveBeenCalled();
-    });
-
-    it('does nothing when i click on cancel confirmation', () => {
-      initializeComponent({ confirmation: true });
-      createComponent();
-
-      component.file = 'Selected File';
-      fixture.detectChanges();
-
-      let confirmService = TestBed.get(AppConfirmService);
-
-      spyOn(component.uploader, 'uploadAll').and.callFake(() => {});
-
-      fixture.debugElement.nativeElement.querySelector('#import-btn').click();
-
-      expect(component.uploader.uploadAll).toHaveBeenCalled();
-    });
+    expect(component.file.upload).toHaveBeenCalled();
   });
 
   // // ##########################
@@ -79,14 +62,7 @@ describe('DataImportingComponent', () => {
   function initializeComponent(options = {}) {
     // re-build component
     TestBed.resetTestingModule();
-    TestBedHelper.configureTestingModule(
-      Object.assign(
-        {
-          declarations: [DataImportingComponent]
-        },
-        options
-      )
-    ).compileComponents();
+    TestBedHelper.configureTestingModule().compileComponents();
   }
 
   function createComponent() {

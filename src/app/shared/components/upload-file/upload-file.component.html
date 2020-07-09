@@ -27,10 +27,9 @@
     {{errorMessage}}
   </div>
 
-
 </div>
 
-<div *ngIf="control?.value">
+<div *ngIf="control?.value && !errorMessage">
   <a class="file-review-link" href="{{ control?.value }}" target="_blank">
     [ <span translate>VIEW_UPLOADED_FILE</span> ]
   </a>

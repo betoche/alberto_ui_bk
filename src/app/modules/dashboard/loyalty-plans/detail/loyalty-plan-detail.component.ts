@@ -26,7 +26,6 @@ import * as _ from 'lodash';
 export class LoyaltyPlanDetailComponent extends Many(
   ApplicationBaseComponent, DatatableBaseComponent) implements OnInit {
 
-  public loyaltyPlanId: any={};
   public loyaltyPlan: any={};
   public loyaltyPlanMedications: any=[];
   public medications: any=[];
@@ -47,8 +46,7 @@ export class LoyaltyPlanDetailComponent extends Many(
   }
 
   ngOnInit() {
-    this.loyaltyPlanId = this.route.snapshot.params.id;
-    this.setLoyaltyPlan(this.loyaltyPlanId);
+    this.setLoyaltyPlan();
     this.getMedications()
     this.getCountries()
   }
@@ -56,7 +54,7 @@ export class LoyaltyPlanDetailComponent extends Many(
   ////////////////////////////////////////////////////////////////////////////////
   /////////////////////// ACTIONS FOR LOYALTY PLAN MEDICATION ////////////////////
   public addLoyaltyPlanMedication() {
-    let loyaltyPlanMedication = new LoyaltyPlanMedicationModel({loyalty_plan_id: this.loyaltyPlanId})
+    let loyaltyPlanMedication = new LoyaltyPlanMedicationModel({loyalty_plan_id: this.loyaltyPlan.id})
     loyaltyPlanMedication = Object.assign(loyaltyPlanMedication, {
       'isChanged': true
     })
@@ -100,7 +98,7 @@ export class LoyaltyPlanDetailComponent extends Many(
     let loyaltyPlanMedications = _.cloneDeep(this.loyaltyPlanMedications)
 
     this.loyaltyPlanMedicationService.update(
-      this.loyaltyPlanId, loyaltyPlanMedication.id, loyaltyPlanMedication
+      loyaltyPlanMedication.id, loyaltyPlanMedication
     ).subscribe((response) => {
       loyaltyPlanMedications[rowIndex] = new LoyaltyPlanMedicationModel(response['data']['attributes'])
       this.loyaltyPlanMedications = loyaltyPlanMedications
@@ -110,22 +108,22 @@ export class LoyaltyPlanDetailComponent extends Many(
   private createLoyaltyPlanMedication(loyaltyPlanMedication, rowIndex) {
     let loyaltyPlanMedications = _.cloneDeep(this.loyaltyPlanMedications)
 
-    this.loyaltyPlanMedicationService.create(this.loyaltyPlanId, loyaltyPlanMedication).subscribe( response => {
+    this.loyaltyPlanMedicationService.create(loyaltyPlanMedication).subscribe( response => {
       loyaltyPlanMedications[rowIndex] = new LoyaltyPlanMedicationModel(response['data']['attributes'])
       this.loyaltyPlanMedications = loyaltyPlanMedications
     })
   }
 
-  private setLoyaltyPlan(id: string) {
-    this.loyaltyPlansService.fetch(id).subscribe( response => {
+  private setLoyaltyPlan() {
+    this.loyaltyPlansService.fetch().subscribe( response => {
       this.loyaltyPlan = new LoyaltyPlanModel(response['data']['attributes'])
+      this.getLoyalPlanMedications()
+      this.getLoyaltyPlanCountries()
     });
-    this.getLoyalPlanMedications(id)
-    this.getLoyaltyPlanCountries(id)
   }
 
-  private getLoyalPlanMedications(id) {
-    this.loyaltyPlanMedicationService.fetchList(id).subscribe((response) => {
+  private getLoyalPlanMedications() {
+    this.loyaltyPlanMedicationService.fetchList().subscribe((response) => {
       this.loyaltyPlanMedications = LoyaltyPlanMedicationModel.buildFrom(_.map(response['data'], 'attributes'));
     })
   }
@@ -139,6 +137,11 @@ export class LoyaltyPlanDetailComponent extends Many(
         this.rows = [];
       }
     );
+  }
+
+  public isMedicationSelected(medication) {
+    let selectedMedication = _.find(this.loyaltyPlanMedications, { medication_id: medication.id })
+    return !!selectedMedication
   }
 
   /////////////////////// END ACTIONS FOR LOYALTY PLAN MEDICATION ////////////////
@@ -156,7 +159,7 @@ export class LoyaltyPlanDetailComponent extends Many(
   }
 
   public addLoyaltyPlanCountry() {
-    let loyaltyPlanCountry = new LoyaltyPlanCountryModel({loyalty_plan_id: this.loyaltyPlanId})
+    let loyaltyPlanCountry = new LoyaltyPlanCountryModel({loyalty_plan_id: this.loyaltyPlan.id})
     loyaltyPlanCountry = Object.assign(loyaltyPlanCountry, {
       'isChanged': true
     })
@@ -186,6 +189,10 @@ export class LoyaltyPlanDetailComponent extends Many(
     this.loyaltyPlanCountries = loyaltyPlanCountries
   }
 
+  public isCountrySelected(country){
+    return !!_.find(this.loyaltyPlanCountries, { country_code: country.code });
+  }
+
   public deactivateLoyaltyPlanCountry(loyaltyPlanCountry, rowIndex) {
     loyaltyPlanCountry.status = 'inactive'
     this.updateLoyaltyPlanCountry(loyaltyPlanCountry, rowIndex)
@@ -199,9 +206,7 @@ export class LoyaltyPlanDetailComponent extends Many(
   private updateLoyaltyPlanCountry(loyaltyPlanCountry, rowIndex) {
     let loyaltyPlanCountries = _.cloneDeep(this.loyaltyPlanCountries)
 
-    this.loyaltyPlanCountryService.update(
-      this.loyaltyPlanId, loyaltyPlanCountry.id, loyaltyPlanCountry
-    ).subscribe((response) => {
+    this.loyaltyPlanCountryService.update(loyaltyPlanCountry.id, loyaltyPlanCountry).subscribe((response) => {
       loyaltyPlanCountries[rowIndex] = new LoyaltyPlanCountryModel(response['data']['attributes'])
       this.loyaltyPlanCountries = loyaltyPlanCountries
     })
@@ -210,14 +215,14 @@ export class LoyaltyPlanDetailComponent extends Many(
   private createLoyaltyPlanCountry(loyaltyPlanCountry, rowIndex) {
     let loyaltyPlanCountries = _.cloneDeep(this.loyaltyPlanCountries)
 
-    this.loyaltyPlanCountryService.create(this.loyaltyPlanId, loyaltyPlanCountry).subscribe( response => {
+    this.loyaltyPlanCountryService.create(loyaltyPlanCountry).subscribe( response => {
       loyaltyPlanCountries[rowIndex] = new LoyaltyPlanCountryModel(response['data']['attributes'])
       this.loyaltyPlanCountries = loyaltyPlanCountries
     })
   }
 
-  private getLoyaltyPlanCountries(id) {
-    this.loyaltyPlanCountryService.fetchList(id).subscribe((response) => {
+  private getLoyaltyPlanCountries() {
+    this.loyaltyPlanCountryService.fetchList().subscribe((response) => {
       this.loyaltyPlanCountries = LoyaltyPlanCountryModel.buildFrom(_.map(response['data'], 'attributes'));
     })
   }

@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Input } from '@angular/core';
 import { egretAnimations } from 'app/shared/animations/egret-animations';
 import { DialogService } from 'app/shared/services/dialog.service';
 import { FileUploader } from 'ng2-file-upload';
@@ -10,22 +10,31 @@ import { AppAlertService } from 'app/shared/services/app-alert/app-alert.service
 import { AppLoaderService } from 'app/shared/services/app-loader/app-loader.service';
 import { MatSnackBar } from '@angular/material';
 import { UserSession } from 'app/shared/services/user-session';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-data-importing',
   animations: egretAnimations,
   templateUrl: './data-importing.component.html',
-  styleUrls: ['./data-importing.component.css']
+  styleUrls: ['./data-importing.component.scss']
 })
 export class DataImportingComponent implements OnInit {
   @ViewChild('uploadEl', { static: false }) uploadElRef;
+  @Input('importType') importType: string;
 
-  public importType: string;
   public file: any;
   public uploader: FileUploader;
   public isValidation: boolean;
+  public fileName: string;
+  public messageOptions: any = {};
+
+  // undefined -> validation process is not run
+  // false -> validation does not passed
+  // true -> validation passed, ready to importing
+  public isValidFileData: boolean = undefined;
 
   constructor(
+    private dialogRef: MatDialogRef<any>,
     private dialogService: DialogService,
     private route: ActivatedRoute,
     private translate: TranslateService,
@@ -36,27 +45,20 @@ export class DataImportingComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.importType = this.route.snapshot.params.type;
     this.uploadingConfigurations();
   }
 
   public importing() {
-    this.confirmService
-      .confirm({
-        message: this.translate.instant('IMPORT_DATA_CONFIRMATION', { type: this.importType })
-      })
-      .subscribe(response => {
-        // cancel button
-        if (!response) return false;
+    if(!this.isValidFileData){ return false }
 
-        this.uploader.onBuildItemForm = (fileItem: any, form: any) => {
-          this.isValidation = false;
-          form.append('is_validation', this.isValidation);
-        };
+    this.uploader.onBuildItemForm = (fileItem: any, form: any) => {
+      this.isValidation = false;
+      form.append('is_validation', this.isValidation);
+    };
 
-        this.loader.open();
-        this.uploader.uploadAll();
-      });
+    this.loader.open();
+
+    this.file.upload();
   }
 
   public validation() {
@@ -81,6 +83,9 @@ export class DataImportingComponent implements OnInit {
     this.uploader.onAfterAddingFile = file => {
       file.withCredentials = false;
       this.file = file;
+      this.fileName = file.file.name;
+      this.messageOptions = {};
+      this.isValidFileData = undefined;
     };
 
     this.uploader.onCompleteItem = (item: any, response: any, _status: any, _headers: any) => {
@@ -88,26 +93,22 @@ export class DataImportingComponent implements OnInit {
 
       let message = '';
       if (response['statistics']['errors'] > 0) {
-        if (this.isValidation) {
-          message = this.translate.instant('VALIDATION_FAILED', { number: response['statistics']['errors'] });
-        } else {
-          message = this.translate.instant('IMPORT_FAILED', { number: response['statistics']['errors'] });
-        }
-
+        this.isValidFileData = false;
         this.downloadFileFromString('errors', response['errors']);
+        if (this.isValidation) {
+          this.showMessageValidationFailed();
+        }
       } else {
         if (this.isValidation) {
-          message = this.translate.instant('VALIDATION_SUCCESSFUL');
+          this.isValidFileData = true;
+          this.showMessageValidationOK();
         } else {
-          message = this.translate.instant('IMPORT_SUCCESSFUL');
+          this.dialogRef.close(true);
         }
       }
 
-      this.alertService.alert({ message: message });
-
       this.loader.close();
       this.uploadElRef.nativeElement.value = '';
-      this.file = null;
     };
   }
 
@@ -120,4 +121,19 @@ export class DataImportingComponent implements OnInit {
     element.click();
     document.body.removeChild(element);
   }
+
+  private showMessageValidationOK(){
+    this.messageOptions = {
+      type: 'success',
+      message: 'NO_ERROR_FOUND'
+    }
+  }
+
+  private showMessageValidationFailed(){
+    this.messageOptions = {
+      type: 'danger',
+      message: 'VALIDATION_FAILED'
+    }
+  }
+
 }

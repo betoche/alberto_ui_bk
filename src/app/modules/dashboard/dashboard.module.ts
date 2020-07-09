@@ -33,9 +33,6 @@ import { AgmCoreModule } from '@agm/core';
 import { DashboardIndexComponent } from './app-index/app-index.component';
 import { EditProfileComponent } from 'app/shared/modules/dashboard/edit-profile/edit-profile.component';
 
-import { DataImportingComponent } from 'app/shared/modules/dashboard/data-importing/data-importing.component';
-import { LoyaltyPlansComponent } from './loyalty-plans/loyalty-plans.component';
-
 import { DialogService } from 'app/shared/services/dialog.service';
 import { LoyaltyPlanFormComponent } from './loyalty-plans/form/loyalty-plan-form.component';
 import { LoyaltyPlanDetailComponent } from './loyalty-plans/detail/loyalty-plan-detail.component';
@@ -74,8 +71,6 @@ import { ParticipatingDrugstoresComponent } from './loyalty-plans/participating-
   declarations: [
     DashboardIndexComponent,
     EditProfileComponent,
-    DataImportingComponent,
-    LoyaltyPlansComponent,
     LoyaltyPlanFormComponent,
     LoyaltyPlanDetailComponent,
     MedicationsIncludedByCountryComponent,

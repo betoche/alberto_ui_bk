@@ -37,7 +37,7 @@ export class NavigationService {
     },
     {
       name: 'PROFILE',
-      type: 'icon',
+      type: 'link',
       tooltip: 'Profile',
       icon: 'person',
       state: 'dashboard/edit_profile'
@@ -51,7 +51,7 @@ export class NavigationService {
       type: 'topbar-links',
       tooltip: 'LOYALTY_PLAN',
       icon: 'perm_contact_calendar',
-      state: 'dashboard/loyalty-plans'
+      state: 'dashboard/loyalty-plan'
     }
   ];
 

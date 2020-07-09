@@ -31,22 +31,21 @@ export class LoyaltyPlanFormComponent extends Many(ApplicationBaseComponent) imp
   }
 
   ngOnInit() {
-    const id = this.route.snapshot.params.id;
-
-    this.isNew = !id;
     this.loyaltyPlan = new LoyaltyPlanModel({});
     this.buildForm(this.loyaltyPlan);
+    this.isNew = (this.router.url != '/dashboard/loyalty-plan/edit')
 
-    if (id) {
-      this.setLoyaltyPlan(id);
+    if (this.router.url == '/dashboard/loyalty-plan/edit') {
+      this.setLoyaltyPlan();
     }
-
   }
 
-  private setLoyaltyPlan(id: string) {
-    this.loyaltyPlansService.fetch(id).subscribe((response) => {
+  private setLoyaltyPlan() {
+    this.loyaltyPlansService.fetch().subscribe((response) => {
       this.loyaltyPlan = new LoyaltyPlanModel(response['data']['attributes'])
       this.form.patchValue(this.loyaltyPlan)
+    }, () => {
+      this.router.navigate(['/dashboard/loyalty-plan/new']);
     });
   }
 
@@ -80,11 +79,11 @@ export class LoyaltyPlanFormComponent extends Many(ApplicationBaseComponent) imp
 
     let params = this.form.value;
 
-    this.loyaltyPlansService.update(this.loyaltyPlan.id, params).subscribe(
+    this.loyaltyPlansService.update(params).subscribe(
       () => {
         this.loader.close();
         this.showUpdateMessageSuccessful();
-        this.router.navigate(['/dashboard/loyalty-plans']);
+        this.router.navigate(['/dashboard/loyalty-plan']);
       },
       (response) => {
         this.errorsMessages = response.error.errors;
@@ -102,7 +101,7 @@ export class LoyaltyPlanFormComponent extends Many(ApplicationBaseComponent) imp
       () => {
         this.loader.close();
         this.showUpdateMessageSuccessful();
-        this.router.navigate(['/dashboard/loyalty-plans']);
+        this.router.navigate(['/dashboard/loyalty-plan']);
       },
       (response) => {
         this.errorsMessages = response.error.errors;

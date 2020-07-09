@@ -75,7 +75,7 @@
               [control]="form.controls.logo_url"
               [inputId]="'loyalty-plan-logo'"
               [fileName]="loyaltyPlan.logo_filename"
-              validateDimensions200X200Enabled="true"
+              validateDimensions100X100Enabled="true"
               hint="{{'LOYALTY_PLAN_LOGO_HINT' | translate}}"
               placeholder="{{ 'LOGO_PLAN' | translate}}"
             >
@@ -87,12 +87,25 @@
           <div fxFlex="46" class="form-group">
             <label>{{'REWARDS_EXPIRATION_DATE' | translate}} *</label>
             <mat-form-field class="full-width datepicker-field">
-              <input matInput [matDatepicker]="rewards_expiration_date" formControlName="rewards_expiration_date">
+              <input matInput
+                [matDatepicker]="rewards_expiration_date"
+                formControlName="rewards_expiration_date"
+                placeholder="{{ 'REWARDS_EXPIRATION_DATE' | translate }}"
+              >
               <mat-datepicker-toggle matSuffix [for]="rewards_expiration_date"></mat-datepicker-toggle>
               <mat-datepicker #rewards_expiration_date></mat-datepicker>
             </mat-form-field>
           </div>
 
+          <div fxFlex="46" class="form-group">
+            <label>{{'REGULATION' | translate}} *</label>
+            <app-upload-file name="regulation_url" [control]="form.controls.regulation_url"
+              [inputId]="'loyalty-plan-regulation-url'" [fileName]="loyaltyPlan.regulation_filename"
+              placeholder="{{ 'REGULATION' | translate}}">
+            </app-upload-file>
+          </div>
+
+          <div fxFlex="8"></div>
 
           <div fxFlex="46" class="form-group">
             <label>{{'TERMS_AND_CONDITIONS' | translate}} *</label>
@@ -106,29 +119,14 @@
             </app-upload-file>
           </div>
 
-          <div fxFlex="8"></div>
-
-          <div fxFlex="46" class="form-group">
-            <label>{{'REGULATION' | translate}} *</label>
-            <app-upload-file
-              name="regulation_url"
-              [control]="form.controls.regulation_url"
-              [inputId]="'loyalty-plan-regulation-url'"
-              [fileName]="loyaltyPlan.regulation_filename"
-              placeholder="{{ 'REGULATION' | translate}}"
-            >
-            </app-upload-file>
-          </div>
-
           <!-- ############################## -->
-
 
         </div>
       </div>
 
       <div class="text-center btn-actions">
         <button mat-button type="button" class="btn-default btn-no-border-radius mr-1 btn-no-bg"
-        routerLink="/dashboard/loyalty-plans">
+        routerLink="/dashboard/loyalty-plan">
           {{ 'CANCEL' | translate }}
         </button>
 

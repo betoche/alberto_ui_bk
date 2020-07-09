@@ -66,9 +66,45 @@ mat-label {
           box-shadow: none;
         }
       }
+      .mat-form-field-outline {
+        .mat-form-field-outline-start {
+          border-radius: 0;
+          border-right-style: none;
+          border-color: transparent;
+          min-width: auto;
+        }
+        .mat-form-field-outline-end {
+          border: none;
+          background: #ffffff;
+          border-radius: 0 !important;
+          border: 1px solid #b0b0b0;
+          min-width: 0;
+        }
+      }
       .mat-form-field-infix {
         padding: 0.75em 0 0.75em 0;
         border-top: 0.5em solid transparent;
+      }
+    }
+    &.mat-form-field-dashed {
+      .mat-form-field-outline {
+        .mat-form-field-outline-end {
+          border: 1px dashed $primary;
+          background: white;
+          border-radius: 0 !important;
+        }
+        .mat-form-field-outline-start {
+          min-width: 0;
+          border: none;
+        }
+      }
+    }
+    .mat-form-field-outline {
+      .mat-form-field-outline-end,
+      .mat-form-field-outline-start {
+        border: none;
+        background: #e5e5e5;
+        border-radius: 0 !important;
       }
     }
   }
@@ -155,5 +191,13 @@ mat-label {
     border-radius: 50%;
     padding: 5px 10px;
     margin-right: 10px;
+  }
+}
+
+form{
+  .form-group{
+    label{
+      font-size: $font-size-sm;
+    }
   }
 }

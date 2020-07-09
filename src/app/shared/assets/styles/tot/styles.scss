@@ -1,8 +1,13 @@
 // Utils
+@import './definitions';
+@import '../scss/mixins/mixins';
+@import '../scss/variables';
+@import '../scss/colors';
+
 
 hr.division{
   height: 0px;
-  border: 1px solid #e4e4e4;
+  border: 1px solid $division-border-color-gray;
 }
 
 mat-card.mat-card {
@@ -11,6 +16,10 @@ mat-card.mat-card {
   padding-right: 15px !important;
   padding-top: unset !important;
   padding-top: unset !important;
+}
+
+.pointer{
+  cursor: pointer;
 }
 
 // Text
@@ -23,6 +32,10 @@ mat-card.mat-card {
   text-align: center !important;
 }
 
+.font-13{
+  font-size: 13px;
+}
+
 // Grid
 
 .xs-column{
@@ -30,6 +43,41 @@ mat-card.mat-card {
 }
 
 // Spacing
+
+.padding-l-15{
+  padding-left: 15px;
+}
+
+.margin-b-20{
+  margin-bottom: 20px;
+  display: block;
+}
+
+.margin-b-50{
+  margin-bottom: 50px;
+  display: block;
+}
+
+.margin-b-10{
+  margin-bottom: 10px;
+  display: block;
+}
+
+.margin-t-20{
+  margin-top: 20px;
+}
+
+.margin-t-10{
+  margin-top: 10px;
+}
+
+.margin-t-5{
+  margin-top: 5px;
+}
+
+.padding-20{
+  padding: 20px;
+}
 
 .ml-8 {
   margin-left: 8px;
@@ -52,6 +100,10 @@ mat-card.mat-card {
   margin-right: 0.5rem;
 }
 
+.center{
+  margin: 0 auto;
+}
+
 // Visibility
 
 .display-none{
@@ -60,6 +112,10 @@ mat-card.mat-card {
 
 .d-inline {
   display: inline;
+}
+
+.display-block{
+  display: block !important;
 }
 
 // Sizing
@@ -72,10 +128,14 @@ mat-card.mat-card {
   width: 120px !important;
 }
 
+.width-90{
+  width: 90%;
+}
+
 // Layout
 
 .egret-navy .mat-drawer-container {
-  background-color: #ffffff
+  background-color: white
 }
 
 // Flash messages
@@ -90,11 +150,17 @@ app-flash-messsage{
 // States
 
 .reactivate{
-  color: #00CD00;
+  color: $primary-color;
 }
 
 // Borders
 
 .green-border {
-  border-color: #00CD00 !important;
+  border-color: $primary-color !important;
+}
+
+// Colors
+
+.grey-color{
+  color: #8c8b8b;
 }

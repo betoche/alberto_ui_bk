@@ -1,0 +1,20 @@
+:host {
+  .pager {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-top: 20px;
+
+    mat-label {
+      margin-right: 7px;
+    }
+  }
+  mat-form-field {
+    max-width: 80px;
+  }
+}
+::ng-deep {
+  .mat-form-field.mat-form-field-appearance-outline .mat-form-field-infix {
+    padding: 7px 0;
+  }
+}

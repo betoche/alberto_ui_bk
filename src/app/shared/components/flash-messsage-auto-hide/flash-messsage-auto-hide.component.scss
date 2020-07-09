@@ -1,0 +1,55 @@
+:host {
+  .mat-card {
+    position: relative;
+    overflow: initial;
+    font-size: 18px;
+    font-family: sans-serif;
+    align-items: center;
+    color: #000009;
+    display: flex;
+    padding: 0;
+    margin: 35px 0;
+    padding-left: 0 !important;
+
+    .msg-content{
+      padding-left: 20px;
+      flex-basis: 95%;
+    }
+    .flash-icon {
+      padding: 0;
+      flex-basis: 5%;
+      .mat-icon {
+        font-size: 36px;
+        width: 36px;
+        height: 36px;
+        padding: 10px ;
+      }
+    }
+    &.flash-danger {
+      background: #fff;
+      border-radius: 0;
+      position: relative;
+
+      .flash-icon {
+        background: #b00020;
+        color: white;
+        display: flex;
+        justify-content: center; /* align horizontal */
+        align-items: center;
+      }
+    }
+
+    &.flash-success {
+      background: #fff;
+      position: relative;
+      color: #000009;
+      .flash-icon {
+        background: #00CD00;
+        color: white;
+        display: flex;
+        justify-content: center; /* align horizontal */
+        align-items: center;
+      }
+    }
+  }
+}

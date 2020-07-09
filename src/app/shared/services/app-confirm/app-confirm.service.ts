@@ -7,6 +7,7 @@ import { AppComfirmComponent } from './app-confirm.component';
 interface confirmData {
   title?: string;
   message?: string;
+  okText?: string;
 }
 
 @Injectable()
@@ -20,7 +21,7 @@ export class AppConfirmService {
     dialogRef = this.dialog.open(AppComfirmComponent, {
       width: options['width'] || '380px',
       disableClose: true,
-      data: { title: data.title, message: data.message }
+      data: { title: data.title, message: data.message, okText: data.okText || 'OK' }
     });
     return dialogRef.afterClosed();
   }

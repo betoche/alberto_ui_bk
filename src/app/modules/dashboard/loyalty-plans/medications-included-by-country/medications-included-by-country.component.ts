@@ -29,7 +29,6 @@ export class MedicationsIncludedByCountryComponent extends Many(
 
   public loyaltyPlan: any={};
   public loyaltyPlanCountryId: string;
-  public loyaltyPlanId: string;
   public medicationsIncludedByCountry: any=[];
   public loyaltyPlanCountry: any={};
   public loyaltyPlanMedications: any=[];
@@ -47,7 +46,6 @@ export class MedicationsIncludedByCountryComponent extends Many(
   }
 
   ngOnInit() {
-    this.loyaltyPlanId = this.route.snapshot.params.loyalty_plan_id;
     this.loyaltyPlanCountryId = this.route.snapshot.params.loyalty_plan_country_id;
 
     this.getLoyaltyPlanCountry();
@@ -110,19 +108,19 @@ export class MedicationsIncludedByCountryComponent extends Many(
   }
 
   private getLoyaltyPlan() {
-    this.loyaltyPlansService.fetch(this.loyaltyPlanId).subscribe( response => {
+    this.loyaltyPlansService.fetch().subscribe( response => {
       this.loyaltyPlan = new LoyaltyPlanModel(response['data']['attributes'])
     });
   }
 
   private getLoyaltyPlanCountry() {
-    this.loyaltyPlanCountryService.fetch(this.loyaltyPlanId, this.loyaltyPlanCountryId).subscribe((response) => {
+    this.loyaltyPlanCountryService.fetch(this.loyaltyPlanCountryId).subscribe((response) => {
       this.loyaltyPlanCountry = new LoyaltyPlanCountryModel(response['data']['attributes']);
     })
   }
 
   private getLoyaltyPlanMedications() {
-    this.loyaltyPlanMedicationService.fetchList(this.loyaltyPlanId).subscribe((response) => {
+    this.loyaltyPlanMedicationService.fetchList().subscribe((response) => {
       this.loyaltyPlanMedications = LoyaltyPlanMedicationModel.buildFrom(_.map(response['data'], 'attributes'));
       this.getMedicationsIncludedByCountry()
     })
@@ -139,7 +137,6 @@ export class MedicationsIncludedByCountryComponent extends Many(
     let medicationsIncludedByCountry = _.cloneDeep(this.medicationsIncludedByCountry)
 
     _.forEach(this.loyaltyPlanMedications, (loyaltyPlanMedication) => {
-
       let index = _.findIndex(medicationsIncludedByCountry, { 'loyalty_plan_medication_id': loyaltyPlanMedication.id})
 
       if (index < 0) {
@@ -147,18 +144,16 @@ export class MedicationsIncludedByCountryComponent extends Many(
           'medication_name': loyaltyPlanMedication.medication_name,
           'medication_code': loyaltyPlanMedication.medication_code,
           'loyalty_plan_country_id': this.loyaltyPlanCountryId,
-          'loyalty_plan_id': this.loyaltyPlanId,
+          'loyalty_plan_id': this.loyaltyPlan.id,
           'loyalty_plan_medication_id': loyaltyPlanMedication.id,
+          'medication_presentation_content': loyaltyPlanMedication.first_medication_presentation.presentation_content,
+          'medication_presentation_id': loyaltyPlanMedication.first_medication_presentation.id,
           'status': 'active',
           'isChanged': true,
         })
-        medication.medication_presentations = loyaltyPlanMedication.medication_presentations
         medicationsIncludedByCountry.push(medication)
-      } else {
-        medicationsIncludedByCountry[index]['medication_presentations'] = loyaltyPlanMedication.medication_presentations
       }
     })
-
     this.medicationsIncludedByCountry = medicationsIncludedByCountry
   }
 }

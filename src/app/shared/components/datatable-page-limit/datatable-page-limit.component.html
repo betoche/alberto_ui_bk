@@ -1,0 +1,10 @@
+<div class="pager">
+  <mat-label>{{ 'PER_PAGE' | translate }}</mat-label>
+  <mat-form-field appearance="outline">
+    <mat-select (selectionChange)="changeValue()" [(value)]="limit">
+      <mat-option *ngFor="let limit of listOfLimits" [value]="limit">
+        {{ limit }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>

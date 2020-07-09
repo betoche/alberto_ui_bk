@@ -7,5 +7,6 @@ import { Component, Inject } from '@angular/core';
   styleUrls: ['./app-confirm.component.scss']
 })
 export class AppComfirmComponent {
-  constructor(public dialogRef: MatDialogRef<AppComfirmComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {}
+  constructor(public dialogRef: MatDialogRef<AppComfirmComponent>, @Inject(MAT_DIALOG_DATA) public data: any) {
+  }
 }
