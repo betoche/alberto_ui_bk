@@ -119,3 +119,23 @@ mat-form-field.phone-code{
 mat-form-field.phone-number{
   width: 82%;
 }
+
+
+// select
+.mat-select-arrow-wrapper {
+  // icon
+  .mat-select-arrow {
+    color: $primary-color;
+    border: 0;
+    &:after{
+      content: 'keyboard_arrow_down';
+      @include font-material;
+      position: absolute;
+      top: 0;
+      right: -5px;
+      bottom: 0;
+      margin: auto;
+      height: 24px;
+    }
+  }
+}

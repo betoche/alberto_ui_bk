@@ -201,3 +201,41 @@ form{
     }
   }
 }
+// calendar
+.mat-calendar {
+  @include font-lato;
+}
+mat-datepicker-content.mat-datepicker-content-touch .mat-calendar{
+  padding-bottom: 40px;
+  max-width: 382px;
+  height: max-content;
+}
+.mat-calendar-table-header th{
+  font-size: $font-size-md;
+  color: $body-text-color;
+  font-weight: bold;
+}
+// border week
+.mat-calendar-body{
+  font-size: $font-size-sm;
+  color: $primary;
+}
+// today
+div.mat-calendar-body-cell-content.mat-calendar-body-today {
+	&:not(.mat-calendar-body-select) {
+		border-color: $dark-color;
+	}
+}
+// day selected
+div.mat-calendar-body-cell-content.mat-calendar-body-selected{
+  color: $primary;
+  background-color: $primary-color;
+}
+//arrows
+.mat-datepicker-content{
+  button.mat-icon-button.mat-calendar-previous-button,
+  button.mat-icon-button.mat-calendar-next-button,
+  button.mat-icon-button.mat-datepicker-toggle{
+    color: $body-text-color;
+  }
+}

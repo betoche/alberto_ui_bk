@@ -36,6 +36,22 @@ $screen-xl: 1200px;
     font-family: 'Lato', sans-serif;
     font-size: $default-font-size;
 }
+// material-font
+@mixin font-material{
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: $icon-font-size;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-feature-settings: 'liga';
+-webkit-font-smoothing: antialiased;
+}
 
 
 // opacity
@@ -124,4 +140,11 @@ $screen-xl: 1200px;
 }
 @mixin box-shadow-input{
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)
+}
+
+// placeholder
+@mixin placeholder-md{
+  font-weight: 300;
+  text-align: center;
+  font-size: $font-size-md;
 }

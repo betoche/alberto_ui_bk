@@ -176,29 +176,5 @@
 
 // order table - arrow
 .datatable-header [class*=" datatable-icon-"]:before{
-  font-size: 24px;
-}
-
-.mat-select-arrow-wrapper {
-  .mat-select-arrow {
-    color: $primary-color;
-    border-left: 0;
-    border-right: 0;
-    border-top: 0;
-  }
-  .mat-select-arrow:after {
-    content: '⌄';
-    font-size: $font-size-h1;
-    position: absolute;
-    border-left: 0;
-    border-right: 0;
-    border-top: 0;
-    top: 0;
-    right: -2px;
-    pointer-events: none;
-    bottom: 0;
-    margin: auto;
-    height: 15px;
-    line-height: 8px;
-  }
+  font-size: $icon-font-size;
 }

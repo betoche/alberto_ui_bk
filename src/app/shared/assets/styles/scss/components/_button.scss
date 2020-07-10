@@ -140,3 +140,19 @@
     color: $primary-color;
   }
 }
+
+// date picker icon
+.mat-datepicker-toggle .mat-icon-button .mat-button-wrapper{
+  &:before{
+    content: "event_available";
+    @include font-material;
+    position:absolute;
+    left: 0;
+    top: 0;
+  }
+  svg{
+    filter: alpha(opacity=0);
+    -moz-opacity: 0;
+    opacity: 0;
+  }
+}
