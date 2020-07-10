@@ -39,18 +39,22 @@ describe('LoyaltyPlanDetailComponent', () => {
   }))
 
   it('should show list of loyalty plan medications', fakeAsync(() => {
-    let service = stubRequestFetchListLoyaltyPlanMedications();
+    let loyaltyPlanService = stubRequestFetch();
+    let loyaltyPlanMeicationService = stubRequestFetchListLoyaltyPlanMedications();
     createComponent();
-    expect(service.fetchList).toHaveBeenCalled();
+    expect(loyaltyPlanService.fetch).toHaveBeenCalled();
+    expect(loyaltyPlanMeicationService.fetchList).toHaveBeenCalled();
     tick(1000);
     expect($('.medications-container datatable-row-wrapper:first-child').text()).toContain('Teodoro');
     expect($('.medications-container datatable-row-wrapper:first-child').text()).toContain('5eaf7bb');
   }))
 
   it('should show list of loyalty plan countries', fakeAsync(() => {
-    let service = stubRequestFetchListLoyaltyPlanCountries();
+    let loyaltyPlanService = stubRequestFetch();
+    let loyaltyPlanCountryService = stubRequestFetchListLoyaltyPlanCountries();
     createComponent();
-    expect(service.fetchList).toHaveBeenCalled();
+    expect(loyaltyPlanService.fetch).toHaveBeenCalled();
+    expect(loyaltyPlanCountryService.fetchList).toHaveBeenCalled();
     tick(1000);
     expect($('.country-container datatable-row-wrapper:first-child').text()).toContain('Costa Rica');
   }))

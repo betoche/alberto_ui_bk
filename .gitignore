@@ -41,3 +41,5 @@ src/**/*.ngsummary.json
 
 # local config
 src/config/config.dev.ts
+
+.npmignore

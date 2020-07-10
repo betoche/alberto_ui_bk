@@ -53,14 +53,19 @@ describe('LoyaltyPlanFormComponent', () => {
       createComponent();
     });
 
-    it('should update a loyalty plan', fakeAsync(() => {
-      let service = stubRequestUpdate();
-      component.form.get('name').setValue('my plan 1');
+    it('should update a loyalty plan', () => {
+      let service = stubRequestCreate();
+      component.form.get('name').setValue('my plan');
+      component.form.get('description').setValue('description');
+      component.form.get('logo_url').setValue('http://abc.com');
+      component.form.get('website_url').setValue('http://abc.com');
+      component.form.get('exchange_rule').setValue('boxes');
+      component.form.get('regulation_url').setValue('http://abc.com');
+      component.form.get('terms_and_conditions_url').setValue('http://abc.com');
       component.form.get('rewards_expiration_date').setValue(new Date());
-      component.submit()
-      tick(1000)
-      expect(service.update).toHaveBeenCalledWith('qwertyuiop', component.form.value);
-    }));
+      component.submit();
+      expect(service.create).toHaveBeenCalledWith(component.form.value);
+    });
   })
 
 
