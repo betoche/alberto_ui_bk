@@ -130,6 +130,11 @@ $screen-xl: 1200px;
   border-radius: 2px;
 }
 
+// borders
+@mixin dashed-border-gray{
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23C4C4C4FF' stroke-width='1' stroke-dasharray='10%2c10' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+}
+
 // degrade
 @mixin degrade-primary {
     background: #7af003;
