@@ -84,6 +84,28 @@
     color: $disabled-button-color;
   }
 }
+// table
+datatable-body-row{
+    button.mat-raised-button{
+        @include radius-button;
+        font-size: $font-size-md;
+        &.mat-primary{
+            background-color: $background-dark;
+        }
+        &:hover{
+            background-color: $primary;
+        }
+        .mat-button-wrapper{
+            padding: 4px 26px;
+        }
+    }
+}
+// container mat-button
+button.mat-flat-button,
+button.mat-raised-button {
+    padding: 0 22px;
+}
+
 
 .egret-navy {
   .mat-flat-button,
@@ -93,24 +115,8 @@
       color: white;
     }
     &.add-new.green-button{
-      padding: 3px 22px;
+      padding: 0 22px;
       color: black;
-    }
-  }
-  // table
-  datatable-body-row{
-    .mat-raised-button{
-      @include radius-button;
-      font-size: $font-size-md;
-      &.mat-primary{
-        background-color: $background-dark;
-      }
-      &:hover{
-        background-color: $primary;
-      }
-      .mat-button-wrapper{
-        padding: 4px 26px;
-      }
     }
   }
 }
