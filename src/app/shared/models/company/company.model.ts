@@ -1,5 +1,5 @@
 import { BaseModel } from '../base.model';
-import { UserModel } from '../user.model';
+import { UserModel } from '../users/user.model';
 import { COUNTRIES } from 'app/shared/master-data/countries.master-data';
 
 export class CompanyModel extends BaseModel {
@@ -12,6 +12,7 @@ export class CompanyModel extends BaseModel {
   public billing_information_attributes: any = {};
   public administrator_user: any = {};
   public logo_url: string;
+  public has_billing_information: boolean;
 
   // additional attributes
   public country_name: string = '';
@@ -29,11 +30,17 @@ export class CompanyModel extends BaseModel {
       'status',
       'address_attributes',
       'billing_information_attributes',
-      'logo_url'
+      'logo_url',
+      'has_billing_information'
     ]);
 
     this.setCountryName();
-    this.setAdministratorUser(params['administrator_user']);
+
+    if(!params['without_user_relation']){
+      this.setAdministratorUser(
+        Object.assign(params['administrator_user'] || {}, { without_company_relation: true })
+      );
+    }
   }
 
   public setAdministratorUser(user){
@@ -48,5 +55,13 @@ export class CompanyModel extends BaseModel {
     this.country_code = this.address_attributes['country_code'];
     this.country_name = COUNTRIES[this.address_attributes['country_code']  ] &&
                         COUNTRIES[this.address_attributes['country_code']]['name'];
+  }
+
+  public billingPhoneCountryCode(){
+    if(!this.billing_information_attributes.phone_country){
+      return '';
+    }
+
+    return COUNTRIES[this.billing_information_attributes.phone_country]['phone_code'];
   }
 }

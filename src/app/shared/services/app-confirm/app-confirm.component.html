@@ -1,14 +1,25 @@
-<div fxLayout="row wrap" fxLayoutAlign="end flex-end" class="mt-12">
-  <a class="mat-color-primary text-underline pl-5" (click)="dialogRef.close(false)">{{ 'CLOSE' | translate }}</a>
-</div>
-<h1 matDialogTitle class="header-section mb-15">{{ data.title }}</h1>
-<div mat-dialog-content [innerHTML]="data.message" class="mb-1"></div>
-<div mat-dialog-actions fxLayoutAlign="center center" class="mb-1">
-  <button type="button" color="grey" class="mr-1" mat-stroked-button (click)="dialogRef.close(false)">
-    {{ 'CANCEL' | translate }}
-  </button>
-  &nbsp;
-  <button type="button" mat-stroked-button color="primary" (click)="dialogRef.close(true)">
-    {{ data.okText | translate }}
-  </button>
+<div class="box-detail modal-confirmation">
+  <div fxLayout="row wrap" fxLayoutAlign="end flex-end" class="close-modal" (click)="dialogRef.close(false)">
+    <mat-icon class="close-icon" matSuffix>highlight_off</mat-icon>
+    <a class="text-underline pl-4">{{ 'CLOSE' | translate }}</a>
+  </div>
+  <div class="header-container">
+    <div class="header-nav">
+      <h1 class="headline">{{ data.title }}</h1>
+    </div>
+  </div>
+
+  <p mat-dialog-content [innerHTML]="data.message" ></p>
+  <div class="row-detail full-width mb-10" fxLayout="row nowrap" fxLayoutAlign="center center" fxLayoutGap="22px">
+    <div>
+      <button mat-flat-button class="tot-default-submit-btn outline-btn" color="primary" (click)="dialogRef.close(false)">
+          {{ 'CANCEL' | translate }}
+      </button>
+    </div>
+    <div>
+      <button mat-flat-button class="tot-default-submit-btn" color="primary" (click)="dialogRef.close(true)">
+          {{ data.okText | translate }}
+      </button>
+    </div>
+  </div>
 </div>

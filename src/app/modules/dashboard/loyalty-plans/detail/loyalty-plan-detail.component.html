@@ -1,5 +1,4 @@
 <div class="base-container info-layout">
- <!--  -->
   <div class="box-detail" *ngIf="!loyaltyPlan.id">
     <div class="header-container">
       <div class="header-nav">
@@ -7,7 +6,7 @@
           {{'LOYALTY_PLAN' | translate}}
         </h1>
         <p>
-          Aquí puede visualizar y gestionar sus planes
+          {{'LOYALTY_DETAIL_HEADER' | translate}}
         </p>
       </div>
     </div>
@@ -61,7 +60,7 @@
               <a routerLink="edit">{{'EDIT' | translate}}</a>
             </span>
           </div>
-          
+
           <p class="body-description-item">
             {{loyaltyPlan.description}}
           </p>
@@ -99,7 +98,7 @@
 
   <div class="box-detail">
     <div>
-      <div>
+      <div class="loyalty-plan-medications-container">
         <h2 class="subtitle-info">
           {{'MEDICATIONS' | translate}}
         </h2>
@@ -195,7 +194,7 @@
 
       <div class="split"></div>
 
-      <div>
+      <div class="loyalty-plan-country-container">
         <h2 class="subtitle-info">
           {{ 'COUNTRIES' | translate }}
         </h2>
@@ -297,5 +296,4 @@
       </div>
     </div>
   </div>
-
 </div>

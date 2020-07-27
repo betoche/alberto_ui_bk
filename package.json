@@ -8,6 +8,7 @@
     "serveProd": "ng serve --environment=prod",
     "build": "ng build --prod=true --aot=true --extractCss=true --optimization=true",
     "buildQA": "ng build --prod=true --aot=true --extractCss=true --optimization=true --configuration=qa",
+    "buildStaging": "ng build --prod=true --aot=true --extractCss=true --optimization=true --configuration=staging",
     "test": "ng test --watch=false --code-coverage",
     "lint": "ng lint",
     "e2e": "ng e2e",

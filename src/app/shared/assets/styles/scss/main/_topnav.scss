@@ -38,7 +38,32 @@
           box-sizing: border-box;
           border-color: transparent;
           margin: 0 6px;
+          position: relative;
+          &.mat-menu-item:last-child{
+            padding-right: 20px !important;
+          }
         }
+        > .mat-menu-item{
+          &:before{
+            content: "";
+            display: block;
+            background-color: $primary-color;
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin: auto;
+            bottom: 0;
+            height: 4px;
+            width: 0;
+            @include anim-03;
+          }
+        }
+        &.open > .mat-menu-item:before{
+          width: calc(100% - 40px);
+        }
+      }
+      &:last-child a.mat-menu-item:last-child{
+        padding-right: 0 !important;
       }
     }
   }
@@ -49,12 +74,14 @@
 
   a,
   label {
+    @include font-lato;
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 13px 20px;
-    height: 44px;
-    font-size: 1rem;
+    padding: 11px 20px;
+    height: auto;
+    font-size: $font-size-lg;
+    font-weight: 300;
     text-decoration: none;
     box-sizing: border-box;
     .mat-icon {

@@ -36,11 +36,11 @@ export class NavigationService {
       state: '/'
     },
     {
-      name: 'PROFILE',
+      name: 'MY_ACCOUNT',
       type: 'link',
-      tooltip: 'Profile',
-      icon: 'person',
-      state: 'dashboard/edit_profile'
+      tooltip: 'MY_ACCOUNT',
+      icon: 'account_circle',
+      state: 'dashboard/profile',
     },
     {
       type: 'separator',

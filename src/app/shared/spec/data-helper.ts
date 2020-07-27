@@ -13,7 +13,14 @@ export class DataHelper {
         id: '1',
         authentication_token: 'sRcsimK7gx_Fz_Cms_es',
         email: 'admin@admin.com',
-        completed_profile: true
+        completed_profile: true,
+        role: 'administrator',
+        name: "Soledad Menchaca Reynoso",
+        phone_country: "505",
+        phone_number: "88888888",
+        secondary_phone_country: "505",
+        secondary_phone_number: "85296121",
+        status: "active"
       }
     }
   };

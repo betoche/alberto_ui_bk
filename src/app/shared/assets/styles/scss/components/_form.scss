@@ -9,15 +9,6 @@ mat-label {
   }
 }
 
-// form field
-.mat-form-field-disabled {
-  .mat-form-field-outline {
-    background: $disabled-input-background;
-  }
-  input {
-    color: $body-text-color;
-  }
-}
 .mat-form-field {
   &.mat-form-field-appearance-outline {
     color: black;
@@ -50,6 +41,16 @@ mat-label {
         .mat-form-field-outline{
           @include opacity-1;
         }
+      }
+    }
+    // form field
+    &.mat-form-field-disabled {
+      .mat-form-field-outline {
+        background: $disabled-input-background;
+        border-color: $disabled-color;
+      }
+      input {
+        color: $body-text-color;
       }
     }
     // focused
@@ -106,6 +107,12 @@ mat-label {
         background: #e5e5e5;
         border-radius: 0 !important;
       }
+    }
+  }
+  // border-dark
+  &.form-field-b-dark:not(.mat-form-field-invalid):not(.mat-form-field-disabled){
+    .mat-form-field-outline {
+      border-color: $body-text-color;
     }
   }
 }
@@ -166,6 +173,21 @@ mat-label {
     }
   }
 }
+.mat-checkbox-label{
+    color: $primary;
+}
+
+// material checkbox
+.e-checkbox-wrapper:hover .e-frame.e-check,
+.e-css.e-checkbox-wrapper:hover .e-frame.e-check,
+.e-checkbox-wrapper .e-frame.e-check,
+.e-css.e-checkbox-wrapper .e-frame.e-check{
+    background-color: $primary-color !important;
+}
+.e-treeview .e-list-item.e-active > .e-text-content .e-list-text{
+    color: $primary-color !important;
+}
+
 .form-input-wrap {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -237,5 +259,35 @@ div.mat-calendar-body-cell-content.mat-calendar-body-selected{
   button.mat-icon-button.mat-calendar-next-button,
   button.mat-icon-button.mat-datepicker-toggle{
     color: $body-text-color;
+  }
+}
+
+
+
+// radio button
+.mat-radio-button{
+  @include font-lato;
+  .mat-radio-label-content{
+    font-size: $font-size-sm;
+  }
+  margin-right: 32px;
+  &:last-child{
+    margin-right: 0;
+  }
+}
+
+.mat-checkbox{
+  .mat-checkbox-label{
+    font-size: $font-size-sm;
+  }
+  // check
+  &.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background,
+  &.mat-checkbox-checked.mat-accent .mat-checkbox-background{
+    background-color: $primary-color;
+  }
+  // focus
+  &.mat-checkbox-checked:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element,
+  &.mat-checkbox:active:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element{
+    background-color: $primary-color;
   }
 }

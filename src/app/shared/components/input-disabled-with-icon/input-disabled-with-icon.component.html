@@ -1,4 +1,26 @@
 <mat-form-field class="full-width mb-24" appearance="outline">
-  <input matInput name="role" [formControl]="form.controls[controlName]" />
-  <mat-icon class="text-grey-B000" matSuffix>lock</mat-icon>
+  <!-- has mask field -->
+  <ng-container *ngIf="textMask.length > 0">
+    <input
+        matInput
+        name="role"
+        [formControl]="form.controls[controlName]"
+        [textMask]="{ mask: textMask }"
+        placeholder="{{ placeholder | translate }}"/>
+  </ng-container>
+
+  <!-- without mask field -->
+  <ng-container *ngIf="textMask.length == 0">
+    <input
+        matInput
+        name="role"
+        [formControl]="form.controls[controlName]"
+        placeholder="{{ placeholder | translate }}"/>
+  </ng-container>
+
+  <!-- lock icon -->
+  <mat-icon
+      class="text-grey-B000"
+      matSuffix
+      *ngIf="form.controls[controlName].disabled">lock</mat-icon>
 </mat-form-field>

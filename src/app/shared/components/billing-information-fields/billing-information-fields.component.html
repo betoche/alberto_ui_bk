@@ -1,6 +1,17 @@
 <ng-container [formGroup]="form">
   <div class="header-form-section mt-24 mb-24">
-    <div><span class="circle-number">{{position}}</span>{{ 'BILLING_INFORMATION' | translate }}</div>
+    <div fxFlex="50">
+      <span class="circle-number">
+        {{position}}
+      </span>
+      {{ 'BILLING_INFORMATION' | translate }}
+    </div>
+
+    <div fxFlex="50" class="text-right">
+      <mat-checkbox (change)="setLocationsFromAddress($event)">
+        {{ 'BILLING_SAME_ADDRESS' | translate }}
+      </mat-checkbox>
+    </div>
   </div>
 
   <div formGroupName="billing_information_attributes" fxLayout="row wrap" fxLayout.lt-sm="column">
@@ -41,28 +52,41 @@
       </mat-form-field>
     </div>
 
-    <div fxFlex="25" class="pr-1">
+    <div fxFlex="50" class="pr-1">
       <mat-label>{{'COUNTRY' | translate}} *</mat-label>
       <country-list
           [form]="form.get('billing_information_attributes')"></country-list>
     </div>
 
-    <div fxFlex="25" class="pr-1">
+    <div fxFlex="50" class="pr-1">
       <mat-label>{{'PROVINCE' | translate}} *</mat-label>
       <province-list
           [form]="form.get('billing_information_attributes')"></province-list>
     </div>
 
-    <div fxFlex="25" class="pr-1">
+    <div fxFlex="50" class="pr-1">
       <mat-label>{{'CANTON' | translate}} *</mat-label>
       <canton-list
           [form]="form.get('billing_information_attributes')"></canton-list>
     </div>
 
-    <div fxFlex="25" class="pr-1">
+    <div fxFlex="50" class="pr-1">
       <mat-label>{{'DISTRICT' | translate}} *</mat-label>
       <district-list
           [form]="form.get('billing_information_attributes')"></district-list>
+    </div>
+
+    <div fxFlex="50" class="pr-1">
+      <mat-label>{{'SUBURB' | translate}} *</mat-label>
+      <suburb-list [form]="form.get('billing_information_attributes')"></suburb-list>
+    </div>
+
+    <div fxFlex="50" class="pr-1">
+      <mat-label>{{'ADDRESS_NOTE' | translate}} *</mat-label>
+      <mat-form-field class="full-width mb-24" appearance="outline">
+        <input matInput formControlName="note" type="text" name="address_note"
+               placeholder="{{ 'DESCRIPTION' | translate }}" />
+      </mat-form-field>
     </div>
   </div>
 

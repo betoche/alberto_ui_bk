@@ -55,7 +55,9 @@ describe('BillingInformationFieldsComponent', () => {
         country_code: new FormControl('', [Validators.required]),
         province_code: new FormControl('', [Validators.required]),
         canton_code: new FormControl('', [Validators.required]),
-        district_code: new FormControl('', [Validators.required])
+        district_code: new FormControl('', [Validators.required]),
+        suburb_code: new FormControl('', [Validators.required]),
+        note: new FormControl('', [Validators.required])
       })
     });
 

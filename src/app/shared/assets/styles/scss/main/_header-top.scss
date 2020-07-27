@@ -20,6 +20,34 @@
   .topnav {
     display: flex;
     align-items: center;
+    div.topbar-button-right{
+      padding: 0 0 10px;
+      margin: 15px 15px 25px !important;
+      position:relative;
+      @include font-lato;
+      font-weight: 300;
+      font-size: $font-size-lg;
+
+      &:before{
+        content: "";
+        display: block;
+        background-color: $primary-color;
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: auto;
+        bottom: 0;
+        height: 4px;
+        width: 0;
+        @include anim-03;
+      }
+      &.active{
+        font-weight: 400;
+        &:before{
+          width: 100%;
+        }
+      }
+    }
   }
   .header-topnav-right {
     float: right;

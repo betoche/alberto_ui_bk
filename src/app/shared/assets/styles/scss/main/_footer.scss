@@ -4,4 +4,45 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  display: none;
+  &.base-container{
+    max-width: 1400px
+  }
+  &.pragmatic-footer{
+    display: block;
+    min-height: 0;
+    padding: 10px;
+    font-size: $font-size-sm;
+    border-top: 1px solid $primary-color;
+    color: $primary !important;
+    background-color: transparent !important;
+    a,span{
+      color: $primary-color !important;
+      font-weight: bold;
+    }
+    .container-footer-logo,
+    .container-copyright{
+      padding: 10px;
+      &.text-right{
+        text-align: right;
+      }
+    }
+    .container-footer-logo{
+      max-width: 100px;
+    }
+
+    // dark theme
+    &.dark-theme{
+      background-color: $topbar-background-color !important;
+      color: white !important;
+    }
+    // dark theme
+    &.tot-theme{
+      background-color: $primary-color !important;
+      color: $body-text-color !important;
+      a,span{
+        color: white !important;
+      }
+    }
+  }
 }

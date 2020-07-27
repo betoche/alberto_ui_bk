@@ -8,13 +8,10 @@
         <mat-label>
           {{'PAGES.COMPANIES.NAME_OF' | translate}}
           {{('COMPANY_TYPE_TRANSLATIONS.' + type)  | translate}} *</mat-label>
-        <mat-form-field class="full-width mb-24" appearance="outline">
-          <input
-            matInput
-            formControlName="name"
-            type="text"
-            placeholder="{{'PAGES.COMPANIES.NAME_OF' | translate}} {{('COMPANY_TYPE_TRANSLATIONS.' + type)  | translate}}"/>
-        </mat-form-field>
+        <input-disabled-with-icon
+            controlName="name"
+            placeholder="{{'PAGES.COMPANIES.NAME_OF' | translate}} {{('COMPANY_TYPE_TRANSLATIONS.' + type)  | translate}}"
+            [form]="form.get('company')"></input-disabled-with-icon>
       </div>
 
       <div fxFlex="50" class="pr-1">
@@ -22,18 +19,14 @@
           {{'PAGES.COMPANIES.COMPANY_CODE' | translate}}
           {{('COMPANY_TYPE_TRANSLATIONS.' + type)  | translate}} *
         </mat-label>
-
-        <mat-form-field class="full-width mb-24" appearance="outline">
-          <input
-              matInput
-              formControlName="company_code"
-              type="text"
-              [textMask]="{ mask: maskForCompanyCode }" />
-        </mat-form-field>
+        <input-disabled-with-icon
+            controlName="company_code"
+            [form]="form.get('company')"
+            [textMask]="maskForCompanyCode"></input-disabled-with-icon>
       </div>
 
       <div fxLayout="row wrap" fxLayout.lt-sm="column">
-        <div fxFlex="100" class="pr-1">
+        <div fxFlex="100" class="pr-1 mb-24">
           <mat-label>{{'LOGO_COMPANY' | translate}} *</mat-label>
           <app-upload-file
               name="logo_url"
@@ -48,7 +41,7 @@
 
       <address-fields [form]="form.get('company')"></address-fields>
 
-      <ng-container *ngIf="type != 'Drugstore'">
+      <ng-container *ngIf="isBillingFunctionShown()">
         <hr class="width-80 mb-12 mt-12" />
         <billing-information-fields
             position="{{position + 1}}"

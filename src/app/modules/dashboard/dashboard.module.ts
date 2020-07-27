@@ -38,6 +38,7 @@ import { LoyaltyPlanFormComponent } from './loyalty-plans/form/loyalty-plan-form
 import { LoyaltyPlanDetailComponent } from './loyalty-plans/detail/loyalty-plan-detail.component';
 import { MedicationsIncludedByCountryComponent } from './loyalty-plans/medications-included-by-country/medications-included-by-country.component';
 import { ParticipatingDrugstoresComponent } from './loyalty-plans/participating-drugstores/participating-drugstores.component';
+import { ProfileComponent } from './../../shared/modules/dashboard/profile/profile.component';
 
 @NgModule({
   imports: [
@@ -71,6 +72,7 @@ import { ParticipatingDrugstoresComponent } from './loyalty-plans/participating-
   declarations: [
     DashboardIndexComponent,
     EditProfileComponent,
+    ProfileComponent,
     LoyaltyPlanFormComponent,
     LoyaltyPlanDetailComponent,
     MedicationsIncludedByCountryComponent,

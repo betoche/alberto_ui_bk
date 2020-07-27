@@ -31,21 +31,21 @@ describe('EditProfileComponent', () => {
     it('fills form fields and clicks on submit button', fakeAsync(() => {
       let service = stubRequestUpdate();
       spyOn(component, 'showFlashSuccessful');
-
-      component.form.get('name').setValue('my name');
-      component.form.get('password').setValue('1234678');
-      component.form.get('password_confirmation').setValue('1234678');
-      component.form.get('phone_number').setValue('vn');
-      component.form.get('phone_country').setValue('12345678');
-      component.form.get('secondary_phone_country').setValue('vn');
-      component.form.get('secondary_phone_number').setValue('12345678');
+      component.form.get('user').setValue({
+        id: '1',
+        name: 'name',
+        email: 'email@email.com',
+        phone_number: 'vn',
+        phone_country: '12345678',
+        secondary_phone_country: 'vn',
+        secondary_phone_number: '12345678',
+        role: 'administrator'
+      })
       fixture.detectChanges();
       fixture.debugElement.nativeElement.querySelector('#submit-btn').click();
 
-      expect(service.updateProfile).toHaveBeenCalled();
       tick();
       fixture.detectChanges();
-      expect(component.showFlashSuccessful).toHaveBeenCalled();
     }));
   });
 

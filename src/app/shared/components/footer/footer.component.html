@@ -1,4 +1,10 @@
-<footer class="main-footer">
-  <span class="m-auto"></span>
-  Design & Developed by <a href="https://ui-lib.com">&nbsp; GLS Labs</a>
+<footer class="main-footer pragmatic-footer base-container">
+  <div fxLayout="column nowrap" fxLayout.gt-xs="row" fxLayoutAlign="space-between center" >
+    <div fxFlex class="container-footer-logo">
+      <img src="assets/images/logo.png" alt="" class="app-logo" />
+    </div>
+    <div fxFlex class="container-copyright" ngClass.gt-xs="text-right" translate>
+      {{'DESIGN_&_DEVELOP_BY' | translate}} <span>Pragmatic</span>
+    </div>
+  </div>
 </footer>

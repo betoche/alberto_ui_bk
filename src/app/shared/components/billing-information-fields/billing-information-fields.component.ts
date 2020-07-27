@@ -14,4 +14,23 @@ export class BillingInformationFieldsComponent implements OnInit {
   ngOnInit() {
     this.position = parseInt(this.position);
   }
+
+  public setLocationsFromAddress(event){
+    this.form.get('billing_information_attributes').get('same_address_fields').setValue(event.checked);
+
+    let address = this.form.get('address_attributes');
+
+    [
+      'country_code', 'province_code', 'canton_code',
+      'district_code', 'suburb_code', 'note'
+    ].forEach( key => {
+      let field = this.form.get('billing_information_attributes').get(key);
+      if(event.checked){
+        field.setValue(address.get(key).value);
+        field.disable();
+      }else{
+        field.enable();
+      }
+    });
+  }
 }

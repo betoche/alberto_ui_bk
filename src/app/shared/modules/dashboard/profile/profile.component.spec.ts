@@ -36,6 +36,7 @@ describe('ProfileComponent', () => {
       Object.assign(
         {
           imports: [RouterTestingModule.withRoutes([])],
+          declarations: [ProfileComponent]
         },
         options
       )

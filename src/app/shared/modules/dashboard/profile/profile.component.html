@@ -1,4 +1,7 @@
 <div class="base-container">
+  <flash-messsage-auto-hide
+        [options]="messageOptions" class="margin-b-50"></flash-messsage-auto-hide>
+
   <div class="header-container">
     <div class="header-nav">
       <h1 class="headline" translate>MY_ACCOUNT</h1>
@@ -8,90 +11,188 @@
   <mat-card class="profile-section box-detail">
     <div class="section-header">{{ 'PERSONAL_INFORMATION' | translate }}</div>
     <div fxLayout="row wrap" fxLayout.lt-sm="column" class="row-detail">
-      <div fxFlex="{{ currentUser?.role == 'administrator' ? '50' : '33' }}" class="ml-8" class="pr-1 mb-24">
+      <div fxFlex="50" class="ml-8" class="pr-1 mb-24">
         <span class="profile-field mb-12" translate>NAME</span>
-        <div class="profile-info">{{ currentUser?.name }}</div>
+        <div class="profile-info">{{ user.name }}</div>
       </div>
 
-      <div fxFlex="{{ currentUser?.role == 'administrator' ? '50' : '33' }}" class="pr-1 mb-24">
+      <div fxFlex="50" class="pr-1 mb-24">
         <span class="profile-field mb-12" translate>EMAIL</span>
-        <div class="profile-info">{{ currentUser?.email }}</div>
-      </div>
-
-      <div
-        fxFlex="{{ currentUser?.role == 'administrator' ? '50' : '33' }}"
-        *ngIf="currentUser?.role != 'administrator' &&
-        !currentUser?.company"
-        class="pr-1 mb-24"
-      >
-        <span class="profile-field mb-12" translate>ROLE</span>
-        <div class="profile-info">{{ currentUser?.role | uppercase | translate }}</div>
+        <div class="profile-info">{{ user.email }}</div>
       </div>
     </div>
     <div fxLayout="row wrap" fxLayout.lt-sm="column" class="row-detail">
       <div fxFlex="50" class="pr-1 mb-24">
-        <span class="profile-field mb-12" translate>MOBILE_PHONE</span>
+        <span class="profile-field mb-12" translate>TELEPHONE_1</span>
         <div class="profile-info">
-          <span class="mr-5">{{ currentUser?.secondary_phone_country }}</span>
-          <span>{{ currentUser?.secondary_phone_number }}</span>
+          <span class="mr-5">({{ user.phoneCountryCode() || 'N/A' }})</span>
+          <span>{{ user.phone_number || 'N/A' }}</span>
         </div>
       </div>
 
       <div fxFlex="50" class="pr-1 mb-24">
-        <span class="profile-field mb-12" translate>PHONE_NUMBER</span>
+        <span class="profile-field mb-12" translate>TELEPHONE_2</span>
         <div class="profile-info">
-          <span class="mr-5">{{ currentUser?.phone_country }}</span>
-          <span>{{ currentUser?.phone_number }}</span>
+          <span class="mr-5">({{ user.secondaryPhoneCode() || 'N/A' }})</span>
+          <span>{{ user.secondary_phone_number || 'N/A' }}</span>
         </div>
       </div>
     </div>
+
+    <div fxLayout="row wrap" fxLayout.lt-sm="column" class="row-detail">
+      <div fxFlex="50" class="pr-1 mb-24">
+        <span class="profile-field mb-12" translate>ROLE</span>
+        <div class="profile-info">{{ user.roleName() }}</div>
+      </div>
+    </div>
+
   </mat-card>
-  <ng-container *ngIf="currentUser?.company">
+
+  <!-- ################### -->
+  <!-- COMPANY information -->
+  <!-- ################### -->
+
+  <ng-container *ngIf="user.isCompanyShown && user.company">
     <mat-card class="profile-section box-detail">
       <div class="section-header">{{ 'COMPANY_INFORMATION' | translate }}</div>
       <div fxLayout="row wrap" fxLayout.lt-sm="column" class="row-detail">
         <div fxFlex="50" class="pr-1 mb-24">
-          <span class="profile-field mb-12" translate>COMPANY_NAME</span>
-          <div class="profile-info">{{ currentUser?.company.name }}</div>
+          <span class="profile-field mb-12">
+            {{'PAGES.COMPANIES.NAME_OF' | translate}}
+            {{('COMPANY_TYPE_TRANSLATIONS.' + user.type)  | translate}}
+          </span>
+          <div class="profile-info">{{ user.company.name }}</div>
         </div>
 
         <div fxFlex="50" class="pr-1 mb-24">
-          <span class="profile-field mb-12" translate>DRUGSTORE_ID</span>
-          <div class="profile-info">{{ currentUser?.company.drugstore_id | uppercase | translate }}</div>
+          <span class="profile-field mb-12">
+            {{'PAGES.COMPANIES.COMPANY_CODE' | translate}}
+            {{('COMPANY_TYPE_TRANSLATIONS.' + user.type)  | translate}}
+          </span>
+          <div class="profile-info">{{ user.company.company_code }}</div>
         </div>
+
         <div fxFlex="50" class="pr-1 mb-24">
-          <span class="profile-field mb-12" translate>COUNTRY_NAME</span>
-          <div class="profile-info">{{ currentUser?.company.address_attributes.country_name | uppercase | translate }}</div>
+          <span class="profile-field mb-12" translate>COUNTRY</span>
+          <div class="profile-info">{{ user.company.address_attributes.country_name }}</div>
         </div>
-          <div fxFlex="50" class="pr-1 mb-24">
-          <span class="profile-field mb-12" translate>province_name</span>
-          <div class="profile-info">{{ currentUser?.company.address_attributes.province_name | uppercase | translate }}</div>
-        </div>
-        <div fxFlex="33" class="pr-1 mb-24">
-          <span class="profile-field mb-12" translate>canton_name</span>
-          <div class="profile-info">{{ currentUser?.company.address_attributes.canton_name | uppercase | translate }}</div>
-        </div>
-        <div fxFlex="33" class="pr-1 mb-24">
-          <span class="profile-field mb-12" translate>district_name</span>
-          <div class="profile-info">{{ currentUser?.company.address_attributes.district_name | uppercase | translate }}</div>
-        </div>
-        <div fxFlex="33" class="pr-1 mb-24">
-          <span class="profile-field mb-12" translate>suburb_name</span>
-          <div class="profile-info">{{ currentUser?.company.address_attributes.suburb_name | uppercase | translate }}</div>
-        </div>
+
         <div fxFlex="50" class="pr-1 mb-24">
-          <span class="profile-field mb-12" translate>detailed_address</span>
-          <div class="profile-info">{{ currentUser?.company.address_attributes.line_1 | uppercase | translate }}</div>
+          <span class="profile-field mb-12" translate>PROVINCE</span>
+          <div class="profile-info">{{ user.company.address_attributes.province_name }}</div>
         </div>
+
         <div fxFlex="50" class="pr-1 mb-24">
-          <div class="profile-info">{{ currentUser?.company.address_attributes.line_2 | uppercase | translate }}</div>
+          <span class="profile-field mb-12" translate>CANTON</span>
+          <div class="profile-info">{{ user.company.address_attributes.canton_name }}</div>
         </div>
+
+        <div fxFlex="50" class="pr-1 mb-24">
+          <span class="profile-field mb-12" translate>DISTRICT</span>
+          <div class="profile-info">{{ user.company.address_attributes.district_name}}</div>
+        </div>
+
+        <div fxFlex="50" class="pr-1 mb-24">
+          <span class="profile-field mb-12" translate>SUBURB</span>
+          <div class="profile-info">{{ user.company.address_attributes.suburb_name }}</div>
+        </div>
+
+        <div fxFlex="50" class="pr-1 mb-24">
+          <span class="profile-field mb-12" translate>ADDRESS_NOTE</span>
+          <div class="profile-info">{{ user.company.address_attributes.note }}</div>
+        </div>
+
       </div>
     </mat-card>
   </ng-container>
-  <div class="text-center button-profile-container">
-    <button mat-raised-button class="green-button">
-    < Volver
-    </button>
-  </div>
+
+  <!-- ################### -->
+  <!-- BILLING information -->
+  <!-- ################### -->
+
+  <ng-container *ngIf="user.isBillingShownToUI()">
+    <mat-card class="profile-section box-detail margin-b-100">
+      <div class="section-header">{{ 'BILLING_INFORMATION' | translate }}</div>
+      <div fxLayout="row wrap" fxLayout.lt-sm="column" class="row-detail">
+        <div fxFlex="50" class="pr-1 mb-24">
+          <span class="profile-field mb-12">
+            {{ 'BUSINESS_NAME' | translate }}
+          </span>
+          <div class="profile-info">
+            {{ user.company.billing_information_attributes.company_name }}
+          </div>
+        </div>
+
+        <div fxFlex="50" class="pr-1 mb-24">
+          <span class="profile-field mb-12">
+            {{ 'LEGAL_NOTE' | translate }}
+          </span>
+          <div class="profile-info">
+            {{ user.company.billing_information_attributes.legal_note }}
+          </div>
+        </div>
+
+        <div fxFlex="50" class="pr-1 mb-24">
+          <span class="profile-field mb-12" translate>TELEPHONE_1</span>
+          <div class="profile-info">
+            <span class="mr-5">({{ user.company.billingPhoneCountryCode() }})</span>
+            <span>{{ user.company.billing_information_attributes.phone_number }}</span>
+          </div>
+        </div>
+
+        <div fxFlex="50" class="pr-1 mb-24">
+          <span class="profile-field mb-12">
+            {{ 'EMAIL' | translate }}
+          </span>
+          <div class="profile-info">
+            {{ user.company.billing_information_attributes.email }}
+          </div>
+        </div>
+
+         <div fxFlex="50" class="pr-1 mb-24">
+          <span class="profile-field mb-12" translate>COUNTRY</span>
+          <div class="profile-info">
+            {{ user.company.billing_information_attributes.country_name }}
+          </div>
+        </div>
+
+        <div fxFlex="50" class="pr-1 mb-24">
+          <span class="profile-field mb-12" translate>PROVINCE</span>
+          <div class="profile-info">
+            {{ user.company.billing_information_attributes.province_name }}
+          </div>
+        </div>
+
+        <div fxFlex="50" class="pr-1 mb-24">
+          <span class="profile-field mb-12" translate>CANTON</span>
+          <div class="profile-info">
+            {{ user.company.billing_information_attributes.canton_name }}
+          </div>
+        </div>
+
+        <div fxFlex="50" class="pr-1 mb-24">
+          <span class="profile-field mb-12" translate>DISTRICT</span>
+          <div class="profile-info">
+            {{ user.company.billing_information_attributes.district_name}}
+          </div>
+        </div>
+
+        <div fxFlex="50" class="pr-1 mb-24">
+          <span class="profile-field mb-12" translate>SUBURB</span>
+          <div class="profile-info">
+            {{ user.company.billing_information_attributes.suburb_name }}
+          </div>
+        </div>
+
+        <div fxFlex="50" class="pr-1 mb-24">
+          <span class="profile-field mb-12" translate>ADDRESS_NOTE</span>
+          <div class="profile-info">
+            {{ user.company.billing_information_attributes.note }}
+          </div>
+        </div>
+
+      </div>
+    </mat-card>
+  </ng-container>
+
 </div>

@@ -1,22 +1,24 @@
 <div [formGroup]="form">
-  <ng-container formGroupName="user">
-    <div class="header-form-section mt-32 mb-24">
-      <span class="circle-number">1</span>{{ 'USER_INFORMATION' | translate }}
-    </div>
+  <div class="header-form-section mt-32 mb-24">
+    <span class="circle-number">1</span>{{ 'USER_INFORMATION' | translate }}
+  </div>
 
-    <div fxLayout="row wrap" fxLayout.lt-sm="column">
-      <div fxFlex="50" class="pr-1 mb-24">
+  <div fxLayout="row wrap" fxLayout.lt-sm="column">
+    <ng-container formGroupName="user">
+      <div fxFlex="50" class="pr-1">
         <mat-label>{{'NAME' | translate}} *</mat-label>
-        <mat-form-field class="full-width" appearance="outline">
-          <input matInput formControlName="name" type="text" name="name" placeholder="{{ 'NAME' | translate }}" />
-        </mat-form-field>
+        <input-disabled-with-icon
+            controlName="name"
+            placeholder="{{ 'NAME' | translate }}"
+            [form]="form.get('user')"></input-disabled-with-icon>
       </div>
 
-      <div fxFlex="50" class="pr-1 mb-24">
+      <div fxFlex="50" class="pr-1">
         <mat-label>{{'EMAIL' | translate}} *</mat-label>
-        <mat-form-field class="full-width" appearance="outline">
-          <input matInput email="true" formControlName="email" type="email" name="email" placeholder="{{ 'EMAIL' | translate }}" />
-        </mat-form-field>
+        <input-disabled-with-icon
+            controlName="email"
+            placeholder="{{ 'EMAIL' | translate }}"
+            [form]="form.get('user')"></input-disabled-with-icon>
       </div>
 
       <div fxFlex="50" class="pr-1 mb-24">
@@ -34,6 +36,25 @@
             [country]="form.get('user').get('secondary_phone_country')"
             [number]="form.get('user').get('secondary_phone_number')"></phone-number-with-country-flag>
       </div>
-    </div>
-  </ng-container>
+
+      <div fxFlex="50" class="pr-1 mb-24" *ngIf="showRoleField">
+        <mat-label translate>ROLE_IN_COMPANY</mat-label>
+        <input-disabled-with-icon
+            controlName="role"
+            [form]="form.get('user')"></input-disabled-with-icon>
+      </div>
+    </ng-container>
+
+    <ng-container formGroupName="company" *ngIf="form.get('is_billing_function_shown').value">
+      <div fxFlex="50" class="pr-1 mb-24">
+        <mat-checkbox
+            id="show-invoice"
+            formControlName="has_billing_information"
+            (change)="showBillingInformation($event)">
+          {{ 'CONTACT_INVOICE' | translate }}
+        </mat-checkbox>
+      </div>
+    </ng-container>
+
+  </div>
 </div>

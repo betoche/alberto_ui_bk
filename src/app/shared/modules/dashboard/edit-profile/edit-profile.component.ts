@@ -1,23 +1,35 @@
 const Many = require('extends-classes');
+
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { FormControlsHelper } from 'app/shared/helpers/form_controls.helper';
 import { FormBaseComponent } from 'app/shared/components/form.base.component';
 import { ApplicationBaseComponent } from 'app/shared/components/application.base.component';
 import { PasswordConfirmationValidation } from 'app/shared/validators/password_confirmation.validator';
-import { ProfileService } from 'app/shared/services/profile.service';
 import { UserSession } from 'app/shared/services/user-session';
+import { UserEntityModel } from 'app/shared/models/users/user.entity.model';
+import { UserModel } from 'app/shared/models/users/user.model';
+import { UserWithCompanyFormHepler } from 'app/shared/helpers/user_with_company_form.helper';
+import { UserService } from 'app/shared/services/user.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'edit-profile',
   templateUrl: './edit-profile.component.html',
   styleUrls: ['./edit-profile.component.scss'],
 })
-export class EditProfileComponent extends Many(ApplicationBaseComponent, FormBaseComponent) implements OnInit {
+export class EditProfileComponent
+      extends Many(ApplicationBaseComponent, FormBaseComponent)
+      implements OnInit {
+
   public form: FormGroup;
   public governmentIdTypes: any = [];
+  public user: any = new UserModel({});
 
-  constructor(private fb: FormBuilder, private profileService: ProfileService) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private userService: UserService) {
     super();
   }
 
@@ -26,60 +38,55 @@ export class EditProfileComponent extends Many(ApplicationBaseComponent, FormBas
   }
 
   public buildForm() {
+    this.user = UserEntityModel.getUserInstance(this.currentUser);
     const password = new FormControl('');
     const passwordConfirmation = new FormControl('');
 
-    // TODO: Temporary field, will add later when the feature has confirm
-    const companyNameDisabledField = new FormControl({
-      value: 'Pragmatic',
-      disabled: true,
-    });
-    const companyRoleDisabledField = new FormControl({
-      value: 'Experience Lead',
-      disabled: true,
-    });
+    let companyFields = {};
+    if(this.user.isCompanyShown){
+      companyFields = UserWithCompanyFormHepler.companyFields(
+        this.user.company,
+        { disabledName: true, isBillingShownToUI: this.user.isBillingShownToUI() }
+      );
+    }
 
-    const name = new FormControl({
-      value: this.currentUser.name,
-      disabled: true,
-    });
+    this.form = new FormGroup({
+      is_billing_function_shown: new FormControl(this.user.isBillingFunctionShown, []),
+      user: new FormGroup({
+        id: new FormControl(this.user.id, []),
+        name: new FormControl({ value: this.user.name, disabled: true }, [Validators.required]),
+        email: new FormControl({ value: this.user.email, disabled: true }, [Validators.required]),
+        phone_number: new FormControl(this.user.phone_number, [Validators.required]),
+        phone_country: new FormControl(this.user.phone_country || 'CR', [Validators.required]),
+        secondary_phone_number: new FormControl(this.user.secondary_phone_number),
+        secondary_phone_country: new FormControl(this.user.secondary_phone_country || 'CR'),
+        role: new FormControl({ value: this.user.roleName(), disabled: true })
+      }),
 
-    const email = new FormControl({
-      value: this.currentUser.email,
-      disabled: true,
-    });
-
-    this.form = new FormGroup(
-      {
-        email: email,
-        password: password,
-        password_confirmation: passwordConfirmation,
-        name: name,
-        company: companyNameDisabledField,
-        role_in_company: companyRoleDisabledField,
-        phone_number: new FormControl(this.currentUser.phone_number, [Validators.required]),
-        phone_country: new FormControl(this.currentUser.phone_country || 'CR', [Validators.required]),
-        secondary_phone_number: new FormControl(this.currentUser.secondary_phone_number),
-        secondary_phone_country: new FormControl(this.currentUser.secondary_phone_country || 'CR')
-      },
-      [PasswordConfirmationValidation]
-    );
+      password: password,
+      password_confirmation: passwordConfirmation,
+      company: new FormGroup(companyFields)
+    }, [PasswordConfirmationValidation]);
   }
 
   public submit() {
+    let params = UserWithCompanyFormHepler.getFormValueForUserAndCompanyForm(this.form);
+
     if (this.form.valid) {
       if (this.form.value.password === '') {
         delete this.form.value.password;
         delete this.form.value.password_confirmation;
       }
 
-      this.profileService.updateProfile({ profile: this.form.value }).subscribe(
+      this.userService.update(
+        this.user.id, this.form.value
+      ).subscribe(
         (response) => {
           UserSession.setCurrentUser(response['data']['attributes']);
-          this.showFlashSuccessful('UPDATED_PROFILE_MESSAGE');
+          this.router.navigateByUrl('/dashboard/profile?message=UPDATED_PROFILE_MESSAGE');
         },
         (response) => {
-          this.showFlashFailed(response['error']['errors']);
+          this.showFlashFailed(response['error']['errors'], { scrollToTop: true });
         }
       );
     }

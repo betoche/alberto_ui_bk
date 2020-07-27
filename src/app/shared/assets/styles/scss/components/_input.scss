@@ -49,3 +49,21 @@
     }
   }
 }
+// input file
+app-upload-file{
+  .input-file-box {
+    .placeholder {
+      color: $placeholder-color !important;
+    }
+
+    .file-upload-hint {
+      font-size: $font-size-sm !important;
+      color: $disabled-color !important;
+    }
+
+    .file-upload-error {
+      font-size: $font-size-sm !important;
+      color: $danger-color !important;
+    }
+  }
+}

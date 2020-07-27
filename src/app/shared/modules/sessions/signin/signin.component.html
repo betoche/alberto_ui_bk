@@ -12,7 +12,7 @@
     <!-- Right side content -->
     <div class="login-form">
       <div class="top-links">
-        <a class="text-underline " translate>LEARN_MORE_TOT</a>
+        <a class="text-underline " translate href="https://www.pragmatic.la/" target="_blank">LEARN_MORE_TOT</a>
       </div>
       <div class="login-form-container">
         <div>
@@ -30,7 +30,7 @@
           <div *ngIf="!!responseErrorMessage" class="form-error-msg top-message-form">
             <small>{{ responseErrorMessage }}</small>
           </div>
-  
+
           <mat-label translate>EMAIL</mat-label>
           <mat-form-field class="full-width" appearance="outline">
             <input matInput formControlName="email" type="email" name="email" placeholder="Ingrese un correo electrónico"/>
@@ -39,26 +39,26 @@
               {{ signinForm.get('email').errors?.serverError }}
             </mat-error>
           </mat-form-field>
-  
+
           <mat-label translate>PASSWORD</mat-label>
           <app-password-input
             name="password"
             [objectField]="signinForm.get('password')"
             placeholder="Asigne una contraseña"
           ></app-password-input>
-  
+
           <div class="forgot-password">
             <a (click)="openForgotPasswordPopUp()">
               {{ 'FORGOT_PASSWORD' | translate }}
             </a>
           </div>
-  
+
           <div class="remember-password">
             <mat-checkbox value="true">
               {{ 'REMEMBER_PASSWORD' | translate }}
             </mat-checkbox>
           </div>
-  
+
           <div class="button-bottom">
             <button mat-flat-button color="primary" [disabled]="signinForm.invalid" id="submit">
               {{ 'SIGN_IN' | translate }}

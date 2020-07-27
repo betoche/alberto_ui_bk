@@ -31,17 +31,17 @@ export class ApplicationBaseComponent {
     }
   }
 
-  public showFlashSuccessful(message){
-    this.messageOptions = {
+  public showFlashSuccessful(message, options = {}){
+    this.messageOptions = Object.assign({
       type: 'success',
       message: message
-    }
+    }, options);
   }
 
-  public showFlashFailed(message){
-    this.messageOptions = {
+  public showFlashFailed(message, options = {}){
+    this.messageOptions = Object.assign({
       type: 'danger',
       message: message
-    }
+    }, options);
   }
 }

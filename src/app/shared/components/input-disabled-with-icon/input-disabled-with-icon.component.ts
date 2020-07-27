@@ -14,12 +14,13 @@ import { FormGroup, FormGroupDirective, ControlContainer } from '@angular/forms'
 })
 export class InputDisabledWithIconComponent implements OnInit {
   @Input('controlName') controlName: string;
-  public form: FormGroup;
+  @Input('form') form: FormGroup;
+  @Input('placeholder') placeholder: string;
+  @Input('textMask') textMask: any = [];
 
-  constructor(public parent: FormGroupDirective) {
-  }
+  constructor(public parent: FormGroupDirective) {}
 
   ngOnInit() {
-    this.form = this.parent.form;
+    this.form = this.form || this.parent.form;
   }
 }

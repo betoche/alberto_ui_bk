@@ -49,7 +49,9 @@ describe('UserInfoFieldsComponent', () => {
         phone_country: new FormControl(''),
         secondary_phone_number: new FormControl(''),
         secondary_phone_country: new FormControl(''),
+        role: new FormControl('')
       }),
+      is_billing_function_shown: new FormControl('')
     })
 
     fixture.detectChanges();

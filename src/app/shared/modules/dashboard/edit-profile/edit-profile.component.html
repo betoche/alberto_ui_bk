@@ -11,66 +11,17 @@
     <flash-messsage-auto-hide
         [options]="messageOptions" class="margin-b-50"></flash-messsage-auto-hide>
 
-    <div class="section-1 mb-24"><span class="circle-number">1</span>{{ 'PERSONAL_INFORMATION' | translate }}</div>
     <form [formGroup]="form" (ngSubmit)="submit()">
+      <app-user-info-fields
+          [form]="form"
+          showRoleField="true"></app-user-info-fields>
+
+      <ng-container *ngIf="this.user.isCompanyShown">
+        <hr class="width-80 mb-12 mt-12" />
+        <company-fields [form]="form" type="{{ user.typeOfCompany() }}"></company-fields>
+      </ng-container>
+
       <div fxLayout="row wrap" fxLayout.lt-sm="column">
-        <div fxFlex="50" class="pr-1 mb-24">
-          <mat-label disabled translate>NAME</mat-label>
-          <mat-form-field class="full-width" appearance="outline">
-            <input matInput formControlName="name" type="text" name="name" placeholder="{{ 'NAME' | translate }}" />
-            <mat-icon class="text-grey-B000" matSuffix>lock</mat-icon>
-          </mat-form-field>
-        </div>
-
-        <div fxFlex="50" class="pr-1 mb-24">
-          <mat-label disabled translate>EMAIL</mat-label>
-          <mat-form-field class="full-width" appearance="outline">
-            <input matInput formControlName="email" type="email" name="email" placeholder="{{ 'EMAIL' | translate }}" />
-            <mat-icon class="text-grey-B000" matSuffix>lock</mat-icon>
-          </mat-form-field>
-        </div>
-
-        <div fxFlex="50" class="pr-1 mb-24">
-          <mat-label class="d-block">{{ 'TELEPHONE_1' | translate }} *</mat-label>
-          <phone-number-with-country-flag
-              [form]="form"
-              [country]="form.get('phone_country')"
-              [number]="form.get('phone_number')">
-          </phone-number-with-country-flag>
-        </div>
-
-        <div fxFlex="50" class="pr-1 mb-24">
-          <mat-label class="d-block">{{'TELEPHONE_2' | translate}}</mat-label>
-          <phone-number-with-country-flag
-              [form]="form"
-              [country]="form.get('secondary_phone_country')"
-              [number]="form.get('secondary_phone_number')"></phone-number-with-country-flag>
-        </div>
-
-      </div>
-
-      <hr class="width-80 mb-12 mt-12" />
-      <div class="section-1 mt-24 mb-24">
-        <span class="circle-number">2</span>{{ 'COMPANY_INFORMATION' | translate }}
-      </div>
-      <div fxLayout="row wrap" fxLayout.lt-sm="column">
-        <div fxFlex="50" class="pr-1 mb-24">
-          <mat-label disabled translate>COMPANY_NAME</mat-label>
-          <mat-form-field class="full-width" appearance="outline">
-            <input matInput formControlName="company" type="text" name="company" />
-            <mat-icon class="text-grey-B000" matSuffix>lock</mat-icon>
-          </mat-form-field>
-        </div>
-
-        <div fxFlex="50" class="pr-1 mb-24">
-          <mat-label translate>ROLE_IN_COMPANY</mat-label>
-          <mat-form-field class="full-width" appearance="outline">
-            <input matInput formControlName="role_in_company" type="text" name="role_in_company" />
-            <mat-icon class="text-grey-B000" matSuffix>lock</mat-icon>
-          </mat-form-field>
-        </div>
-
-        <!-- ############################## -->
 
         <div fxFlex="100" class="mt-1 mr-1" style="text-align: center;">
           <button mat-stroked-button color="primary" [disabled]="form.invalid" type="submit" id="submit-btn">

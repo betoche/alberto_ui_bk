@@ -19,7 +19,7 @@
     <!-- Right side content -->
     <div class="login-form">
       <div class="top-links" fxLayout="row wrap" fxLayoutAlign="end flex-end" fxLayoutAlign="space-between" >
-        <a class="text-underline " translate>LEARN_MORE_TOT</a>
+        <a class="text-underline " translate href="https://www.pragmatic.la/" target="_blank">LEARN_MORE_TOT</a>
         <a class="text-underline" routerLink="/sessions/sign_in">{{
           'SIGN_IN_PAGE' | translate
         }}</a>
@@ -29,7 +29,7 @@
         <div>
           <img src="assets/images/logo-tot.svg" alt="logo-tot" class="logo-tot"/>
         </div>
-        
+
         <div class="row-container">
           <h1 class="login-header">{{ 'ACTIVATE_ACCOUNT' | translate }}</h1>
         </div>
@@ -42,7 +42,7 @@
           ></app-flash-messsage>
           <div class="mt-24 mb-1" [innerHTML]="'ACTIVATION_LINK_EXPIRED_DESC' | translate"></div>
         </div>
-        
+
         <div class="row-container">
           <p class="login-description">
             {{ 'ACTIVATE_ACCOUNT_DESC' | translate }}
@@ -53,13 +53,13 @@
           <div *ngIf="responseErrorMessage" class="form-error-msg top-message-form">
             <small>{{ responseErrorMessage }}</small>
           </div>
-  
+
           <mat-label translate>EMAIL</mat-label>
           <mat-form-field appearance="outline">
             <input matInput formControlName="email" type="email" name="email" placeholder="{{ 'EMAIL' | translate }}" />
             <mat-icon class="text-grey-B000" matSuffix>lock</mat-icon>
           </mat-form-field>
-  
+
           <mat-label translate>PASSWORD</mat-label>
           <secure-password-input
             [objectField]="form.get('password')"
@@ -79,7 +79,7 @@
               ><p [innerHTML]="'ACCEPT_TOT' | translate"></p
             ></mat-checkbox>
           </div>
-  
+
           <div class="button-bottom">
             <button mat-flat-button color="primary" [disabled]="form.invalid" id="submit">
               {{ 'ACTIVATE_ACCOUNT' | translate }}

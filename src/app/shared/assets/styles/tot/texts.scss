@@ -1,5 +1,6 @@
-text-underline {
-   text-decoration: underline;
-&:hover {
-    text-decoration: underline;
+.text-underline {
+  span{
+    @include text-underline;
+  }
+  @include text-underline;
 }

@@ -1,22 +1,50 @@
+.cdk-global-overlay-wrapper{
+    padding: 20px;
+}
 .cdk-overlay-pane{
-  max-width: calc(100% - 40px) !important;
+  max-width: 100% !important;
+  width: auto !important
+}
+// confirmations
+.modal-confirmation{
+    @include md{
+        width: 688px;
+    }
 }
 
 mat-dialog-container.mat-dialog-container {
-  padding: 0;
+  // padding: 0;
   height: auto;
   width: 100%;
   max-height: calc(100vh - 40px);
 
   // wrap
   .box-detail{
+    margin: -24px;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
     padding: 32px !important;
-    margin-bottom: 0;
     &:last-child:before{
-      content: none
+      content: none;
+      margin-bottom: -24px;
+    }
+    + .box-detail{
+      margin-top: 24px;
+    }
+    @include lg{
+        width: 950px;
+    }
+    @include xl{
+        width: 1000px;
+    }
+    @include lg-angular{
+        width: 1220px;
+    }
+    &.modal-confirmation{
+        @include md{
+            width: 688px;
+        }
     }
   }
   // close
@@ -75,6 +103,34 @@ mat-dialog-container.mat-dialog-container {
       margin-bottom: 10px;
       &:last-child{
         margin-bottom: 50px;
+      }
+    }
+  }
+  // confirmation
+  .modal-confirmation{
+    .close-modal{
+      position: relative;
+      top: auto;
+      right: auto;
+    }
+    .header-container{
+      padding-right: 0;
+      margin: 22px 0 44px;;
+      .headline,
+      .header-nav{
+        margin-bottom: 0;
+      }
+      .headline{
+        font-size: $font-size-modal-lg !important;
+        font-weight: normal !important;
+      }
+    }
+    .mat-dialog-content{
+      padding: 0;
+      margin: 0 0 82px;
+      ul{
+        padding: 0;
+        margin: 0;
       }
     }
   }

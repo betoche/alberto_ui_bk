@@ -93,7 +93,6 @@
   "OR": "o",
   "ACTIVATE_ACCOUNT": "Activar mi cuenta",
 
-  "ROLE": "Papel",
   "TECHNICAL_ADMINISTRATOR": "Administrador técnico",
   "BUSINESS_ADMINISTRATOR": "Administrador de negocios",
   "SUPPORT_ADMINISTRATOR": "Administrador de soporte",
@@ -146,8 +145,9 @@
   "LOYALTY_PLAN": "Plan Paciente",
   "LOYALTY_PLANS": "Planes Paciente",
   "LOYALTY_PLAN_NAME": "Nombre",
+  "LOYALTY_DETAIL_HEADER": "Aquí puede visualizar y gestionar sus planes",
   "LOGO_PLAN": "Logo del plan",
-  "LOYALTY_PLAN_LOGO_HINT": "Utilice una imagen cuadrada 100 x 100 píxeles",
+  "LOYALTY_PLAN_LOGO_HINT": "Utilice una imagen cuadrada 200 x 200 píxeles",
   "DESCRIPTION": "Descripción",
   "WEBSITE_URL": "Más información",
   "REGULATION": "Reglamento",

@@ -9,7 +9,7 @@ export class OrderModel extends BaseModel {
   public quantity: number;
   public order_items: any;
   public customer_full_name: string;
-  public customer_full_address: string;
+  public place_of_delivery: string;
   public customer_main_phone_number: string;
   public subtotal: number;
   public tax: number;
@@ -35,7 +35,7 @@ export class OrderModel extends BaseModel {
       'order_items',
       'aasm_state',
       'customer_full_name',
-      'customer_full_address',
+      'place_of_delivery',
       'customer_main_phone_number',
       'subtotal',
       'tax',

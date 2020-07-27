@@ -7,6 +7,7 @@ $screen-sm: 576px;
 $screen-md: 768px;
 $screen-lg: 992px;
 $screen-xl: 1200px;
+$screen-lg-angular: 1280px;
 
 @mixin sm {
   @media (min-width: #{$screen-sm}) {
@@ -28,6 +29,12 @@ $screen-xl: 1200px;
 
 @mixin xl {
   @media (min-width: #{$screen-xl}) {
+    @content;
+  }
+}
+
+@mixin lg-angular {
+  @media (min-width: #{$screen-lg-angular}) {
     @content;
   }
 }
@@ -153,4 +160,13 @@ $screen-xl: 1200px;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
+}
+
+@mixin placeholder-md{}
+
+@mixin text-underline{
+  text-decoration: underline;
+  &:hover {
+    text-decoration: underline;
+  }
 }

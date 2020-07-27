@@ -3,7 +3,7 @@ import { FormsModule, ReactiveFormsModule, FormGroup, FormBuilder, Validators, F
 
 import { CompanyFieldsComponent } from './company-fields.component';
 import { TestBedHelper } from 'spec/test-bed/test-bed-helper';
-import { FormHelper } from 'app/shared/helpers/form.helper';
+import { UserWithCompanyFormHepler } from 'app/shared/helpers/user_with_company_form.helper';
 
 describe('CompanyFieldsComponent', () => {
   let component: CompanyFieldsComponent;
@@ -28,10 +28,6 @@ describe('CompanyFieldsComponent', () => {
     expect(fixture.debugElement.nativeElement.textContent).toContain('DISTRICT *')
     expect(fixture.debugElement.nativeElement.textContent).toContain('SUBURB *')
     expect(fixture.debugElement.nativeElement.textContent).toContain('ADDRESS_NOTE *')
-    expect(fixture.debugElement.nativeElement.textContent).toContain('GOVERNMENT_ID_TYPE *')
-    expect(fixture.debugElement.nativeElement.textContent).toContain('LEGAL_NOTE')
-    expect(fixture.debugElement.nativeElement.textContent).toContain('TELEPHONE_1 *')
-    expect(fixture.debugElement.nativeElement.textContent).toContain('EMAIL *')
   });
 
 
@@ -46,7 +42,7 @@ describe('CompanyFieldsComponent', () => {
     component = fixture.componentInstance;
 
     component.form = new FormGroup({
-      company: new FormGroup(FormHelper.companyFields()),
+      company: new FormGroup(UserWithCompanyFormHepler.companyFields()),
     });
 
     fixture.detectChanges();

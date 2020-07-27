@@ -192,5 +192,38 @@
     "DASHBOARD": "Panel de control"
   },
 
-  "UPDATED_PROFILE_MESSAGE": "La información del perfil se ha actualizado correctamente."
+  "UPDATED_PROFILE_MESSAGE": "La información del perfil se ha actualizado correctamente.",
+  "CONTACT_INVOICE": "Contacto de facturación",
+
+  "PAGES": {
+    "COMPANIES": {
+      "NAME_OF": "Nombre de la",
+      "COMPANY_CODE": "Id de"
+    }
+  },
+
+  "COMPANY_TYPE_TRANSLATIONS": {
+    "Drugstore": "farmacia",
+    "DrugstoreLocation": "farmacia",
+    "PharmaceuticalCompany": "farmacéutica",
+    "BenefitsProviderCommerce": "patrocinador"
+  },
+
+  "LEGAL_NOTE": "Cédula jurídica",
+  "BUSINESS_NAME": "Razón social",
+  "USER_INFORMATION": "Información del usuario",
+  "BILLING_INFORMATION": "Información de facturación",
+  "LOGO_COMPANY": "Logo del aliado",
+  "SELECT_FILE": "Seleccione un archivo",
+  "IMAGE_100x100_HINT": "Utilice una imagen cuadrada, de máximo 100 x 100 píxeles",
+  "SUBURB": "Barrio",
+  "ADDRESS_NOTE": "Otras señas",
+  "ROLES": {
+    "administrator": "Administrator",
+    "drugstore_administrator": "Administrator",
+    "drugstore_location_administrator": "Administrator Location",
+    "benefits_provider_commerce_administrator": "Administrator",
+    "pharmaceutical_company_administrator": "Administrator"
+  },
+  "BILLING_SAME_ADDRESS": "Utilizar información de arriba"
 }

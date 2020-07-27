@@ -21,52 +21,68 @@ mat-form-field.phone-number{
   width: 82%;
 }
 
-.mat-form-field.mat-form-field-appearance-outline {
-  .mat-form-field-outline {
-    top: 0;
-    .mat-form-field-outline-end, .mat-form-field-outline-start {
-      background-color: unset;
-    }
-
-    .mat-form-field-outline-start {
-      border: 0;
-    }
-
-    .mat-form-field-outline-end {
-      border: 0;
-    }
-  }
-  &.mat-search {
+.mat-form-field{
+  &.mat-form-field-appearance-outline {
     .mat-form-field-outline {
-        .mat-form-field-outline-start {
-          border: 0;
+      top: 0;
+      .mat-form-field-outline-end, .mat-form-field-outline-start {
+        background-color: unset;
+      }
+
+      .mat-form-field-outline-start {
+        border: 0;
+      }
+
+      .mat-form-field-outline-end {
+        border: 0;
+      }
+    }
+    &.mat-search {
+      .mat-form-field-outline {
+          .mat-form-field-outline-start {
+            border: 0;
+          }
+          .mat-form-field-outline-end {
+            border: 0;
+          }
         }
-        .mat-form-field-outline-end {
-          border: 0;
+        .mat-form-field-flex .mat-form-field-infix {
+          padding:  14px 0;
+          border-top: 0;
+          padding-left: 35px;
         }
+        // icon
+        .mat-form-field-suffix{
+          top: 0;
+          bottom: 0;
+          margin: auto;
+          left: 0.75em;
+          position: absolute;
+          height: 24px;
+        }
+    }
+    .mat-form-field-flex .mat-form-field-infix{
+      border: 0;
+      padding: 14px 0;
+    }
+    input{
+      @include font-lato;
+      font-size: $font-size-sm;
+    }
+    // form field sm
+    &.form-field-sm{
+      .mat-form-field-flex .mat-form-field-infix{
+        padding: 11px 0;
       }
-      .mat-form-field-flex .mat-form-field-infix {
-        padding:  20px 0;
-        border-top: 0;
-        padding-left: 35px;
-      }
-      // icon
-      .mat-form-field-suffix{
-        top: 0;
-        bottom: 0;
-        margin: auto;
-        left: 0.75em;
-        position: absolute;
-        height: 24px;
-      }
+    }
+
+    .mat-form-field-suffix{
+      top: 0.45em;
+    }
   }
-  .mat-form-field-flex .mat-form-field-infix{
-    border: 0;
-    padding: 20px 0;
-  }
-  input{
-    @include font-lato;
-    font-size: $font-size-sm;
+  // aling middle
+  &.no-subscript .mat-form-field-subscript-wrapper{
+    display: none;
   }
 }
 
@@ -122,19 +138,36 @@ mat-form-field.phone-number{
 
 
 // select
+.mat-select-trigger{
+    vertical-align: middle;
+}
+.mat-select-value{
+  vertical-align: middle
+}
+.mat-form-field-appearance-outline .mat-select-arrow-wrapper {
+  -webkit-transform: none !important;
+  transform: none !important;
+}
 .mat-select-arrow-wrapper {
+  vertical-align: middle;
+  margin: 0;
   // icon
   .mat-select-arrow {
     color: $primary-color;
     border: 0;
+    height: 16px;
+    width: 24px;
+    position: relative;
+    margin: 0 -5px 0 0;
     &:after{
       content: 'keyboard_arrow_down';
       @include font-material;
       position: absolute;
       top: 0;
-      right: -5px;
+      right: 0;
       bottom: 0;
       margin: auto;
+      width: 24px;
       height: 24px;
     }
   }

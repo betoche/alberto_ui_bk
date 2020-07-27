@@ -52,7 +52,6 @@ import { BillingInformationFieldsComponent } from './billing-information-fields/
 import { GovernmentIdTypesComponent } from './government-id-types/government-id-types.component';
 import { DatatablePageLimitComponent } from './datatable-page-limit/datatable-page-limit.component';
 import { DataImportingComponent } from 'app/shared/modules/dashboard/data-importing/data-importing.component';
-import { ProfileComponent } from 'app/shared/modules/dashboard/profile/profile.component';
 
 import { TextMaskModule } from 'angular2-text-mask';
 
@@ -94,8 +93,7 @@ const components = [
   UserInfoFieldsComponent,
   CompanyFieldsComponent,
   BillingInformationFieldsComponent,
-  DataImportingComponent,
-  ProfileComponent
+  DataImportingComponent
 ];
 
 @NgModule({

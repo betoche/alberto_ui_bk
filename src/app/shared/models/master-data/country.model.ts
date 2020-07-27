@@ -13,7 +13,10 @@ export class MasterDataCountry{
         provinces.push( { id: province_id, name: province.name } );
       });
 
-      data.push( { name: country.name, code: code, provinces: provinces } );
+      data.push( {
+        name: country.name, code: code,
+        phone_code: country.phone_code, provinces: provinces
+      } );
     });
 
     return data;

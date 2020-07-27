@@ -19,7 +19,7 @@ export const rootRouterConfig: Routes = [
       {
         path: 'sessions',
         loadChildren: () => import('app/shared/modules/sessions/sessions.module').then(m => m.SessionsModule),
-        data: { title: 'BROWSER_TITLE.SESSION', breadcrumb: 'SESSION' }
+        data: { title: 'BROWSER_TITLE.SESSIONS', breadcrumb: 'SESSIONS' }
       }
     ]
   },

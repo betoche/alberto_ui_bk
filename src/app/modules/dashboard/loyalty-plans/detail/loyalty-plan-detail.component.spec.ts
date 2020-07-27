@@ -33,9 +33,9 @@ describe('LoyaltyPlanDetailComponent', () => {
     createComponent();
     expect(service.fetch).toHaveBeenCalled();
     tick(1000);
-    expect($('.page-title').text()).toContain('LOYALTY_PLAN');
-    expect($('.loyalty-plan-name').text()).toContain('my plan');
-    expect($('.plan-description').text()).toContain('my plan description');
+    expect($('.headline').text()).toContain('LOYALTY_PLAN');
+    expect($('.headline-information').text()).toContain('my plan');
+    expect($('.body-description-item').text()).toContain('my plan description');
   }))
 
   it('should show list of loyalty plan medications', fakeAsync(() => {
@@ -45,8 +45,8 @@ describe('LoyaltyPlanDetailComponent', () => {
     expect(loyaltyPlanService.fetch).toHaveBeenCalled();
     expect(loyaltyPlanMeicationService.fetchList).toHaveBeenCalled();
     tick(1000);
-    expect($('.medications-container datatable-row-wrapper:first-child').text()).toContain('Teodoro');
-    expect($('.medications-container datatable-row-wrapper:first-child').text()).toContain('5eaf7bb');
+    expect($('.loyalty-plan-medications-container datatable-row-wrapper:first-child').text()).toContain('Teodoro');
+    expect($('.loyalty-plan-medications-container datatable-row-wrapper:first-child').text()).toContain('5eaf7bb');
   }))
 
   it('should show list of loyalty plan countries', fakeAsync(() => {
@@ -56,7 +56,7 @@ describe('LoyaltyPlanDetailComponent', () => {
     expect(loyaltyPlanService.fetch).toHaveBeenCalled();
     expect(loyaltyPlanCountryService.fetchList).toHaveBeenCalled();
     tick(1000);
-    expect($('.country-container datatable-row-wrapper:first-child').text()).toContain('Costa Rica');
+    expect($('.loyalty-plan-country-container datatable-row-wrapper:first-child').text()).toContain('Costa Rica');
   }))
 
   function initializeComponent(options = {}) {

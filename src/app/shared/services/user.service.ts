@@ -45,4 +45,8 @@ export class UserService {
   public validPasswordToken(token: string) {
     return this.http.get(environment.apiURL + '/users/confirmations/' + token);
   }
+
+  public update(id, params) {
+    return this.http.put(environment.apiURL + '/users/' + id, params);
+  }
 }

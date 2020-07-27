@@ -11,7 +11,6 @@
     flex-direction: column;
     flex-grow: 1;
     padding: 0.333333rem;
-    overflow-x: hidden;
     position: relative;
     min-height: 450px;
   }
@@ -196,7 +195,7 @@
 
 // Container Layout
 .base-container{
-  max-width: 1156px;
+  max-width: 1219px;
   margin: 0 auto;
 }
 // Navigation Container Layout
@@ -217,6 +216,9 @@
     display: block !important;
     color: $body-text-color !important;
     line-height: 1 !important;
+    h1{
+      margin: 0;
+    }
   }
   // Container Breadcrumb Layout
   .breadcrumb{
@@ -240,7 +242,15 @@
     }
   }
 }
-
+// notes
+.note-description{
+    color: $disabled-color;
+    font-size: $font-size-xs
+}
+// color links
+.primary-color{
+    color: $primary-color;;
+}
 // box detail
 .box-detail,
 .box-detail.profile-section{
@@ -290,7 +300,8 @@
     }
     @include md{
       width: 85%;
-      margin: 0 auto $row-detail-margin-bottom auto;
+      margin-left: auto;
+      margin-right: auto;
       &.full-width{
       width: 100%;
       }
@@ -354,8 +365,8 @@
       }
       &.mat-select-tot-style .mat-form-field-infix,
       &.mat-form-field-type-mat-input .mat-form-field-infix{
-        padding-top: 10px !important;
-        padding-bottom: 10px !important;
+        padding-top: 11px !important;
+        padding-bottom: 11px !important;
       }
       &.mat-form-field-appearance-outline.form-field-default .mat-form-field-infix{
         padding: 20px 0 !important
@@ -413,6 +424,17 @@
   }
 }
 
+// various box-detail
+.box-detail-container{
+  .box-detail{
+    background: white;
+    margin-bottom: 0;
+    &:last-child{
+      margin-bottom: 32px;
+    }
+  }
+}
+
 // wrap
 .section-info{
   border-top: 3px solid $primary-color;
@@ -433,7 +455,7 @@
 .split{
   height: 1px;
   margin: 42px 0;
-  background-color: $disabled-button-background;
+  background-color: $split-gray;
 }
 .split-primary{
   background-color: $primary-color;
@@ -445,8 +467,32 @@
   width: 1px;
   margin: 0 30px;
   height: 100%;
-  background-color: $disabled-button-background;
+  background-color: $split-gray;
 }
 .vertical-split-primary{
   background-color: $primary-color;
+}
+
+// border split
+.border-t-primary{
+  border-top: 1px solid $primary-color;
+}
+.border-t-gray{
+  border-top: 1px solid $split-gray;
+}
+.border-b-primary{
+  border-bottom: 1px solid $primary-color;
+}
+.border-b-gray{
+  border-bottom: 1px solid $split-gray;
+}
+
+.app-admin-wrap {
+  height: auto;
+}
+.app-admin-container {
+  height: auto;
+}
+.main-content-wrap{
+  height: auto;
 }
